@@ -1,0 +1,4 @@
+﻿ need to implement HoursTable class
+ need to check if the chainging in dal_imp are in the kist or only on copy
+ need to see how to copy bool[] (dal_imp);
+ line 27 in dal_imp

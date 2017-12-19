@@ -12,19 +12,19 @@ namespace DAL
 
         void addNanny(BE.Nanny nanny);
         void deleteNanny(BE.Nanny nanny);
-        void updateNanny(BE.Nanny nanny, string whatToUpdate, object update);
+        void updateNanny(BE.Nanny nanny);
 
         void addMother(BE.Mother mother);
         void deleteMother(BE.Mother mother);
-        void updateMother(BE.Mother mother, string whatToUpdate, object update);
+        void updateMother(BE.Mother mother);
 
         void addChild(BE.Child child);
         void deleteChild(BE.Child child);
-        void updateChild(BE.Child child, string whatToUpdate, object update);
+        void updateChild(BE.Child child);
 
         void addContract(BE.Contract contract);
         void deleteContract(BE.Contract contract);
-        void updateContract(BE.Contract contract, string whatToUpdate, object update);
+        void updateContract(BE.Contract contract);
 
         List<Nanny> getNannyList();
         List<Mother> getMotherList();

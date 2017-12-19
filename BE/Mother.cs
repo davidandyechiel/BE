@@ -8,8 +8,8 @@ namespace BE
     public class Mother
     {
         private int id;
-        private string LastName;
-        private string FirstName;
+        private string lastName;
+        private string firstName;
         private int homePhoneNum;
         private int cellPhoneNum;
         private string address;
@@ -33,29 +33,29 @@ namespace BE
             }
         }
 
-        public string LastName1
+        public string LastName
         {
             get
             {
-                return LastName;
+                return lastName;
             }
 
             set
             {
-                LastName = value;
+                lastName = value;
             }
         }
 
-        public string FirstName1
+        public string FirstName
         {
             get
             {
-                return FirstName;
+                return firstName;
             }
 
             set
             {
-                FirstName = value;
+                firstName = value;
             }
         }
 

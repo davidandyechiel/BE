@@ -8,7 +8,7 @@ namespace BE
 {
     public class Contract
     {
-        static int ContractNumCounter = 10000000;
+        public static int ContractNumCounter = 10000000;
 
         int contractNum;
         private int nannysID;
@@ -27,7 +27,11 @@ namespace BE
             {
                 return contractNum;
             }
-         
+            set
+            {
+                contractNum = value;
+            }
+
         }
 
         public int NannysID
