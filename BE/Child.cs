@@ -6,16 +6,142 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    enum E_gender { boy, girl };
+
     class Child
     {
         private int id;
         private int mothersId;
         private string FName;
         private string LName;
-        private E_gender gender;
+        private E_gender gender; // I added this for WPF desine
         private bool spacialNeeds;
         private string spacialNeedsDescription;
         private DateTime birthday;
+        #region Property
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public int MothersId
+        {
+            get
+            {
+                return mothersId;
+            }
+
+            set
+            {
+                mothersId = value;
+            }
+        }
+
+        public string FName1
+        {
+            get
+            {
+                return FName;
+            }
+
+            set
+            {
+                FName = value;
+            }
+        }
+
+        public string LName1
+        {
+            get
+            {
+                return LName;
+            }
+
+            set
+            {
+                LName = value;
+            }
+        }
+
+        internal E_gender Gender
+        {
+            get
+            {
+                return gender;
+            }
+
+            set
+            {
+                gender = value;
+            }
+        }
+
+        public bool SpacialNeeds
+        {
+            get
+            {
+                return spacialNeeds;
+            }
+
+            set
+            {
+                spacialNeeds = value;
+            }
+        }
+
+        public string SpacialNeedsDescription
+        {
+            get
+            {
+                return spacialNeedsDescription;
+            }
+
+            set
+            {
+                spacialNeedsDescription = value;
+            }
+        }
+
+        public DateTime Birthday
+        {
+            get
+            {
+                return birthday;
+            }
+
+            set
+            {
+                birthday = value;
+            }
+        }
+        #endregion
+        #region Ctor
+        public Child()
+        {
+           
+        }
+        public Child(int id, int mothersId, string fName, string lName, E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
+        {
+            this.Id = id;
+            this.MothersId = mothersId;
+            FName1 = fName;
+            LName1 = lName;
+            this.Gender = gender;
+            this.SpacialNeeds = spacialNeeds;
+            this.SpacialNeedsDescription = spacialNeedsDescription;
+            this.Birthday = birthday;
+        }
+
+        #endregion
+
         public override string ToString()
         {
             return base.ToString();
