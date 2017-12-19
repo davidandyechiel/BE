@@ -18,7 +18,7 @@ namespace BE
         private int daysNeeded;//how many days per week needed 
         private bool[] needNanny;//days of the week mother needs a nanny
         private string notes;
-        private DateTime[,] hoursTable;//table that stores the start and end time of each day of the week 
+        private HoursInDay hoursTable;//table that stores the start and end time of each day of the week 
         #region Property
         public int Id
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    enum E_days { Sunday =1, Monday, Tuesday, Wednesday ,Friday, Saturday};
+    enum E_days { Sunday, Monday, Tuesday, Wednesday, Friday, Saturday };
+
+   
 
     public class Nanny
     {
         private int id;
-        private string LastName;
-        private string FirstName;
+        private string lastName;
+        private string firstName;
         private DateTime birthDate;
         private int phoneNum;
         private bool elevator; // if ther is elevator in the bulding
         private string adress;
-        private int floor; 
+        private int floor;
         private int experince; // years of experience
         private int maxCapacity; // max capacity of children
         private double minAge; // min age of the childen
@@ -28,7 +31,8 @@ namespace BE
         private string recommendations;
         private bool dependedDaysOff; // if the nanny's Day-Offs depend on the goverment
         private bool[] daysOfWork; // which days is the nanny work
-        private DateTime[,] hoursTable;//table that stores the start and end time of each day of the week
+        private HoursInDay[] hoursTable;//table that stores the start and end time of each day of the week
+
         #region Property
         public int Id
         {
@@ -43,29 +47,29 @@ namespace BE
             }
         }
 
-        public string LastName1
+        public string LastName
         {
             get
             {
-                return LastName;
+                return lastName;
             }
 
             set
             {
-                LastName = value;
+                lastName = value;
             }
         }
 
-        public string FirstName1
+        public string FirstName
         {
             get
             {
-                return FirstName;
+                return firstName;
             }
 
             set
             {
-                FirstName = value;
+                firstName = value;
             }
         }
 
@@ -208,7 +212,8 @@ namespace BE
 
             set
             {
-                hourRate = value;
+                if (PerHour)
+                    hourRate = value;
             }
         }
 
@@ -264,7 +269,7 @@ namespace BE
             }
         }
 
-        public DateTime[,] HoursTable
+        internal HoursInDay[] HoursTable // ??? i dont know why it works only in intenal ??? 
         {
             get
             {
@@ -276,32 +281,17 @@ namespace BE
                 hoursTable = value;
             }
         }
+
+
+
+
+
         #endregion
         #region Ctor
 
         public Nanny() { }
-        public Nanny(int id, string lastName, string firstName, DateTime birthDate, int phoneNum, bool elevator, string adress, int floor, int experince, int maxCapacity, double minAge, double maxAge, bool perHour, double hourRate, double monthlyRate, string recommendations, bool dependedDaysOff, bool[] daysOfWork, DateTime[,] hoursTable)
-        {
-            this.Id = id;
-            LastName1 = lastName;
-            FirstName1 = firstName;
-            this.BirthDate = birthDate;
-            this.PhoneNum = phoneNum;
-            this.Elevator = elevator;
-            this.Adress = adress;
-            this.Floor = floor;
-            this.Experince = experince;
-            this.MaxCapacity = maxCapacity;
-            this.MinAge = minAge;
-            this.MaxAge = maxAge;
-            this.PerHour = perHour;
-            this.HourRate = hourRate;
-            this.MonthlyRate = monthlyRate;
-            this.Recommendations = recommendations;
-            this.DependedDaysOff = dependedDaysOff;
-            this.DaysOfWork = daysOfWork;
-            this.HoursTable = hoursTable;
-        }
+       
+
         #endregion
 
         public override string ToString()

@@ -12,8 +12,8 @@ namespace BE
     {
         private int id;
         private int mothersId;
-        private string FName;
-        private string LName;
+        private string fName;
+        private string lName;
         private E_gender gender; // I added this for WPF desine
         private bool spacialNeeds;
         private string spacialNeedsDescription;
@@ -45,29 +45,29 @@ namespace BE
             }
         }
 
-        public string FName1
+        public string FName
         {
             get
             {
-                return FName;
+                return fName;
             }
 
             set
             {
-                FName = value;
+                fName = value;
             }
         }
 
-        public string LName1
+        public string LName
         {
             get
             {
-                return LName;
+                return lName;
             }
 
             set
             {
-                LName = value;
+                lName = value;
             }
         }
 
@@ -124,16 +124,13 @@ namespace BE
         }
         #endregion
         #region Ctor
-        public Child()
-        {
-           
-        }
+        public Child() { }
         public Child(int id, int mothersId, string fName, string lName, E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
         {
             this.Id = id;
             this.MothersId = mothersId;
-            FName1 = fName;
-            LName1 = lName;
+            FName = fName;
+            LName = lName;
             this.Gender = gender;
             this.SpacialNeeds = spacialNeeds;
             this.SpacialNeedsDescription = spacialNeedsDescription;
