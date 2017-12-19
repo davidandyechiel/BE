@@ -15,5 +15,10 @@ namespace BE
         private E_gender gender;
         private bool spacialNeeds;
         private string spacialNeedsDescription;
+        private DateTime birthday;
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

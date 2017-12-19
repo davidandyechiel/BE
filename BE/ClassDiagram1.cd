@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BE.Child" Collapsed="true">
+  <Class Name="BE.Child">
     <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAgAAADAAAAAAgAAEAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAQAAAAAAgAAADAEAAAAgAgEAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Child.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BE.Contract" Collapsed="true">
     <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAIAAAAAACAAAAAAAAAAAAAIAAAAAAAg=</HashCode>
+      <HashCode>QAIAAACAAAAAAIAEACAACAAAAAAAAAgAAAIAAAAAEAg=</HashCode>
       <FileName>Contract.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BE.Mother" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAkAAgAAEAAAEAAAAAAAABAIAAAAABAAAAAIgIgg=</HashCode>
       <FileName>Mother.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BE.Nanny" Collapsed="true">
+  <Class Name="BE.Nanny">
     <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAEAAAAAgAAAFhAAIAAEAABBAAAAMAAABAIQAAgg=</HashCode>
