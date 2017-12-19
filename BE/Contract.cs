@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Contract
+    public class Contract
     {
         static int ContractNumCounter = 10000000;
 

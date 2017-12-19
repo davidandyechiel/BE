@@ -66,19 +66,13 @@ namespace BE
             }
         }
 
-        public object Current
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+      
         #endregion
         public int CompareTo(object obj)
         {
             if (Hours == ((ClockTime)obj).Hours)
-                return (Minutes - ((ClockTime)obj).Minutes);
-            return Hours - ((ClockTime)obj).Hours;
+                return minutes.CompareTo(((ClockTime)obj).Minutes);
+            return hours.CompareTo(((ClockTime)obj).Hours);
         }
 
     }

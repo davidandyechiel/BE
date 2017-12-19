@@ -3,14 +3,15 @@
   <Class Name="BE.Child" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQCAAAAAgAAADKEAAAQgAgEAAAIBAAAAAgAAAAEAgA=</HashCode>
+      <HashCode>AAQCAAAAAgAAADaEAAAQgAgEAAAIBAAAAAgAAAAEAgA=</HashCode>
       <FileName>Child.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BE.ClockTime" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAABAAAABQAAQAQACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAABQAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ClockTime.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -29,18 +30,12 @@
       <FileName>HoursInDay.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BE.Mother" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgCiAkQAgAAEAAAEBAAEAAAABAIAAAACBCIAAAIgIgo=</HashCode>
-      <FileName>Mother.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BE.Nanny" Collapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+    <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAACBGQAAAFkAAgFhQAIAYUAABhAAAAcQAABCIQAAwg=</HashCode>
       <FileName>Nanny.cs</FileName>
+      <NewMemberFileName>Mother.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="BE.E_gender" Collapsed="true">

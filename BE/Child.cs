@@ -8,7 +8,7 @@ namespace BE
 {
     enum E_gender { boy, girl };
 
-    class Child
+    public class Child : IComparable
     {
         private int id;
         private int mothersId;
@@ -142,6 +142,11 @@ namespace BE
         public override string ToString()
         {
             return base.ToString();
+        }
+
+        public int CompareTo(object obj)
+        {
+            return id.CompareTo(((Child)obj).Id);
         }
     }
 }
