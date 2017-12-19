@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Contract
+    public class Contract : IComparable
     {
         public static int ContractNumCounter = 10000000;
 
@@ -173,7 +173,16 @@ namespace BE
         {
             return base.ToString();
         }
-       
+        public int CompareTo(object obj)
+        {
+            return contractNum.CompareTo(((Contract)obj).ContractNum);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (NannysID == (((Contract)obj).NannysID) && ChildID == (((Contract)obj).ChildID));
+        }
+
 
     }
 }

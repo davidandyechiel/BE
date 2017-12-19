@@ -11,7 +11,7 @@ namespace BE
 
    
 
-    public class Nanny
+    public class Nanny : IComparable
     {
         private int id;
         private string lastName;
@@ -281,11 +281,7 @@ namespace BE
                 hoursTable = value;
             }
         }
-
-
-
-
-
+        
         #endregion
         #region Ctor
 
@@ -297,6 +293,15 @@ namespace BE
         public override string ToString()
         {
             throw new System.NotImplementedException();
+        }
+        public int CompareTo(object obj)
+        {
+            return id.CompareTo(((Nanny)obj).Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (id.CompareTo(((Nanny)obj).Id) == 0);
         }
     }
 }

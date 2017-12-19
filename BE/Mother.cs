@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace BE
 {
-    public class Mother
+    public class Mother : IComparable
     {
         private int id;
         private string lastName;
@@ -197,6 +197,16 @@ namespace BE
         public override string ToString()
         {
             throw new System.NotImplementedException();
+        }
+
+        public int CompareTo(object obj)
+        {
+            return id.CompareTo(((Mother)obj).Id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (id.CompareTo(((Mother)obj).Id) == 0);
         }
 
     }

@@ -148,5 +148,11 @@ namespace BE
         {
             return id.CompareTo(((Child)obj).Id);
         }
+
+        public override bool Equals(object obj)
+        {
+            return (id.CompareTo(((Child)obj).Id) == 0);
+        }
+
     }
 }
