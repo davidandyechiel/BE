@@ -10,6 +10,16 @@ namespace DAL
    public interface Idal
     {
 
+
+        void Add( object obj);
+        void Remove( object obj);
+        void Update( object obj);
+        List<Nanny> getNannyDS();
+        List<Mother> getMotherDS();
+        List<Child> getChildDS();
+        List<Contract> getContractDS();
+
+
         /*void addNanny(BE.Nanny nanny);
         void deleteNanny(BE.Nanny nanny);
         void updateNanny(BE.Nanny nanny);
@@ -29,16 +39,6 @@ namespace DAL
       List<object> getDB(Type t);
         */
 
-        void Add(List<object> objList , object obj);
-        void Remove(List<object> objList, object obj);
-        void Update(List<object> objList, object obj);
-        List<Nanny> getNannyList();
-        List<Mother> getMotherList();
-        List<Child> getChildList();
-        List<Contract> getContractList();
 
-        
-
-      
     }
 }

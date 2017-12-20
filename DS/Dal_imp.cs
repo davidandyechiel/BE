@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 using BE;
 using DAL;
 
+
 namespace DS
 {
-    class Dal_imp : DataSource, Idal
+    public sealed class Dal_imp : Idal
+
     {
+
+
+
+
          public  void Add(List<object> objList, object obj)
          {
              if (!(objList.Exists(obj.Equals)))
@@ -26,7 +32,12 @@ namespace DS
                     ((Contract)obj).ContractNum = Contract.ContractNumCounter; 
                      Contract.ContractNumCounter++;
                  }
-                 objList.Add(obj);
+                if (obj is Mother)
+                { }
+                if (obj is Child)
+                { }
+                if (obj is Nanny)
+                { }
              }
              else throw new Exception(obj + "is already exist");
          }
@@ -72,12 +83,12 @@ namespace DS
        }*/
 
 
-        public List<Child> getChildList()
+        public List<Child> getChildDS()
          {
-             return childList;
+             return DataSource.getChildList();
          }
 
-         public List<Contract> getContractList()
+         public List<Contract> getContractDS()
          {
              return contractList;
          }

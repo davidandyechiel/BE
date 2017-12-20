@@ -7,8 +7,23 @@ using BE;
 
 namespace BL
 {
+
     public interface IBL
     {
+        DAL.Idal getNannyDS();
+        DAL.Idal getMotherDS();
+        DAL.Idal getChildDS();
+        DAL.Idal getContractDS();
+        void Add( object obj);
+        void Remove( object obj);
+        void Update( object obj);
+
+
+
+    }
+
+
+        /*
         void addNanny(BE.Nanny nanny);
         void deleteNanny(BE.Nanny nanny);
         void updateNanny(BE.Nanny nanny, string whatToUpdate, object update);
@@ -24,16 +39,16 @@ namespace BL
         void addContract(BE.Contract contract);
         void deleteContract(BE.Contract contract);
         void updateContract(BE.Contract contract, string whatToUpdate, object update);
+        */
 
-        List<Nanny> getNannyList();
-        List<Mother> getMotherList();
-        List<Child> getChildList();
-        List<Contract> getContractList();
+
     }
-
-    internal class BL_Basic:IBL
+/*
+    internal class BL_Basic: IBL
     {
+        const int MIN_AGE_NANNY = 18;
         DAL.Idal dal;
+
         //public BL_Basic()//supposed to be c-tor
         //{
         //    dal = DAL.FactoryDal.Getdal();
@@ -41,8 +56,8 @@ namespace BL
         //}
         void addNanny(BE.Nanny nanny)
         {
-            if (nanny.BirthDate.AddYears(18) < DateTime.Today)
-                throw new Exception("can not add a nanny under the age of 18");
+            if (nanny.BirthDate.AddYears(MIN_AGE_NANNY) < DateTime.Today)
+                throw new Exception("can not add a nanny under the age of " + MIN_AGE_NANNY);
             else
                 dal.addNanny(nanny);
         }
@@ -98,4 +113,4 @@ namespace BL
             if (contract.hasBrothers)
         }
     }
-}
+}*/
