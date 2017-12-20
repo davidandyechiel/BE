@@ -30,6 +30,7 @@ namespace BL
         List<Child> getChildList();
         List<Contract> getContractList();
     }
+
     internal class BL_Basic:IBL
     {
         DAL.Idal dal;
