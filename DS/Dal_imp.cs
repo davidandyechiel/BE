@@ -16,7 +16,14 @@ namespace DS
              {
                  if (obj is Contract) // if the type is contract so the contract number shoul be updated
                  {
-                     ((Contract)obj).ContractNum = Contract.ContractNumCounter;
+                    if (!(motherList.Exists(x => x.Id == (childList.Find(y => y.Id == (((Contract)obj).ChildID)).MothersId))))
+                        //if the mother's Id of the child in the contract is not exist in the motherlist
+                        throw new Exception("the mother is not exist");
+                    if (!(nannyList.Exists(x => x.Id ==  ((Contract)obj).NannysID)))
+                        //if the nanny's Id  in the contract is not exist in the nannylist
+                        throw new Exception("the nanny is not exist");
+                    //else add new contract number
+                    ((Contract)obj).ContractNum = Contract.ContractNumCounter; 
                      Contract.ContractNumCounter++;
                  }
                  objList.Add(obj);
@@ -42,8 +49,30 @@ namespace DS
             }
              else throw new Exception(obj + "is not exist");
          }
+        /*
+        public List<object> GetDB(Type t)
+        {
+            switch (t.ToString())
+            {
+                case ("Child"):
+                    return childList;
+                   
+                case ("Mother"):
+                    return childList;
+                    
+                case ("Contract"):
+                    return childList;
+                    
+                case ("Nanny"):
+                    return childList;
+              
+                default:
+                    throw new Exception("no such DB");
+            }
+       }*/
 
-         public List<Child> getChildList()
+
+        public List<Child> getChildList()
          {
              return childList;
          }

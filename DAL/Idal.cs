@@ -24,15 +24,21 @@ namespace DAL
 
         void addContract(BE.Contract contract);
         void deleteContract(BE.Contract contract);
-        void updateContract(BE.Contract contract);*/
+        void updateContract(BE.Contract contract);
+        
+      List<object> getDB(Type t);
+        */
 
         void Add(List<object> objList , object obj);
         void Remove(List<object> objList, object obj);
         void Update(List<object> objList, object obj);
-
         List<Nanny> getNannyList();
         List<Mother> getMotherList();
         List<Child> getChildList();
         List<Contract> getContractList();
+
+        
+
+      
     }
 }
