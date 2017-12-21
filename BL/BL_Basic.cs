@@ -19,22 +19,17 @@ namespace BL
         }
         #endregion
 
-        private static Idal MyDal = null;
+        private static Idal MyDal;
 
         #region Constructor
 
         private BL_Basic() { }
         static BL_Basic()
         {
-            if (MyDal == null)
-                MyDal = new Dal_imp();
-
-           /* string TypeDAL = ConfigurationSettings.AppSettings.Get("TypeDS");
-            // MyDal = DalFactory.getDAL("List");
-            MyDal = Dal_imp.getDAL(TypeDAL);*/
+               MyDal = Dal_imp.Instance;
         }
-        
-       
+        #endregion
+
 
 
         public void Add(object obj)

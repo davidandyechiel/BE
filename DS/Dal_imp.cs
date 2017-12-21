@@ -12,11 +12,12 @@ namespace DS
     public sealed class Dal_imp : Idal
 
     {
+        #region singletone
 
 
 
 
-         public  void Add(List<object> objList, object obj)
+        public void Add(List<object> objList, object obj)
          {
              if (!(objList.Exists(obj.Equals)))
              {
