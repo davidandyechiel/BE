@@ -38,12 +38,12 @@ namespace BL
         }
         public void Remove( object obj)
         {
-            throw new NotImplementedException();
+            MyDal.Remove(obj);
         }
 
         public void Update( object obj)
         {
-            throw new NotImplementedException();
+            MyDal.Update(obj);
         }
 
         public Idal getChildDS()
