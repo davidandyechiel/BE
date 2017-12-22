@@ -74,6 +74,9 @@ namespace BE
                 return minutes.CompareTo(((ClockTime)obj).Minutes);
             return hours.CompareTo(((ClockTime)obj).Hours);
         }
-
+        public override string ToString()
+        {
+            return Hours + ":" + Minutes;
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace BE
         private int daysNeeded;//how many days per week needed 
         private bool[] needNanny;//days of the week mother needs a nanny
         private string notes;
-        private HoursInDay hoursTable;//table that stores the start and end time of each day of the week 
+        private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week 
         #region Property
         public int Id
         {
@@ -163,7 +163,7 @@ namespace BE
             }
         }
 
-        public DateTime[,] HoursTable
+        public HoursInWeek HoursTable
         {
             get
             {
@@ -175,6 +175,8 @@ namespace BE
                 hoursTable = value;
             }
         }
+
+
         #endregion
         #region Ctor
         public Mother() { }
@@ -194,6 +196,10 @@ namespace BE
             this.HoursTable = hoursTable;
         }
         #endregion
+
+
+
+
         public override string ToString()
         {
             throw new System.NotImplementedException();

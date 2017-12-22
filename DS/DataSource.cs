@@ -15,31 +15,38 @@ namespace DS
         protected static List<Child> childList = null;
         protected static List<Contract> contractList = null;
 
-        public static List<Nanny> getNannyList()
+
+        #region singltone
+        private static readonly DataSource instance = new DataSource();
+        public static DataSource Instance
+        {
+            get { return instance; }
+        }
+        #endregion
+
+        public  List<Nanny> getNannyDS()
         {
             if (nannyList == null)
                 nannyList = new List<Nanny>();
             return nannyList;
         }
-        public static List<Mother> getMotherList()
+        public  List<Mother> getMotherDS()
         {
             if (motherList == null)
                 motherList = new List<Mother>();
             return motherList;
         }
-        public static List<Child> getChildList()
+        public  List<Child> getChildDS()
         {
             if (childList == null)
                 childList = new List<Child>();
             return childList;
         }
-        public static List<Contract> getContractList()
+        public  List<Contract> getContractDS()
         {
             if (contractList == null)
                 contractList = new List<Contract>();
             return contractList;
         }
-
-
     }
 }

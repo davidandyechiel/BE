@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    enum E_days { Sunday, Monday, Tuesday, Wednesday, Friday, Saturday };
+    enum E_days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Sabbath };
 
    
 

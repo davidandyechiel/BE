@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    enum E_gender { boy, girl };
+    public enum E_gender { boy, girl };
 
     public class Child : IComparable
     {
@@ -136,12 +136,23 @@ namespace BE
             this.SpacialNeedsDescription = spacialNeedsDescription;
             this.Birthday = birthday;
         }
+        public Child(Child child)
+        {
+            this.Id = child.Id;
+            this.MothersId = child.MothersId;
+            FName = child.FName;
+            LName = child.LName;
+            this.Gender = child.Gender;
+            this.SpacialNeeds = child.SpacialNeeds;
+            this.SpacialNeedsDescription = child.SpacialNeedsDescription;
+            this.Birthday = child.Birthday;
+        }
 
         #endregion
 
         public override string ToString()
         {
-            return base.ToString();
+            return "Child: " + FName + LName + "ID: " + Id + "\n";
         }
 
         public int CompareTo(object obj)
@@ -153,6 +164,7 @@ namespace BE
         {
             return (id.CompareTo(((Child)obj).Id) == 0);
         }
+
 
     }
 }

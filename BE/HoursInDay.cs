@@ -10,7 +10,7 @@ namespace BE
     /// <summary>
     ///  this class Has two ClockTime that show the start time and the end time in a day.
     /// </summary>
-    class HoursInDay 
+    class HoursInDay
     {
         private ClockTime start;
         private ClockTime end;
@@ -40,15 +40,24 @@ namespace BE
                 end = value;
             }
         }
-
-        #endregion
+         #endregion
         #region Ctrs
         public HoursInDay(ClockTime start, ClockTime end)
         {
             this.Start = start;
             this.End = end;
         }
-
         #endregion
+
+        public void setHoursInDay(ClockTime start, ClockTime end)
+        {
+            Start = start;
+            End = End;
+        }
+        public override string ToString()
+        {
+            return "start: " +  Start + " end:" + End;
+        }
+
     }
 }

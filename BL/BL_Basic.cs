@@ -10,6 +10,8 @@ namespace BL
 {
    public sealed class BL_Basic : IBL
     {
+        private static Idal MyDal;
+
         #region Singleton
         private static readonly BL_Basic instance = new BL_Basic();
 
@@ -17,19 +19,15 @@ namespace BL
         {
             get { return instance; }
         }
-        #endregion
-
-        private static Idal MyDal;
+        #endregion 
 
         #region Constructor
-
         private BL_Basic() { }
         static BL_Basic()
         {
                MyDal = Dal_imp.Instance;
         }
         #endregion
-
 
 
         public void Add(object obj)
