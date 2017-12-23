@@ -36,7 +36,7 @@ namespace DS
                 motherList = new List<Mother>();
             return motherList;
         }
-        public object getChildDS()
+        public List<Child> getChildDS()
         {
             if (childList == null)
                 childList = new List<Child>();

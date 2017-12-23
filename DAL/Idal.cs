@@ -14,10 +14,10 @@ namespace DAL
         void Add( object obj);
         void Remove( object obj);
         void Update( object obj);
-        Idal getNannyDS();
-        Idal getMotherDS();
-        Idal getChildDS();
-       Idal getContractDS();
+        List<Nanny> getNannyDS();
+        List<Mother> getMotherDS();
+        List<Child> getChildDS();
+        List<Contract> getContractDS();
 
 
         /*void addNanny(BE.Nanny nanny);

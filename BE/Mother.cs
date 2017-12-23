@@ -197,8 +197,8 @@ namespace BE
         public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, DateTime[,] hoursTable)
         {
             this.Id = id;
-            LastName1 = lastName;
-            FirstName1 = firstName;
+            LastName = lastName;
+            FirstName = firstName;
             this.HomePhoneNum = homePhoneNum;
             this.CellPhoneNum = cellPhoneNum;
             this.Address = address;

@@ -12,7 +12,7 @@ namespace DS
     public sealed class Dal_imp : Idal
     {
         DataSource MyDS;
-       // List<object> DalList;
+        // List<object> DalList;
 
         #region Singletone
         private static readonly Dal_imp instance = new Dal_imp();
@@ -44,7 +44,7 @@ namespace DS
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
                         ((Contract)obj).ContractNum = getContractNum(((Contract)obj));
-                       MyDS.getContractDS().Add((Contract)obj);
+                        MyDS.getContractDS().Add((Contract)obj);
                         break;
                     case ("Child"):
                         MyDS.getChildDS().Add((Child)obj);
@@ -65,7 +65,7 @@ namespace DS
         {
             if (contract.ContractNum == 0) // new contract
             {
-               return Contract.ContractNumCounter++; // return the current contract number and add 1 to the contract number
+                return Contract.ContractNumCounter++; // return the current contract number and add 1 to the contract number
             }
             else // update contract
             {
@@ -73,8 +73,7 @@ namespace DS
                 return MyDS.getContractDS().Find(contract.Equals).ContractNum; // update Contract number
             }
         }
-
-       
+  
         private bool Exists(object obj)
         {
             switch (obj.GetType().ToString())
@@ -143,9 +142,9 @@ namespace DS
 
         }
 
-        public Idal getChildDS()
+        public List<Child> getChildDS()
         {
-            return this;
+            return MyDS.getChildDS();
         }
 
         public List<Contract> getContractDS()
