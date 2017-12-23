@@ -10,7 +10,7 @@ namespace BE
     /// <summary>
     /// this class is keeping the time in format HH:MM
     /// </summary>
-    class ClockTime : IComparable
+   public class ClockTime : IComparable
     {
         int hours;
         int minutes;

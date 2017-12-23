@@ -7,54 +7,58 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class HoursInWeek : IEnumerable
+    public class HoursInWeek : IEnumerable
     {
-        private HoursInDay[] week;
+        const int MAX_DAYS_IN_WEEK = 6;
+        private HoursInDay[] weekHours;
 
-        public HoursInWeek(HoursInDay[] _week)
+        #region Ctrs            
+        public HoursInWeek(params HoursInDay[] _weekArgs)
         {
-            this.week = new HoursInDay[6];
-            this.Week = _week;
+            weekHours = new HoursInDay[MAX_DAYS_IN_WEEK];
+            weekHours = _weekArgs;
         }
+
         public HoursInWeek()
         {
-            this.week = new HoursInDay[6];
+            this.weekHours = new HoursInDay[MAX_DAYS_IN_WEEK] ;
         }
+        #endregion
+        #region Property
 
-        public HoursInWeek
-
-
-        public HoursInDay[] Week
+        public HoursInDay[] WeekHours
         {
             get
             {
-                return week;
+                return weekHours;
             }
 
             set
             {
-                for (int i = 0; i < 6; i++)
+                foreach (HoursInDay item in value)
                 {
-                    week[i] = value[i];
-                }        
+                    weekHours[(int)item.Day].Day = item.Day;
+                    weekHours[(int)item.Day].Start = item.Start;
+                    weekHours[(int)item.Day].End = item.End;
+                }
             }
         }
+        #endregion
 
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < 6; i++)
             {
-                yield return Week[i];
+                yield return weekHours[i];
             }
         }
 
         public override string ToString()
         {
             string str = "";
-            E_days day = E_days.Sunday;
-            foreach (HoursInDay item in Week)
+            foreach (HoursInDay item in weekHours)
             {
-                str += ((day++) + item.ToString() + "\n") ;
+                str += ( item.ToString() + "\n");
             }
             return str;
         }

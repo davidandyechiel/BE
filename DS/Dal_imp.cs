@@ -12,6 +12,7 @@ namespace DS
     public sealed class Dal_imp : Idal
     {
         DataSource MyDS;
+       // List<object> DalList;
 
         #region Singletone
         private static readonly Dal_imp instance = new Dal_imp();
@@ -142,9 +143,9 @@ namespace DS
 
         }
 
-        public List<Child> getChildDS()
+        public Idal getChildDS()
         {
-            return MyDS.getChildDS();
+            return this;
         }
 
         public List<Contract> getContractDS()

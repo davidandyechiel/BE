@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    enum E_days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Sabbath };
+    public enum E_days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Sabbath };
 
    
 
@@ -292,7 +292,7 @@ namespace BE
 
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+            return "Nanny: "  + LastName + FirstName + " ID: "
         }
         public int CompareTo(object obj)
         {

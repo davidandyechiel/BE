@@ -14,7 +14,7 @@ namespace DS
         protected static List<Mother> motherList = null;
         protected static List<Child> childList = null;
         protected static List<Contract> contractList = null;
-
+        
 
         #region singltone
         private static readonly DataSource instance = new DataSource();
@@ -36,7 +36,7 @@ namespace DS
                 motherList = new List<Mother>();
             return motherList;
         }
-        public  List<Child> getChildDS()
+        public object getChildDS()
         {
             if (childList == null)
                 childList = new List<Child>();

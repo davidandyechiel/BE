@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using DAL;
 using DS;
 
+
+
 namespace BL
 {
    public sealed class BL_Basic : IBL
@@ -46,7 +48,7 @@ namespace BL
 
         public Idal getChildDS()
         {
-            throw new NotImplementedException();
+            return  MyDal.getChildDS();
         }
 
         public Idal getContractDS()

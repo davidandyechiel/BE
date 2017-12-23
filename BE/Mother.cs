@@ -18,6 +18,7 @@ namespace BE
         private int daysNeeded;//how many days per week needed 
         private bool[] needNanny;//days of the week mother needs a nanny
         private string notes;
+        private int numOfKids; // number of the kids that need a nanny
         private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week 
         #region Property
         public int Id
@@ -176,6 +177,19 @@ namespace BE
             }
         }
 
+        public int NumOfKids
+        {
+            get
+            {
+                return numOfKids;
+            }
+
+            set
+            {
+                numOfKids = value;
+            }
+        }
+
 
         #endregion
         #region Ctor
@@ -202,7 +216,7 @@ namespace BE
 
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+            return "Mother: " + LastName + FirstName + " ID: " + Id;
         }
 
         public int CompareTo(object obj)

@@ -27,14 +27,14 @@
   <Class Name="BE.HoursInDay" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAACACAAAAgkAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIgAAACICAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HoursInDay.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BE.HoursInWeek" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAABAEAAAAAABAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>HoursInWeek.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -42,7 +42,7 @@
   <Class Name="BE.Mother" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgCiAkQAgABEAAQEhAAEAAAABAIAAAACBCAACAIgIgo=</HashCode>
+      <HashCode>AgCiAkQAgABEAAQGhAAEAAAABAIAAAACBCAACAIgIgo=</HashCode>
       <FileName>Mother.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
