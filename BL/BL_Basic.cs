@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using DS;
+using BE;
 
 
 
@@ -34,8 +35,21 @@ namespace BL
 
         public void Add(object obj)
         {
-            MyDal.Add(obj);
+            if (obj is Nanny)
+            {
+                if (((Nanny)obj).BirthDate.AddYears(18) < DateTime.Now)
+                    throw new Exception("Too young to be a nanny");
+            }
+            if (obj is Child)
+                if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
+                    throw new Exception("Child is too young to leave his/her mother");
+            if (obj is Contract)
+                if (((Contract)obj).Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)
+                    throw new Exception("Child is too young to leave his/her mother");
+                else
+                    MyDal.Add(obj);
         }
+
         public void Remove( object obj)
         {
             MyDal.Remove(obj);
