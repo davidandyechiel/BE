@@ -39,13 +39,20 @@ namespace BL
             {
                 if (((Nanny)obj).BirthDate.AddYears(18) < DateTime.Now)
                     throw new Exception("Too young to be a nanny");
+                MyDal.Add(obj);
             }
             if (obj is Child)
+            {
                 if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
                     throw new Exception("Child is too young to leave his/her mother");
+                MyDal.Add(obj);
+            }
             if (obj is Contract)
-                if (((Contract)obj).Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)
-                    throw new Exception("Child is too young to leave his/her mother");
+                if ((((Contract)obj).(MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)).NumOfKids))>2)
+                {
+                    if (((Contract)obj).Ishourly)
+                        ((Contract)obj).WagesPerHour = (MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).HourRate) * (MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)).HoursNeeded) * 4;
+                }
                 else
                     MyDal.Add(obj);
         }
@@ -57,7 +64,18 @@ namespace BL
 
         public void Update( object obj)
         {
-            MyDal.Update(obj);
+            if (obj is Nanny)
+            {
+                if (((Nanny)obj).BirthDate.AddYears(18) < DateTime.Now)
+                    throw new Exception("Too young to be a nanny");
+                MyDal.Update(obj);
+            }
+            if (obj is Child)
+            {
+                if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
+                    throw new Exception("Child is too young to leave his/her mother");
+                MyDal.Update(obj);
+            }
         }
 
         public Idal getChildDS()
