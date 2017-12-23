@@ -17,7 +17,7 @@ namespace DAL
         Idal getNannyDS();
         Idal getMotherDS();
         Idal getChildDS();
-        Idal getContractDS();
+       Idal getContractDS();
 
 
         /*void addNanny(BE.Nanny nanny);

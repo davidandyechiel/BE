@@ -48,7 +48,7 @@ namespace BL
 
         public Idal getChildDS()
         {
-            return  MyDal.getChildDS();
+            throw new NotImplementedException();
         }
 
         public Idal getContractDS()
