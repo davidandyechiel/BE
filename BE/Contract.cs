@@ -155,8 +155,7 @@ namespace BE
         public Contract() { }
         public Contract(int contractNum, int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
         {
-            contractNum = ContractNumCounter;
-            ContractNumCounter++;
+            
             this.NannysID = nannysID;
             this.ChildID = childID;
             this.HadMeeting = hadMeeting;
@@ -167,6 +166,12 @@ namespace BE
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
+
+
+
+
+
+
         #endregion
 
         public override string ToString()  
