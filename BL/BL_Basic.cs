@@ -11,7 +11,7 @@ using BE;
 
 namespace BL
 {
-   public sealed class BL_Basic : IBL
+   public sealed partial class BL_Basic : IBL
     {
         private static Idal MyDal;
 
