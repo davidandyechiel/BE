@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using DAL;
 using DS;
 using BE;
-
+using GoogleMapsApi.Entities.Directions;
+using GoogleMapsApi;
 
 
 namespace BL
@@ -26,8 +27,6 @@ namespace BL
         {
             int childId = 0;
             Del isSigned = (x => x.ChildID == childId);
-
-
             List<Child> list = new List<Child>();
             foreach (Child child in getChildDS())
             {
@@ -54,14 +53,10 @@ namespace BL
 
         public int CountTheContractsHow(Del condition)
         {
+            return (AllTheContractsHow(condition).Count);
+        }
 
-            // return (AllTheContractsHow(condition).Count);
-            return 0;
-        } 
-        
-       
-
-        SignContract(Mother mom , Nanny nanny, Child child , int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
+        public void SignContract(Mother mom, Nanny nanny, Child child, int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
         {
             Contract newContract = new Contract(nannysID, childID, hadMeeting, isSigned, wagesPerHour, wagesPerMonth, ishourly, startDate, endDate);
             Add(mom);
@@ -70,5 +65,29 @@ namespace BL
             Add(newContract);
 
         }
+
+        public static int getDistance ( String source, string dest)
+        {
+            var dircetionRequest = new GoogleMapsApi.Entities.Directions.Request.DirectionsRequest
+            {
+                TravelMode = GoogleMapsApi.Entities.Directions.Request.TravelMode.Walking,
+                Origin = source,
+                Destination = dest,
+            };
+
+            var drivingDirections = GoogleMaps.Directions.Query(dircetionRequest);
+            var route = drivingDirections.Routes.First();
+            var leg = route.Legs.First();
+            return leg.Distance.Value;
+        }
+
+        public bool IsMatch(HoursInWeek momsWeek , HoursInWeek nannysWeek)
+        {
+            
+            if (momsWeek == nannysWeek)
+
+        }
+
+
     }
 }

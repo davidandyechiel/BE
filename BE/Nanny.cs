@@ -31,7 +31,7 @@ namespace BE
         private string recommendations;
         private bool dependedDaysOff; // if the nanny's Day-Offs depend on the goverment
         private bool[] daysOfWork; // which days is the nanny work
-        private HoursInDay[] hoursTable;//table that stores the start and end time of each day of the week
+        private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week
 
         #region Property
         public int Id
@@ -269,7 +269,7 @@ namespace BE
             }
         }
 
-        internal HoursInDay[] HoursTable // ??? i dont know why it works only in intenal ??? 
+        public HoursInWeek HoursTable 
         {
             get
             {

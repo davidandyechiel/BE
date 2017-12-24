@@ -194,7 +194,7 @@ namespace BE
         #endregion
         #region Ctor
         public Mother() { }
-        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, DateTime[,] hoursTable)
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, HoursInWeek hoursTable)
         {
             this.Id = id;
             LastName = lastName;
@@ -203,6 +203,7 @@ namespace BE
             this.CellPhoneNum = cellPhoneNum;
             this.Address = address;
             this.AddressNearHere = addressNearHere;
+            this.HoursTable = hoursTable;
             this.HoursNeeded = hoursNeeded;
             this.DaysNeeded = daysNeeded;
             this.NeedNanny = needNanny;

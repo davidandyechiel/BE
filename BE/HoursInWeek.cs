@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class HoursInWeek : IEnumerable
+    public class HoursInWeek : IEnumerable, IComparable
     {
         const int MAX_DAYS_IN_WEEK = 6;
         private HoursInDay[] weekHours;
@@ -21,7 +21,7 @@ namespace BE
 
         public HoursInWeek()
         {
-            this.weekHours = new HoursInDay[MAX_DAYS_IN_WEEK] ;
+            this.weekHours = new HoursInDay[MAX_DAYS_IN_WEEK];
         }
         #endregion
         #region Property
@@ -53,14 +53,39 @@ namespace BE
             }
         }
 
+
+        public override bool Equals(object obj)
+        {
+            bool equal = true;
+            int i = 0;
+            foreach (HoursInDay first in WeekHours)
+            {
+                if (!(first == ((HoursInWeek)obj).WeekHours[i++]))
+                {
+                    equal = false;
+                    break;
+                }
+            }
+            return equal;
+        }
+
         public override string ToString()
         {
             string str = "";
             foreach (HoursInDay item in weekHours)
             {
-                str += ( item.ToString() + "\n");
+                str += (item.ToString() + "\n");
             }
             return str;
+        }
+
+        public int CompareTo(object obj)
+        {
+            HoursInDay second = ((HoursInWeek)obj).WeekHours[0];
+            for (int i = 0; i < MAX_DAYS_IN_WEEK; i++)
+            { if( weekHours[i].CompareTo(second)
+
+            }
         }
     }
 }
