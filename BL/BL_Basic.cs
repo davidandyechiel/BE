@@ -48,7 +48,7 @@ namespace BL
                 MyDal.Add(obj);
             }
             if (obj is Contract)
-                if ((((Contract)obj).(MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)).NumOfKids))>2)
+                if ((findMotherFromContract((Contract) obj).NumOfKids)>2)
                 {
                     if (((Contract)obj).Ishourly)
                         ((Contract)obj).WagesPerHour = (MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).HourRate) * (MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)).HoursNeeded) * 4;
@@ -56,6 +56,14 @@ namespace BL
                 else
                     MyDal.Add(obj);
         }
+
+
+        private Mother findMotherFromContract(Contract contract)
+        {
+            return MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (contract.ChildID)).MothersId));
+        }
+
+
 
         public void Remove( object obj)
         {
@@ -78,22 +86,22 @@ namespace BL
             }
         }
 
-        public Idal getChildDS()
+        public List<Child> getChildDS()
         {
             throw new NotImplementedException();
         }
 
-        public Idal getContractDS()
+        public List<Contract> getContractDS()
         {
             throw new NotImplementedException();
         }
 
-        public Idal getMotherDS()
+        public List<Mother> getMotherDS()
         {
             throw new NotImplementedException();
         }
 
-        public Idal getNannyDS()
+        public List<Nanny> getNannyDS()
         {
             throw new NotImplementedException();
         }

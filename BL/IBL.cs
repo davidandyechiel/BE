@@ -8,12 +8,12 @@ using BE;
 namespace BL
 {
 
-    public interface IBL
+    public interface IBL 
     {
-        DAL.Idal getNannyDS();
-        DAL.Idal getMotherDS();
-        DAL.Idal getChildDS();
-        DAL.Idal getContractDS();
+        List<Nanny> getNannyDS();
+        List<Mother> getMotherDS();
+        List<Child> getChildDS();
+        List<Contract> getContractDS();
         void Add( object obj);
         void Remove( object obj);
         void Update( object obj);

@@ -153,7 +153,7 @@ namespace BE
         #endregion
         #region Ctors
         public Contract() { }
-        public Contract(int contractNum, int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
+        public Contract(int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
         {
             
             this.NannysID = nannysID;
