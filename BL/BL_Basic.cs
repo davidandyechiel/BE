@@ -51,10 +51,13 @@ namespace BL
                 if ((findMotherFromContract((Contract) obj).NumOfKids)>2)
                 {
                     if (((Contract)obj).Ishourly)
-                        ((Contract)obj).WagesPerHour = (MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).HourRate) * (MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (((Contract)obj).ChildID)).MothersId)).HoursNeeded) * 4;
+                        ((Contract)obj).WagesPerHour = ((MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).HourRate) 
+                            * (findMotherFromContract((Contract)obj).HoursNeeded) * 4)*0.02* (findMotherFromContract((Contract)obj).NumOfKids);//rate per hour *hours per week * 4
+                    else
+                        ((Contract)obj).WagesPerHour = ((MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).MonthlyRate)
+                            *0.02 * (findMotherFromContract((Contract)obj).NumOfKids));//rate per hour *hours per week * 4
                 }
-                else
-                    MyDal.Add(obj);
+
         }
 
 
