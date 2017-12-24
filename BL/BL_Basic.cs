@@ -91,22 +91,22 @@ namespace BL
 
         public List<Child> getChildDS()
         {
-            throw new NotImplementedException();
+            return MyDal.getChildDS();
         }
 
         public List<Contract> getContractDS()
         {
-            throw new NotImplementedException();
+            return MyDal.getContractDS();
         }
 
         public List<Mother> getMotherDS()
         {
-            throw new NotImplementedException();
+            return MyDal.getMotherDS();
         }
 
         public List<Nanny> getNannyDS()
         {
-            throw new NotImplementedException();
+            return MyDal.getNannyDS();
         }
 
        
