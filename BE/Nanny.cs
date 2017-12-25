@@ -32,6 +32,9 @@ namespace BE
         private bool dependedDaysOff; // if the nanny's Day-Offs depend on the goverment
         private bool[] daysOfWork; // which days is the nanny work
         private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week
+        private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
+        public int difference;
+
 
         #region Property
         public int Id
@@ -281,7 +284,19 @@ namespace BE
                 hoursTable = value;
             }
         }
-        
+        public DateTime[][] DThoursTable
+        {
+            get
+            {
+                return dthoursTable;
+            }
+
+            set
+            {
+                dthoursTable = value;
+            }
+        }
+
         #endregion
         #region Ctor
 
