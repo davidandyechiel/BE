@@ -8,12 +8,12 @@ namespace BL
 {
     class XYZ
     {
-        public void todo()
+     //   public static void main()
 
-        {
-            BL_Basic.Instance.Add("gsay");
+        //{
+        //    Console.ReadKey();
 
 
-        }
+       // }
     }
 }

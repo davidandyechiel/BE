@@ -66,8 +66,7 @@ namespace BL
             return MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (contract.ChildID)).MothersId));
         }
 
-
-
+        
         public void Remove( object obj)
         {
             MyDal.Remove(obj);
@@ -135,13 +134,13 @@ namespace BL
             List<Nanny> listPro = new List<Nanny>();
             foreach (Nanny nanny in getNannyDS())
             {
-                 nanny.difference = 0;
+                 nanny.Difference = 0;
                 for (int i = 0; i <= 6; i++)
                 {
                     if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0][i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1][i]) >= 0))
                     {//   if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
                         flag = false;
-                        nanny.difference += (nanny.DThoursTable[1][i].Hour * 60 + nanny.DThoursTable[1][i].Minute) - (m.DThoursTable[1][i].Hour * 60 + m.DThoursTable[1][i].Minute);
+                        nanny.Difference += (nanny.DThoursTable[1][i].Hour * 60 + nanny.DThoursTable[1][i].Minute) - (m.DThoursTable[1][i].Hour * 60 + m.DThoursTable[1][i].Minute);
                         listPro.Add(nanny);
                     }
                 }
@@ -150,7 +149,13 @@ namespace BL
             }
             if (list == null)
             {
-                listPro.Sort()//*************************************************************************************
+                listPro.Sort(delegate (Nanny x, Nanny y)
+                {
+                    if (x == null && y == null) return 0;
+                    else if (x == null) return -1;
+                    else if (y == null) return 1;
+                    else return x.Difference.CompareTo(y.Difference);
+                });
                 return listPro;
             }
             return list;

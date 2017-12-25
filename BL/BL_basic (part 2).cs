@@ -66,7 +66,7 @@ namespace BL
 
         }
 
-        public static int getDistance ( String source, string dest)
+        public static int getDistance(String source, string dest)
         {
             var dircetionRequest = new GoogleMapsApi.Entities.Directions.Request.DirectionsRequest
             {
@@ -81,13 +81,49 @@ namespace BL
             return leg.Distance.Value;
         }
 
-        public bool IsMatch(HoursInWeek momsWeek , HoursInWeek nannysWeek)
+        public IEnumerable<IGrouping<double, Nanny>> groupByKidsAges(bool byMax = false)
         {
-            
-            if (momsWeek == nannysWeek)
-
+            if (byMax)
+            {
+                return MyDal.getNannyDS().GroupBy(nanny => nanny.MaxAge, nanny => nanny);
+            }
+            else
+            {
+                return MyDal.getNannyDS().GroupBy(nanny => nanny.MinAge, nanny => nanny);
+            }
         }
 
+        public IEnumerable<IGrouping<int, Contract>> groupMothersBydistance(bool toSortbyMotherId = false)
+        {
 
+            List<Contract> list = getContractDS();
+            if (toSortbyMotherId) // if needs to sort the grups so the group function will start on the sorted list.
+            {
+                list.Sort(delegate (Contract x, Contract y)
+                {
+                    if (x == null && y == null) return 0;
+                    else if (x == null) return -1;
+                    else if (y == null) return 1;
+                    else return findMotherFromContract(x).CompareTo(findMotherFromContract(y));
+                });
+            }
+            return list.GroupBy
+                (contract =>
+                getDistance(MotherWantedAddress(findMotherFromContract(contract)), findNannyFromContract(contract).Adress) // the distance between the motherwanted Address and the nannys address
+                ,contract => contract);
+        }
+
+        private Nanny findNannyFromContract(Contract contract)
+        {
+            return MyDal.getNannyDS().Find(x => x.Id == contract.NannysID);
+        }
+
+        public string MotherWantedAddress(Mother mom)
+        {
+            if (mom.AddressNearHere == null)
+                return mom.Address;
+            else return mom.AddressNearHere;
+
+        }
     }
 }

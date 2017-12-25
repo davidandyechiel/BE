@@ -33,7 +33,7 @@ namespace BE
         private bool[] daysOfWork; // which days is the nanny work
         private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
-        public int difference;
+        private int difference;
 
 
         #region Property
@@ -297,17 +297,35 @@ namespace BE
             }
         }
 
+        public int Difference
+        {
+            get
+            {
+                return difference;
+            }
+
+            set
+            {
+                difference = value;
+            }
+        }
+
         #endregion
         #region Ctor
 
         public Nanny() { }
-       
+
+        public Nanny(int difference)
+        {
+            this.Difference = difference;
+        }
+
 
         #endregion
 
         public override string ToString()
         {
-            return "Nanny: "  + LastName + FirstName + " ID: "
+            return "Nanny: "  + LastName + FirstName + " ID: "+ Id;
         }
         public int CompareTo(object obj)
         {

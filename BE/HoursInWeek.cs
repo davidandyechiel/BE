@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class HoursInWeek : IEnumerable, IComparable
+    public class HoursInWeek : IEnumerable
     {
         const int MAX_DAYS_IN_WEEK = 6;
         private HoursInDay[] weekHours;
@@ -79,13 +79,13 @@ namespace BE
             return str;
         }
 
-        public int CompareTo(object obj)
+       /* public int CompareTo(object obj)
         {
             HoursInDay second = ((HoursInWeek)obj).WeekHours[0];
             for (int i = 0; i < MAX_DAYS_IN_WEEK; i++)
             { if( weekHours[i].CompareTo(second)
 
             }
-        }
+        }*/
     }
 }
