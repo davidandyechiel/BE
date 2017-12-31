@@ -47,6 +47,7 @@
     <Compile Include="Child.cs" />
     <Compile Include="ClockTime.cs" />
     <Compile Include="Contract.cs" />
+    <Compile Include="EnumClasses.cs" />
     <Compile Include="HoursInDay.cs" />
     <Compile Include="HoursInWeek.cs" />
     <Compile Include="Mother.cs" />

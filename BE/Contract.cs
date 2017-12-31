@@ -150,6 +150,7 @@ namespace BE
                 endDate = value;
             }
         }
+
         #endregion
         #region Ctors
         public Contract() { }

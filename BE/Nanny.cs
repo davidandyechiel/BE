@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public enum E_days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Sabbath };
+    
 
-   
 
     public class Nanny : IComparable
     {
@@ -26,12 +25,12 @@ namespace BE
         private double minAge; // min age of the childen
         private double maxAge; // max age of childern
         private bool perHour; // if the nanny is also wokring hourly payment
-        private double hourRate; // the hourly Rate of the nanny
-        private double monthlyRate; // the monthly Rate of the nanny
+        private double hourRate; // the dayly Rate of the nanny
+                                 // private double monthlyRate; // the monthly Rate of the nanny
         private string recommendations;
         private bool dependedDaysOff; // if the nanny's Day-Offs depend on the goverment
         private bool[] daysOfWork; // which days is the nanny work
-        private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week
+     //   private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
         private int difference;
 
@@ -215,23 +214,10 @@ namespace BE
 
             set
             {
-                if (PerHour)
-                    hourRate = value;
+                hourRate = value;
             }
         }
 
-        public double MonthlyRate
-        {
-            get
-            {
-                return monthlyRate;
-            }
-
-            set
-            {
-                monthlyRate = value;
-            }
-        }
 
         public string Recommendations
         {
@@ -272,7 +258,7 @@ namespace BE
             }
         }
 
-        public HoursInWeek HoursTable 
+   /*     public HoursInWeek HoursTable 
         {
             get
             {
@@ -283,7 +269,7 @@ namespace BE
             {
                 hoursTable = value;
             }
-        }
+        }*/
         public DateTime[][] DThoursTable
         {
             get

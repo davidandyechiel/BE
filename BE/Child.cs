@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public enum E_gender { boy, girl };
+  
 
     public class Child : IComparable
     {

@@ -42,15 +42,22 @@ namespace BL
 
 
         public delegate bool Del(Contract x);
-        public List<Contract> AllTheContractsHow(Del condition)
+        public List<Contract> AllTheContractsHow(Del conditions)
         {
-            List<Contract> list = new List<Contract>();
-            foreach (Contract contract in getContractDS())
-                if (condition(contract))
-                    list.Add(contract);
-            return list;
-        }
 
+            // IEnumerable<Contract> conditionMakers = MyDal.getContractDS()Select(conditions);
+            //       return conditionMakers.ToList();
+
+            //var newArray =MyDal.getContractDS().where(item => item 2 == 0).select(item => item * 2);
+            var arr = from item in MyDal.getContractDS() where (conditions(item)) select item ;
+            return arr.ToList();
+            /*List<Contract> list = new List<Contract>();
+            foreach (Contract contract in getContractDS())
+                if (conditions(contract))
+                    list.Add(contract);
+            return list;*/
+        }
+    
         public int CountTheContractsHow(Del condition)
         {
             return (AllTheContractsHow(condition).Count);
@@ -83,14 +90,10 @@ namespace BL
 
         public IEnumerable<IGrouping<double, Nanny>> groupByKidsAges(bool byMax = false)
         {
-            if (byMax)
-            {
-                return MyDal.getNannyDS().GroupBy(nanny => nanny.MaxAge, nanny => nanny);
-            }
-            else
-            {
-                return MyDal.getNannyDS().GroupBy(nanny => nanny.MinAge, nanny => nanny);
-            }
+            return (byMax ?
+                MyDal.getNannyDS().GroupBy(nanny => nanny.MaxAge, nanny => nanny)
+                     :
+                MyDal.getNannyDS().GroupBy(nanny => nanny.MinAge, nanny => nanny));
         }
 
         public IEnumerable<IGrouping<int, Contract>> groupMothersBydistance(bool toSortbyMotherId = false)
@@ -101,29 +104,30 @@ namespace BL
             {
                 list.Sort(delegate (Contract x, Contract y)
                 {
-                    if (x == null && y == null) return 0;
-                    else if (x == null) return -1;
-                    else if (y == null) return 1;
-                    else return findMotherFromContract(x).CompareTo(findMotherFromContract(y));
+                     return findMotherFromContract(x).CompareTo(findMotherFromContract(y));
                 });
             }
             return list.GroupBy
                 (contract =>
                 getDistance(MotherWantedAddress(findMotherFromContract(contract)), findNannyFromContract(contract).Adress) // the distance between the motherwanted Address and the nannys address
-                ,contract => contract);
+                , contract => contract);
         }
 
         private Nanny findNannyFromContract(Contract contract)
         {
-            return MyDal.getNannyDS().Find(x => x.Id == contract.NannysID);
+             return MyDal.Find<Nanny>(x => x.Id == contract.NannysID);
         }
+
+        
 
         public string MotherWantedAddress(Mother mom)
         {
-            if (mom.AddressNearHere == null)
-                return mom.Address;
-            else return mom.AddressNearHere;
+
+
+            return (mom.AddressNearHere == null ? mom.Address : mom.AddressNearHere);
 
         }
+
+
     }
 }

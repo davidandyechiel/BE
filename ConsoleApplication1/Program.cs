@@ -8,7 +8,7 @@ using DS;
 using DAL;
 using BE;
 
-namespace ConsoleApplication1
+namespace PL
 {
     class Program
     {
@@ -18,7 +18,7 @@ namespace ConsoleApplication1
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    Child child = new Child(i * i, i * i, i.ToString(), i.ToString(), E_gender.boy, false, ":)", new DateTime());
+                    Child child = new Child(i * i, i * i, i.ToString(), i.ToString(), E_gender.boy, false, ":)", new DateTime(2015,12,29));
                     BL.BL_Basic.Instance.Add(child);
                 }
             }

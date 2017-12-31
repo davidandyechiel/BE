@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BE.Child" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="BE.Child" BaseTypeListCollapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQCAAAAAgAAADaEgAAQgAgEAAAIBAAAAAgAAAAEAgA=</HashCode>
@@ -9,14 +9,14 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="BE.ClockTime" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAABQAAQEQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ClockTime.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="BE.Contract" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="BE.Contract" BaseTypeListCollapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QIIACACAgAAAAJQEgCAACAAgAAAAAAgAAAIYCEACEAg=</HashCode>
@@ -24,8 +24,8 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="BE.Mother" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+  <Class Name="BE.Mother" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgCiAkQAgABEAAQGhAgEAAAAJAIAAAACBCAACAIgIgo=</HashCode>
       <FileName>Mother.cs</FileName>
@@ -33,7 +33,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="BE.HoursInWeek" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+    <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAABAEgAAAAABAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>HoursInWeek.cs</FileName>
@@ -41,33 +41,33 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="BE.HoursInDay" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Position X="7.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIgAAACICAAAAQkgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HoursInDay.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BE.Nanny" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="2.5" Width="1.5" />
+  <Class Name="BE.Nanny" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAACBGQAAAFkAAwFhQhIAYUAYBhAAAAcQAABCIQAAwg=</HashCode>
+      <HashCode>gAACBGAAAAFgAAwFhQhIAYUAYBgAAAAcAAABCIQAAwg=</HashCode>
       <FileName>Nanny.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Enum Name="BE.E_gender" Collapsed="true">
-    <Position X="2.25" Y="3.75" Width="1.5" />
+  <Enum Name="BE.E_days" Collapsed="true">
+    <Position X="7.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>Child.cs</FileName>
+      <HashCode>AAAAAAIAIAIAAAAAIAAAAAAAAAAAABAAAAAgAAgAAAA=</HashCode>
+      <FileName>EnumClasses.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="BE.E_days" Collapsed="true">
-    <Position X="0.5" Y="3.75" Width="1.5" />
+  <Enum Name="BE.E_gender" Collapsed="true">
+    <Position X="7.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAIAACAAAAAAAAAAACAAIACAAAAAAAAgAAAAAAA=</HashCode>
-      <FileName>Nanny.cs</FileName>
+      <HashCode>AAAAAAAAAAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnumClasses.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

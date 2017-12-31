@@ -43,8 +43,8 @@ namespace BL
             }
             if (obj is Child)
             {
-                if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
-                    throw new Exception("Child is too young to leave his/her mother");
+           //     if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
+            //        throw new Exception("Child is too young to leave his/her mother");
                 MyDal.Add(obj);
             }
             if (obj is Contract)
@@ -159,6 +159,12 @@ namespace BL
                 return listPro;
             }
             return list;
+        }
+
+        public E_type toE_type(object o)
+        {
+
+            return enumVal;
         }
 
     }

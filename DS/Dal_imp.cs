@@ -9,6 +9,7 @@ using DAL;
 
 namespace DS
 {
+
     public sealed class Dal_imp : Idal
     {
         DataSource MyDS;
@@ -30,30 +31,30 @@ namespace DS
 
         #endregion
 
-        public void Add(object obj)
+        public void Add<T>(T obj)
         {
             if (!(Exists(obj))) // it the object isnt exist
-                switch (obj.GetType().ToString())
+                switch (getEnum(obj))
                 {
-                    case ("Contract"):
-                        if (!(MyDS.getMotherDS().Exists(x => x.Id == (MyDS.getChildDS().Find(y => y.Id == (((Contract)obj).ChildID)).MothersId))))
+                    case (E_type.CONTRACT):
+                        if (!(MyDS.getMotherDS().Exists(x => x.Id == (MyDS.getChildDS().Find(y => y.Id == ((obj as Contract).ChildID)).MothersId))))
                             //if the mother's Id of the child in the contract is not exist in the motherlist
                             throw new Exception("the mother is not exist in the DS");
-                        if (!(MyDS.getMotherDS().Exists(x => x.Id == ((Contract)obj).NannysID)))
+                        if (!(MyDS.getMotherDS().Exists(x => x.Id == ((obj as Contract).NannysID))))
                             //if the nanny's Id  in the contract is not exist in the nannylist
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
-                        ((Contract)obj).ContractNum = getContractNum(((Contract)obj));
-                        MyDS.getContractDS().Add((Contract)obj);
+                        (obj as Contract).ContractNum = getContractNum(obj as Contract);
+                        MyDS.getContractDS().Add(obj as Contract);
                         break;
-                    case ("Child"):
-                        MyDS.getChildDS().Add((Child)obj);
+                    case (E_type.CHILD):
+                        MyDS.getChildDS().Add(obj as Child);
                         break;
-                    case ("Mother"):
-                        MyDS.getMotherDS().Add((Mother)obj);
+                    case (E_type.MOTHER):
+                        MyDS.getMotherDS().Add(obj as Mother);
                         break;
-                    case ("Nanny"):
-                        MyDS.getNannyDS().Add((Nanny)obj);
+                    case (E_type.NANNY):
+                        MyDS.getNannyDS().Add(obj as Nanny);
                         break;
                     default:
                         break;
@@ -73,25 +74,25 @@ namespace DS
                 return MyDS.getContractDS().Find(contract.Equals).ContractNum; // update Contract number
             }
         }
-  
+
         private bool Exists(object obj)
         {
-            switch (obj.GetType().ToString())
+            switch (getEnum(obj))
             {
-                case ("Contract"):
+                case (E_type.CONTRACT):
                     return MyDS.getContractDS().Exists(((Contract)obj).Equals);
-                case ("Child"):
+                case (E_type.CHILD):
                     return MyDS.getChildDS().Exists(((Child)obj).Equals);
-                case ("Mother"):
+                case (E_type.MOTHER):
                     return MyDS.getMotherDS().Exists(((Mother)obj).Equals);
-                case ("Nanny"):
+                case (E_type.NANNY):
                     return MyDS.getNannyDS().Exists(((Nanny)obj).Equals);
                 default:
                     throw new Exception(obj + "cannot be Added");
             }
         }
 
-        public void Remove(object obj)
+        public void Remove<T>(T obj)
         {
             if (Exists(obj)) // it the object is exist
                 switch (obj.GetType().ToString())
@@ -114,52 +115,73 @@ namespace DS
             else throw new Exception(obj + "is not exist");
         }
 
-        public void Update(object obj)
+
+        public void Update<T>(T obj)
         {
-             if (Exists(obj)) // it the object is exist
-                switch (obj.GetType().ToString())
+            if (Exists(obj)) // it the object is exist
+                switch (getEnum(obj))
                 {
-                    case ("Contract"):
-                        Add((Contract)obj); // relies on the fact that list enters the new object in the end
-                        Remove((Contract)obj);
+                    case (E_type.CONTRACT):
+                        Add(obj as Contract); // relies on the fact that list enters the new object in the end
+                        Remove(obj as Contract);
                         break;
-                    case ("Child"):
-                        Add((Child)obj); // relies on the fact that list enters the new object in the end
-                        Remove((Child)obj);
+                    case (E_type.CHILD):
+                        Add(obj as Child); // relies on the fact that list enters the new object in the end
+                        Remove(obj as Child);
                         break;
-                    case ("Mother"):
-                        Add((Mother)obj); // relies on the fact that list enters the new object in the end
-                        Remove((Mother)obj);
+                    case (E_type.MOTHER):
+                        Add(obj as Mother); // relies on the fact that list enters the new object in the end
+                        Remove(obj as Mother);
                         break;
-                    case ("Nanny"):
-                        Add((Nanny)obj); // relies on the fact that list enters the new object in the end
-                        Remove((Nanny)obj);
+                    case (E_type.NANNY):
+                        Add(obj as Nanny); // relies on the fact that list enters the new object in the end
+                        Remove(obj as Nanny);
                         break;
                     default:
-                        break;
+                        throw new Exception("Cannot update unknown type");
                 }
             else throw new Exception(obj + "is not exist");
 
         }
 
-        public List<Child> getChildDS()
+        public Idal getChildDS()
         {
             return MyDS.getChildDS();
         }
 
-        public List<Contract> getContractDS()
+        public Idal getContractDS()
         {
             return MyDS.getContractDS();
         }
 
-        public List<Nanny> getNannyDS()
+        public Idal getNannyDS()
         {
             return MyDS.getNannyDS();
         }
 
-        public List<Mother> getMotherDS()
+        public Idal getMotherDS()
         {
             return MyDS.getMotherDS();
+        }
+
+        //extention methods
+        public static E_type getEnum(object obj)
+        {
+
+            if (obj is Contract)
+                return E_type.CONTRACT;
+            if (obj is Child)
+                return E_type.CHILD;
+            if (obj is Mother)
+                return E_type.MOTHER;
+            if (obj is Nanny)
+                return E_type.NANNY;
+            else throw new Exception("Unknown Type");
+        }
+
+        public T Find<T>(Func<T, bool> p)
+        {
+            throw new NotImplementedException();
         }
     } // Dal_imp
 }//namespace
