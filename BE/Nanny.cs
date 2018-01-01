@@ -32,7 +32,7 @@ namespace BE
         private bool[] daysOfWork; // which days is the nanny work
      //   private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
-        private int difference;
+        private int difference; // 
 
 
         #region Property
@@ -293,6 +293,19 @@ namespace BE
             set
             {
                 difference = value;
+            }
+        }
+
+        public double MonthlyRate
+        {
+            get
+            {
+                return monthlyRate;
+            }
+
+            set
+            {
+                monthlyRate = value;
             }
         }
 

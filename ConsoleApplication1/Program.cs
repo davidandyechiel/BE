@@ -18,7 +18,7 @@ namespace PL
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    Child child = new Child(i * i, i * i, i.ToString(), i.ToString(), E_gender.boy, false, ":)", new DateTime(2015,12,29));
+                    Child child = new Child(i * i, i * i, i.ToString(), i.ToString(), E_gender.BOY, false, ":)", new DateTime(2015,12,29));
                     BL.BL_Basic.Instance.Add(child);
                 }
             }

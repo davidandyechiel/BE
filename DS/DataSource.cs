@@ -8,14 +8,14 @@ using DAL;
 
 namespace DS
 {
-    class DataSource
+    class DataSource 
     {
         protected static List<Nanny> nannyList = null;
         protected static List<Mother> motherList = null;
         protected static List<Child> childList = null;
         protected static List<Contract> contractList = null;
         
-
+        
         #region singltone
         private static readonly DataSource instance = new DataSource();
         public static DataSource Instance
@@ -24,13 +24,13 @@ namespace DS
         }
         #endregion
 
-        public  List<Nanny> getNannyDS()
+        public List<Nanny> getNannyDS()
         {
             if (nannyList == null)
                 nannyList = new List<Nanny>();
             return nannyList;
         }
-        public  List<Mother> getMotherDS()
+        public List<Mother> getMotherDS()
         {
             if (motherList == null)
                 motherList = new List<Mother>();
@@ -42,7 +42,7 @@ namespace DS
                 childList = new List<Child>();
             return childList;
         }
-        public  List<Contract> getContractDS()
+        public List<Contract> getContractDS()
         {
             if (contractList == null)
                 contractList = new List<Contract>();

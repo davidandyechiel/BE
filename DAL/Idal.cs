@@ -7,18 +7,30 @@ using BE;
 
 namespace DAL
 {
-   public interface Idal
+    public interface Idal
     {
         void Add<T>(T obj);
         void Remove<T>(T obj);
         void Update<T>(T obj);
 
-        
-        Idal getNannyDS();
-        Idal getMotherDS();
-        Idal getChildDS();
-        Idal getContractDS();
-        T Find<T>(Func<T, bool> p);
+
+        List<Nanny> NannyDS { get; }
+
+        List<Mother> MotherDS { get; }
+        List<Child> ChildDS { get; }
+
+        List<Contract> ContractDS { get; }
+
+        Contract FindContract(Predicate<Contract> p);
+        Child FindChild(Predicate<Child> p);
+        Mother FindMother(Predicate<Mother> p);
+        Nanny FindNanny(Predicate<Nanny> p);
+
+     
+
+
+
+
 
 
         /*void addNanny(BE.Nanny nanny);
@@ -36,7 +48,7 @@ namespace DAL
         void addContract(BE.Contract contract);
         void deleteContract(BE.Contract contract);
         void updateContract(BE.Contract contract);
-        
+
       List<object> getDB(Type t);
         */
 

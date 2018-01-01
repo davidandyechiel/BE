@@ -9,9 +9,10 @@ using DAL;
 
 namespace DS
 {
-
+    
     public sealed class Dal_imp : Idal
     {
+        
         DataSource MyDS;
         // List<object> DalList;
 
@@ -80,13 +81,13 @@ namespace DS
             switch (getEnum(obj))
             {
                 case (E_type.CONTRACT):
-                    return MyDS.getContractDS().Exists(((Contract)obj).Equals);
+                    return MyDS.getContractDS().Exists((obj as Contract).Equals);
                 case (E_type.CHILD):
-                    return MyDS.getChildDS().Exists(((Child)obj).Equals);
+                    return MyDS.getChildDS().Exists((obj as Child).Equals);
                 case (E_type.MOTHER):
-                    return MyDS.getMotherDS().Exists(((Mother)obj).Equals);
+                    return MyDS.getMotherDS().Exists((obj as Mother).Equals);
                 case (E_type.NANNY):
-                    return MyDS.getNannyDS().Exists(((Nanny)obj).Equals);
+                    return MyDS.getNannyDS().Exists((obj as Nanny).Equals);
                 default:
                     throw new Exception(obj + "cannot be Added");
             }
@@ -144,24 +145,36 @@ namespace DS
 
         }
 
-        public Idal getChildDS()
+        public List<Child> ChildDS
         {
-            return MyDS.getChildDS();
+            get
+            {
+                return MyDS.getChildDS();
+            }
         }
 
-        public Idal getContractDS()
+        public List<Contract> ContractDS
         {
-            return MyDS.getContractDS();
+            get
+            {
+                return MyDS.getContractDS();
+            }
         }
 
-        public Idal getNannyDS()
+        public List<Nanny> NannyDS
         {
-            return MyDS.getNannyDS();
+            get
+            {
+                return MyDS.getNannyDS();
+            }
         }
 
-        public Idal getMotherDS()
+        public List<Mother> MotherDS
         {
-            return MyDS.getMotherDS();
+            get
+            {
+                return MyDS.getMotherDS();
+            }
         }
 
         //extention methods
@@ -179,10 +192,25 @@ namespace DS
             else throw new Exception("Unknown Type");
         }
 
-        public T Find<T>(Func<T, bool> p)
+        public Contract FindContract(Predicate<Contract> p)
         {
-            throw new NotImplementedException();
+            return MyDS.getContractDS().Find(p);
         }
+
+        public Child FindChild(Predicate<Child> p)
+        {
+            return MyDS.getChildDS().Find(p);
+        }
+        public Mother FindMother(Predicate<Mother> p)
+        {
+            return MyDS.getMotherDS().Find(p);
+        }
+        public Nanny FindNanny(Predicate<Nanny> p)
+        {
+            return MyDS.getNannyDS().Find(p);
+        }
+
+        
     } // Dal_imp
 }//namespace
 

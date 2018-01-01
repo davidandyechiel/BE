@@ -154,15 +154,14 @@ namespace BE
         #endregion
         #region Ctors
         public Contract() { }
-        public Contract(int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
+        public Contract(int nannysID, int childID, bool hadMeeting, bool isSigned, double wages,  bool ishourly, DateTime startDate, DateTime endDate)
         {
             
             this.NannysID = nannysID;
             this.ChildID = childID;
             this.HadMeeting = hadMeeting;
             this.IsSigned = isSigned;
-            this.WagesPerHour = wagesPerHour;
-            this.WagesPerMonth = wagesPerMonth;
+            this.Wages = wages;
             this.Ishourly = ishourly;
             this.StartDate = startDate;
             this.EndDate = endDate;

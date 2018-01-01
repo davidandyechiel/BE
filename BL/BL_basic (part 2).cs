@@ -49,7 +49,7 @@ namespace BL
             //       return conditionMakers.ToList();
 
             //var newArray =MyDal.getContractDS().where(item => item 2 == 0).select(item => item * 2);
-            var arr = from item in MyDal.getContractDS() where (conditions(item)) select item ;
+            var arr = from item in MyDal.ContractDS where (conditions(item)) select item ;
             return arr.ToList();
             /*List<Contract> list = new List<Contract>();
             foreach (Contract contract in getContractDS())
@@ -63,9 +63,9 @@ namespace BL
             return (AllTheContractsHow(condition).Count);
         }
 
-        public void SignContract(Mother mom, Nanny nanny, Child child, int nannysID, int childID, bool hadMeeting, bool isSigned, double wagesPerHour, double wagesPerMonth, bool ishourly, DateTime startDate, DateTime endDate)
+        public void SignContract(Mother mom, Nanny nanny, Child child, int nannysID, int childID, bool hadMeeting, bool isSigned, double wages, bool ishourly, DateTime startDate, DateTime endDate)
         {
-            Contract newContract = new Contract(nannysID, childID, hadMeeting, isSigned, wagesPerHour, wagesPerMonth, ishourly, startDate, endDate);
+            Contract newContract = new Contract(nannysID, childID, hadMeeting, isSigned, wages, ishourly, startDate, endDate);
             Add(mom);
             Add(nanny);
             Add(child);
@@ -91,9 +91,9 @@ namespace BL
         public IEnumerable<IGrouping<double, Nanny>> groupByKidsAges(bool byMax = false)
         {
             return (byMax ?
-                MyDal.getNannyDS().GroupBy(nanny => nanny.MaxAge, nanny => nanny)
+                MyDal.NannyDS.GroupBy(nanny => nanny.MaxAge, nanny => nanny)
                      :
-                MyDal.getNannyDS().GroupBy(nanny => nanny.MinAge, nanny => nanny));
+                MyDal.NannyDS.GroupBy(nanny => nanny.MinAge, nanny => nanny));
         }
 
         public IEnumerable<IGrouping<int, Contract>> groupMothersBydistance(bool toSortbyMotherId = false)
@@ -115,7 +115,7 @@ namespace BL
 
         private Nanny findNannyFromContract(Contract contract)
         {
-             return MyDal.Find<Nanny>(x => x.Id == contract.NannysID);
+             return MyDal.FindNanny(x => x.Id == contract.NannysID);
         }
 
         

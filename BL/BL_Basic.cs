@@ -51,10 +51,10 @@ namespace BL
                 if ((findMotherFromContract((Contract) obj).NumOfKids)>2)
                 {
                     if (((Contract)obj).Ishourly)
-                        ((Contract)obj).Wages = ((MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).HourRate) 
+                        ((Contract)obj).Wages = ((MyDal.NannyDS.Find(x => x.Id == (((Contract)obj).NannysID)).HourRate) 
                             * (findMotherFromContract((Contract)obj).HoursNeeded) * 4)*0.02* (findMotherFromContract((Contract)obj).NumOfKids);//rate per hour *hours per week * 4 *0.02 *num of kids
                     else
-                        ((Contract)obj).Wages = ((MyDal.getNannyDS().Find(x => x.Id == (((Contract)obj).NannysID)).MonthlyRate)
+                        ((Contract)obj).Wages = ((MyDal.NannyDS.Find(x => x.Id == (((Contract)obj).NannysID)).MonthlyRate)
                             *0.02 * (findMotherFromContract((Contract)obj).NumOfKids));//rate per month * 0.02*num of kids
                 }
 
@@ -63,7 +63,7 @@ namespace BL
 
         private Mother findMotherFromContract(Contract contract)
         {
-            return MyDal.getMotherDS().Find(x => x.Id == (MyDal.getChildDS().Find(y => y.Id == (contract.ChildID)).MothersId));
+            return MyDal.MotherDS.Find(x => x.Id == (MyDal.ChildDS.Find(y => y.Id == (contract.ChildID)).MothersId));
         }
 
         
@@ -90,22 +90,22 @@ namespace BL
 
         public List<Child> getChildDS()
         {
-            return MyDal.getChildDS();
+            return MyDal.ChildDS;
         }
 
         public List<Contract> getContractDS()
         {
-            return MyDal.getContractDS();
+            return MyDal.ContractDS;
         }
 
         public List<Mother> getMotherDS()
         {
-            return MyDal.getMotherDS();
+            return MyDal.MotherDS;
         }
 
         public List<Nanny> getNannyDS()
         {
-            return MyDal.getNannyDS();
+            return MyDal.NannyDS;
         }
 
         public List<Nanny> nannysThatCanWorkForMe(Mother m)
@@ -161,11 +161,7 @@ namespace BL
             return list;
         }
 
-        public E_type toE_type(object o)
-        {
-
-            return enumVal;
-        }
+       
 
     }
 }
