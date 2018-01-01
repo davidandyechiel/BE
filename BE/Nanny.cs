@@ -26,7 +26,7 @@ namespace BE
         private double maxAge; // max age of childern
         private bool perHour; // if the nanny is also wokring hourly payment
         private double hourRate; // the dayly Rate of the nanny
-                                 // private double monthlyRate; // the monthly Rate of the nanny
+        private double monthlyRate; // the monthly Rate of the nanny
         private string recommendations;
         private bool dependedDaysOff; // if the nanny's Day-Offs depend on the goverment
         private bool[] daysOfWork; // which days is the nanny work

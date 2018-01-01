@@ -15,8 +15,8 @@ namespace BE
         private int childID;
         bool hadMeeting;
         bool isSigned;
-        private double wagesPerHour;
-        private double wagesPerMonth;
+        private double wages;
+       // private double wagesPerMonth;
         private bool ishourly;//are the wages hourly or monthly
         private DateTime startDate;
         private DateTime endDate;
@@ -86,31 +86,31 @@ namespace BE
             }
         }
 
-        public double WagesPerHour
+        public double Wages
         {
             get
             {
-                return wagesPerHour;
+                return wages;
             }
 
             set
             {
-                wagesPerHour = value;
+                wages = value;
             }
         }
 
-        public double WagesPerMonth
-        {
-            get
-            {
-                return wagesPerMonth;
-            }
+        //public double WagesPerMonth
+        //{
+        //    get
+        //    {
+        //        return wagesPerMonth;
+        //    }
 
-            set
-            {
-                wagesPerMonth = value;
-            }
-        }
+        //    set
+        //    {
+        //        wagesPerMonth = value;
+        //    }
+        //}
 
         public bool Ishourly
         {
