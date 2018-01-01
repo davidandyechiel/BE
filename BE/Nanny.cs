@@ -319,6 +319,31 @@ namespace BE
             this.Difference = difference;
         }
 
+        public Nanny(int id, string lastName, string firstName)
+
+        {
+            Id = id;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            //this.birthDate = birthDate;
+            //this.phoneNum = phoneNum;
+            //this.elevator = elevator;
+            //this.adress = adress;
+            //this.floor = floor;
+            //this.experince = experince;
+            //this.maxCapacity = maxCapacity;
+            //this.minAge = minAge;
+            //this.maxAge = maxAge;
+            //this.perHour = perHour;
+            //this.hourRate = hourRate;
+            //this.monthlyRate = monthlyRate;
+            //this.recommendations = recommendations;
+            //this.dependedDaysOff = dependedDaysOff;
+            //this.daysOfWork = daysOfWork;
+            //this.dthoursTable = dthoursTable;
+            //this.difference = difference;
+        }
+
 
         #endregion
 
