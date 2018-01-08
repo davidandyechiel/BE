@@ -19,8 +19,9 @@ namespace BE
         private bool[] needNanny;//days of the week mother needs a nanny
         private string notes;
         private int numOfKids; // number of the kids that need a nanny
-        private HoursInWeek hoursTable;//table that stores the start and end time of each day of the week 
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
+
+    
         #region Property
         public int Id
         {
@@ -29,10 +30,6 @@ namespace BE
                 return id;
             }
 
-            set
-            {
-                id = value;
-            }
         }
 
         public string LastName
@@ -165,18 +162,7 @@ namespace BE
             }
         }
 
-        public HoursInWeek HoursTable
-        {
-            get
-            {
-                return hoursTable;
-            }
-
-            set
-            {
-                hoursTable = value;
-            }
-        }
+   
 
         public int NumOfKids
         {
@@ -205,23 +191,44 @@ namespace BE
 
         #endregion
         #region Ctor
-        public Mother() { }
-        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, HoursInWeek hoursTable)
-        {
-            this.Id = id;
-            LastName = lastName;
-            FirstName = firstName;
-            this.HomePhoneNum = homePhoneNum;
-            this.CellPhoneNum = cellPhoneNum;
-            this.Address = address;
-            this.AddressNearHere = addressNearHere;
-            this.HoursTable = hoursTable;
-            this.HoursNeeded = hoursNeeded;
-            this.DaysNeeded = daysNeeded;
-            this.NeedNanny = needNanny;
-            this.Notes = notes;
-            this.HoursTable = hoursTable;
+        public Mother( int id)
+        { 
+            this.id = id;
+            
         }
+
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids, DateTime[][] dthoursTable)
+        {
+            this.id = id;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.homePhoneNum = homePhoneNum;
+            this.cellPhoneNum = cellPhoneNum;
+            this.address = address;
+            this.addressNearHere = addressNearHere;
+            this.hoursNeeded = hoursNeeded;
+            this.daysNeeded = daysNeeded;
+            this.needNanny = needNanny;
+            this.notes = notes;
+            this.numOfKids = numOfKids;
+            this.dthoursTable = dthoursTable;
+        }
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, string notes, int numOfKids)
+        {
+            this.id = id;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.homePhoneNum = homePhoneNum;
+            this.cellPhoneNum = cellPhoneNum;
+            this.address = address;
+            this.addressNearHere = addressNearHere;
+            this.hoursNeeded = hoursNeeded;
+            this.daysNeeded = daysNeeded;
+            this.notes = notes;
+            this.numOfKids = numOfKids;
+           
+        }
+
         #endregion
 
 

@@ -41,10 +41,6 @@ namespace BE
                 return nannysID;
             }
 
-            set
-            {
-                nannysID = value;
-            }
         }
 
         public int ChildID
@@ -54,10 +50,6 @@ namespace BE
                 return childID;
             }
 
-            set
-            {
-                childID = value;
-            }
         }
 
         public bool HadMeeting
@@ -171,7 +163,18 @@ namespace BE
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
-
+        public Contract(Nanny nanny, Mother mom, Child child, double wages, bool ishourly, DateTime startDate, DateTime endDate)
+        {
+            NannysID = nanny.Id;
+            ChildID = child.Id;
+            HadMeeting = hadMeeting;
+            IsSigned = false;
+            // TODO: make these properties depended
+            Wages = wages; // maby make it depended
+            Ishourly = ishourly; // meby mekr it depended
+            StartDate = startDate; // maby make it depended
+            EndDate = endDate; // maby make it depended
+        }
 
 
 

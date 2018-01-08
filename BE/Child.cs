@@ -19,16 +19,11 @@ namespace BE
         private string spacialNeedsDescription;
         private DateTime birthday;
         #region Property
-        public int Id
+        public  int Id
         {
             get
             {
                 return id;
-            }
-
-            set
-            {
-                id = value;
             }
         }
 
@@ -39,10 +34,6 @@ namespace BE
                 return mothersId;
             }
 
-            set
-            {
-                mothersId = value;
-            }
         }
 
         public string FName
@@ -135,6 +126,10 @@ namespace BE
             this.SpacialNeeds = spacialNeeds;
             this.SpacialNeedsDescription = spacialNeedsDescription;
             this.Birthday = birthday;
+        }
+        public Child(int id )
+        {
+            this.Id = id;
         }
         public Child(Child child)
         {

@@ -9,10 +9,10 @@ using DAL;
 
 namespace DS
 {
-    
+
     public sealed class Dal_imp : Idal
     {
-        
+
         DataSource MyDS;
         // List<object> DalList;
 
@@ -46,6 +46,7 @@ namespace DS
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
                         (obj as Contract).ContractNum = getContractNum(obj as Contract);
+                        (obj as Contract).IsSigned = true; // sign the contract
                         MyDS.getContractDS().Add(obj as Contract);
                         break;
                     case (E_type.CHILD):
@@ -96,18 +97,18 @@ namespace DS
         public void Remove<T>(T obj)
         {
             if (Exists(obj)) // it the object is exist
-                switch (obj.GetType().ToString())
+                switch (getEnum(obj))
                 {
-                    case ("Contract"):
+                    case (E_type.CONTRACT):
                         MyDS.getContractDS().RemoveAt(MyDS.getContractDS().FindIndex(obj.Equals));
                         break;
-                    case ("Child"):
+                    case (E_type.CHILD):
                         MyDS.getChildDS().RemoveAt(MyDS.getChildDS().FindIndex(obj.Equals));
                         break;
-                    case ("Mother"):
+                    case (E_type.MOTHER):
                         MyDS.getMotherDS().RemoveAt(MyDS.getMotherDS().FindIndex(obj.Equals));
                         break;
-                    case ("Nanny"):
+                    case (E_type.NANNY):
                         MyDS.getNannyDS().RemoveAt(MyDS.getNannyDS().FindIndex(obj.Equals));
                         break;
                     default:
@@ -123,20 +124,20 @@ namespace DS
                 switch (getEnum(obj))
                 {
                     case (E_type.CONTRACT):
-                        Add(obj as Contract); // relies on the fact that list enters the new object in the end
                         Remove(obj as Contract);
+                        Add(obj as Contract);
                         break;
                     case (E_type.CHILD):
-                        Add(obj as Child); // relies on the fact that list enters the new object in the end
                         Remove(obj as Child);
+                        Add(obj as Child);
                         break;
                     case (E_type.MOTHER):
-                        Add(obj as Mother); // relies on the fact that list enters the new object in the end
                         Remove(obj as Mother);
+                        Add(obj as Mother);
                         break;
                     case (E_type.NANNY):
-                        Add(obj as Nanny); // relies on the fact that list enters the new object in the end
                         Remove(obj as Nanny);
+                        Add(obj as Nanny);
                         break;
                     default:
                         throw new Exception("Cannot update unknown type");
@@ -145,7 +146,7 @@ namespace DS
 
         }
 
-#region property
+        #region property
         public List<Child> ChildDS
         {
             get
@@ -180,7 +181,7 @@ namespace DS
 
         #endregion
 
-        
+
         public static E_type getEnum(object obj)
         {
 
@@ -213,7 +214,7 @@ namespace DS
             return MyDS.getNannyDS().Find(p);
         }
 
-        
+
     } // Dal_imp
 }//namespace
 

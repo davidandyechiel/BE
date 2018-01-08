@@ -42,11 +42,6 @@ namespace BE
             {
                 return id;
             }
-
-            set
-            {
-                id = value;
-            }
         }
 
         public string LastName
@@ -66,7 +61,7 @@ namespace BE
         {
             get
             {
-                return firstName;
+               return firstName;
             }
 
             set
@@ -314,35 +309,40 @@ namespace BE
 
         public Nanny() { }
 
-        public Nanny(int difference)
+        public Nanny(int id)
         {
-            this.Difference = difference;
+            this.id = id;
         }
 
-        public Nanny(int id, string lastName, string firstName)
-
+       /* public Nanny(int difference)
         {
-            Id = id;
+            this.Difference = difference;
+        }*/
+
+        public Nanny(int id, string lastName, string firstName, DateTime birthDate/*, int phoneNum, bool elevator, string adress, int floor, int experince, int maxCapacity, double minAge, double maxAge, bool perHour, double hourRate, double monthlyRate, string recommendations, bool dependedDaysOff, bool[] daysOfWork, DateTime[][] dthoursTable, int difference*/)
+        {
+            this.id = id;
             this.lastName = lastName;
             this.firstName = firstName;
             this.birthDate = birthDate;
-            this.phoneNum = phoneNum;
-            this.elevator = elevator;
-            this.adress = adress;
-            this.floor = floor;
-            this.experince = experince;
-            this.maxCapacity = maxCapacity;
-            this.minAge = minAge;
-            this.maxAge = maxAge;
-            this.perHour = perHour;
-            this.hourRate = hourRate;
-            this.monthlyRate = monthlyRate;
-            this.recommendations = recommendations;
-            this.dependedDaysOff = dependedDaysOff;
-            this.daysOfWork = daysOfWork;
-            this.dthoursTable = dthoursTable;
-            this.difference = difference;
+            //this.phoneNum = phoneNum;
+            //this.elevator = elevator;
+            //this.adress = adress;
+            //this.floor = floor;
+            //this.experince = experince;
+            //this.maxCapacity = maxCapacity;
+            //this.minAge = minAge;
+            //this.maxAge = maxAge;
+            //this.perHour = perHour;
+            //this.hourRate = hourRate;
+            //this.monthlyRate = monthlyRate;
+            //this.recommendations = recommendations;
+            //this.dependedDaysOff = dependedDaysOff;
+            //this.daysOfWork = daysOfWork;
+            //this.dthoursTable = dthoursTable;
+            //this.difference = difference;
         }
+
 
 
         #endregion
