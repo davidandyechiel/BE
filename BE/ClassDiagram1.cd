@@ -19,7 +19,7 @@
   <Class Name="BE.Contract" BaseTypeListCollapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QIIACACAgAAAAJQEgCAACAAgAAAAAAgAAAIYCEACEAg=</HashCode>
+      <HashCode>QIIACACAgAAAAJQEgCAACAAgAAAAAAAAAAJACEACQAg=</HashCode>
       <FileName>Contract.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -51,7 +51,7 @@
   <Class Name="BE.Nanny" BaseTypeListCollapsed="true">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAACBGAAAAFgAAwFhQhIAYUAYBgAAAAcAAABCIQAAwg=</HashCode>
+      <HashCode>gAACBGAAAAFgAAwFhQhIAYUAYBhAAAAcQAABCIQAAwg=</HashCode>
       <FileName>Nanny.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -64,7 +64,7 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="BE.E_gender" Collapsed="true">
-    <Position X="7.75" Y="3" Width="1.5" />
+    <Position X="9.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>EnumClasses.cs</FileName>

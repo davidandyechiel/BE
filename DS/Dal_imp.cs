@@ -145,6 +145,7 @@ namespace DS
 
         }
 
+#region property
         public List<Child> ChildDS
         {
             get
@@ -177,7 +178,9 @@ namespace DS
             }
         }
 
-        //extention methods
+        #endregion
+
+        
         public static E_type getEnum(object obj)
         {
 
