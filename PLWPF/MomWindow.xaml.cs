@@ -23,5 +23,23 @@ namespace PLWPF
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // motherViewSource.Source = [generic data source]
+        }
+
+        private void motherDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void addressTextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

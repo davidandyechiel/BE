@@ -43,8 +43,8 @@ namespace BL
             }
             if (obj is Child)
             {
-           //     if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
-            //        throw new Exception("Child is too young to leave his/her mother");
+               if (getAge(((Child)obj).Birthday) <  0.03)
+                    throw new Exception("Child is too young to leave his/her mother");
                 MyDal.Add(obj);
             }
             if (obj is Contract)
@@ -60,6 +60,13 @@ namespace BL
 
         }
 
+        //calculate the age from birthdate untill today FORMAT: Y Y . 0 M M
+        private double getAge(DateTime birthdate)
+        {
+            double now = DateTime.Now.Year + (((double)DateTime.Now.Month)/100);
+            double dayOfBirth = birthdate.Year + ((12-(double)(birthdate.Month)) / 100);
+            return (now - dayOfBirth);
+        }
 
         private Mother findMotherFromContract(Contract contract)
         {
@@ -76,13 +83,13 @@ namespace BL
         {
             if (obj is Nanny)
             {
-                if (((Nanny)obj).BirthDate.AddYears(18) < DateTime.Now)
+                if (getAge(((Nanny)obj).BirthDate < 18)
                     throw new Exception("Too young to be a nanny");
                 MyDal.Update(obj);
             }
             if (obj is Child)
             {
-                if (((Child)obj).Birthday.AddMonths(3) < DateTime.Now)
+                if (((Child)obj).Birthday))
                     throw new Exception("Child is too young to leave his/her mother");
                 MyDal.Update(obj);
             }
