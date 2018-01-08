@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E4002F2A-119A-4FE6-9FAD-6B1BCCEC0117}</ProjectGuid>
+    <ProjectGuid>{4C4D714E-14C5-4FB9-B7BC-0F4701FB9418}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PL</RootNamespace>
-    <AssemblyName>PL</AssemblyName>
+    <RootNamespace>PLWPF</RootNamespace>
+    <AssemblyName>PLWPF</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,26 +55,61 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="updateNannyWindow.xaml.cs">
+      <DependentUpon>updateNannyWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddNannyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddNannyWindow.xaml.cs">
+      <DependentUpon>AddNannyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChildWindow.xaml.cs">
+      <DependentUpon>ChildWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContractWindow.xaml.cs">
+      <DependentUpon>ContractWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="nannytesting.xaml">
+    <Page Include="MomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NannyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="updateNannyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="nannytesting.xaml.cs">
-      <DependentUpon>nannytesting.xaml</DependentUpon>
+    <Compile Include="MomWindow.xaml.cs">
+      <DependentUpon>MomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NannyWindow.xaml.cs">
+      <DependentUpon>NannyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -100,6 +135,11 @@
     <None Include="Properties\DataSources\BE.HoursInWeek.datasource" />
     <None Include="Properties\DataSources\BE.Mother.datasource" />
     <None Include="Properties\DataSources\BE.Nanny.datasource" />
+    <None Include="Properties\DataSources\BL.BL_Basic+Del.datasource" />
+    <None Include="Properties\DataSources\BL.BL_Basic.datasource" />
+    <None Include="Properties\DataSources\BL.IBL.datasource" />
+    <None Include="Properties\DataSources\PLWPF.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\PLWPF.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -111,11 +151,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
-      <Project>{c8aecaa1-f3d2-4ed3-b307-c107c1407a82}</Project>
+      <Project>{fb3f8290-9c30-4c30-a0f0-f10f309d92ed}</Project>
       <Name>BE</Name>
     </ProjectReference>
     <ProjectReference Include="..\BL\BL.csproj">
-      <Project>{ce069ef2-33fc-4a8e-b3a2-ae1f96581b7e}</Project>
+      <Project>{8ad7e290-c6e6-475b-8a61-45745b680fa1}</Project>
       <Name>BL</Name>
     </ProjectReference>
   </ItemGroup>
