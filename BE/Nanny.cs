@@ -42,11 +42,6 @@ namespace BE
             {
                 return id;
             }
-
-            set
-            {
-                id = value;
-            }
         }
 
         public string LastName
@@ -316,7 +311,7 @@ namespace BE
 
         public Nanny(int id)
         {
-            Id = id;
+            this.id = id;
         }
 
        /* public Nanny(int difference)

@@ -9,10 +9,10 @@ using DAL;
 
 namespace DS
 {
-    
+
     public sealed class Dal_imp : Idal
     {
-        
+
         DataSource MyDS;
         // List<object> DalList;
 
@@ -124,20 +124,20 @@ namespace DS
                 switch (getEnum(obj))
                 {
                     case (E_type.CONTRACT):
-                        Add(obj as Contract); // relies on the fact that list enters the new object in the end
                         Remove(obj as Contract);
+                        Add(obj as Contract);
                         break;
                     case (E_type.CHILD):
-                        Add(obj as Child); // relies on the fact that list enters the new object in the end
                         Remove(obj as Child);
+                        Add(obj as Child);
                         break;
                     case (E_type.MOTHER):
-                        Add(obj as Mother); // relies on the fact that list enters the new object in the end
                         Remove(obj as Mother);
+                        Add(obj as Mother);
                         break;
                     case (E_type.NANNY):
-                        Add(obj as Nanny); // relies on the fact that list enters the new object in the end
                         Remove(obj as Nanny);
+                        Add(obj as Nanny);
                         break;
                     default:
                         throw new Exception("Cannot update unknown type");
@@ -146,7 +146,7 @@ namespace DS
 
         }
 
-#region property
+        #region property
         public List<Child> ChildDS
         {
             get
@@ -181,7 +181,7 @@ namespace DS
 
         #endregion
 
-        
+
         public static E_type getEnum(object obj)
         {
 
@@ -214,7 +214,7 @@ namespace DS
             return MyDS.getNannyDS().Find(p);
         }
 
-        
+
     } // Dal_imp
 }//namespace
 

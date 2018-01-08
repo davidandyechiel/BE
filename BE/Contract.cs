@@ -41,10 +41,6 @@ namespace BE
                 return nannysID;
             }
 
-            set
-            {
-                nannysID = value;
-            }
         }
 
         public int ChildID
@@ -54,10 +50,6 @@ namespace BE
                 return childID;
             }
 
-            set
-            {
-                childID = value;
-            }
         }
 
         public bool HadMeeting

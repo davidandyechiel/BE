@@ -29,21 +29,35 @@ namespace PL
                     BL.BL_Basic.Instance.Add(mom);
                     BL.BL_Basic.Instance.Add(new Contract(nan, mom, ch, 12, true, DateTime.Now, DateTime.Now));
                 }
+                //add 
+
+
+
+                Child ch1 = BL_Basic.Instance.FindChild(x => x.Id == 1);
+                Nanny nan1 = BL_Basic.Instance.FindNanny(x => x.Id == 1);
+                Mother mom1 = BL_Basic.Instance.FindMother(x => x.Id == 1);
+                Contract con1 = BL_Basic.Instance.FindContract(x => x.ContractNum == 10000001);
+
+                ch1.FName = "NewKid";
+                nan1.FirstName = "newNana";
+                mom1.FirstName = "newMom";
+                con1.Wages = 11;
+                //update
+                BL_Basic.Instance.Update(ch1);
+                BL_Basic.Instance.Update(mom1);
+                BL_Basic.Instance.Update(nan1);
+                BL_Basic.Instance.Update(con1);
+
+
                 // remove 
                 BL_Basic.Instance.Remove(new Child(1));
                 BL_Basic.Instance.Remove(new Mother(2));
                 BL_Basic.Instance.Remove(new Nanny(3));
                 BL_Basic.Instance.Remove(new Contract(1,1));
 
-                //update
+               
 
 
-
-                //try some functions
-                BL_Basic.Instance.groupByKidsAges
-                     BL_Basic.Instance.groupMothersBydistance
-                     BL_Basic.Instance.nannysThatCanWorkForMe
-                     BL_Basic.Instance.nannysThatCanWorkForMePlus
 
 
 

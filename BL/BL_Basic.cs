@@ -170,7 +170,26 @@ namespace BL
             return list;
         }
 
-       
+        public Contract FindContract(Predicate<Contract> p)
+        {
+            return MyDal.ContractDS.Find(p);
+        }
+
+       public  Child FindChild(Predicate<Child> p)
+        {
+            return MyDal.ChildDS.Find(p);
+        }
+
+       public Mother FindMother(Predicate<Mother> p)
+        {
+            return MyDal.MotherDS.Find(p);
+        }
+        public Nanny FindNanny(Predicate<Nanny> p)
+        {
+            return MyDal.NannyDS.Find(p);
+        }
+
+
 
     }
 }
