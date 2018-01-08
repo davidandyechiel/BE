@@ -37,16 +37,17 @@ namespace BL
         {
             if (obj is Nanny)
             {
-                if (((Nanny)obj).BirthDate.AddYears(18) < DateTime.Now)
+                if (getAge(((Nanny)obj).BirthDate) < 18)
                     throw new Exception("Too young to be a nanny");
-                MyDal.Add(obj);
+            
             }
             if (obj is Child)
             {
                if (getAge(((Child)obj).Birthday) <  0.03)
                     throw new Exception("Child is too young to leave his/her mother");
-                MyDal.Add(obj);
+              
             }
+           
             if (obj is Contract)
                 if ((findMotherFromContract((Contract) obj).NumOfKids)>2)
                 {
@@ -57,6 +58,7 @@ namespace BL
                         ((Contract)obj).Wages = ((MyDal.NannyDS.Find(x => x.Id == (((Contract)obj).NannysID)).MonthlyRate)
                             *0.02 * (findMotherFromContract((Contract)obj).NumOfKids));//rate per month * 0.02*num of kids
                 }
+            MyDal.Add(obj);
 
         }
 

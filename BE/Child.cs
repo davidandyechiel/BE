@@ -136,6 +136,10 @@ namespace BE
             this.SpacialNeedsDescription = spacialNeedsDescription;
             this.Birthday = birthday;
         }
+        public Child(int id )
+        {
+            this.Id = id;
+        }
         public Child(Child child)
         {
             this.Id = child.Id;
