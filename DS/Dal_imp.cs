@@ -46,6 +46,7 @@ namespace DS
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
                         (obj as Contract).ContractNum = getContractNum(obj as Contract);
+                        (obj as Contract).IsSigned = true; // sign the contract
                         MyDS.getContractDS().Add(obj as Contract);
                         break;
                     case (E_type.CHILD):
@@ -96,18 +97,18 @@ namespace DS
         public void Remove<T>(T obj)
         {
             if (Exists(obj)) // it the object is exist
-                switch (obj.GetType().ToString())
+                switch (getEnum(obj))
                 {
-                    case ("Contract"):
+                    case (E_type.CONTRACT):
                         MyDS.getContractDS().RemoveAt(MyDS.getContractDS().FindIndex(obj.Equals));
                         break;
-                    case ("Child"):
+                    case (E_type.CHILD):
                         MyDS.getChildDS().RemoveAt(MyDS.getChildDS().FindIndex(obj.Equals));
                         break;
-                    case ("Mother"):
+                    case (E_type.MOTHER):
                         MyDS.getMotherDS().RemoveAt(MyDS.getMotherDS().FindIndex(obj.Equals));
                         break;
-                    case ("Nanny"):
+                    case (E_type.NANNY):
                         MyDS.getNannyDS().RemoveAt(MyDS.getNannyDS().FindIndex(obj.Equals));
                         break;
                     default:

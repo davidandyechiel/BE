@@ -16,7 +16,7 @@ namespace BE
         bool hadMeeting;
         bool isSigned;
         private double wages;
-       // private double wagesPerMonth;
+        // private double wagesPerMonth;
         private bool ishourly;//are the wages hourly or monthly
         private DateTime startDate;
         private DateTime endDate;
@@ -154,9 +154,14 @@ namespace BE
         #endregion
         #region Ctors
         public Contract() { }
-        public Contract(int nannysID, int childID, bool hadMeeting, bool isSigned, double wages,  bool ishourly, DateTime startDate, DateTime endDate)
+        public Contract(int nannyId , int chilId)
         {
-            
+            NannysID = nannyId;
+            childID = chilId;
+        }
+
+        public Contract(int nannysID, int childID, bool hadMeeting, bool isSigned, double wages, bool ishourly, DateTime startDate, DateTime endDate)
+        {
             this.NannysID = nannysID;
             this.ChildID = childID;
             this.HadMeeting = hadMeeting;
@@ -166,7 +171,18 @@ namespace BE
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
-
+        public Contract(Nanny nanny, Mother mom, Child child, double wages, bool ishourly, DateTime startDate, DateTime endDate)
+        {
+            NannysID = nanny.Id;
+            ChildID = child.Id;
+            HadMeeting = hadMeeting;
+            IsSigned = false;
+            // TODO: make these properties depended
+            Wages = wages; // maby make it depended
+            Ishourly = ishourly; // meby mekr it depended
+            StartDate = startDate; // maby make it depended
+            EndDate = endDate; // maby make it depended
+        }
 
 
 
@@ -174,7 +190,7 @@ namespace BE
 
         #endregion
 
-        public override string ToString()  
+        public override string ToString()
         {
             return base.ToString();
         }
