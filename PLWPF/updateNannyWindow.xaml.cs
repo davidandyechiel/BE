@@ -19,9 +19,30 @@ namespace PLWPF
     /// </summary>
     public partial class updateNannyWindow : Window
     {
+        BE.Nanny nanny;
+        BL.IBL bl;
+
         public updateNannyWindow()
         {
             InitializeComponent();
+            this.updateNannyByIdcomboBox.ItemsSource = bl.getNannyDS();
+            this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
+            this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
         }
+
+        private void deleteNannycomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void updateNannyByIdcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        
+            if (this.updateNannyByIdcomboBox.SelectedItem is Nanny)
+            { this.nannyToUpdate = ((Nanny)this.updateNannyByIdcomboBox.SelectedItem).GetCopy();
+                this.DataContext = nannyToUpdate;
+            }
+        
+    }
     }
 }
