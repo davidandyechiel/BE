@@ -83,13 +83,13 @@ namespace BL
         {
             if (obj is Nanny)
             {
-                if (getAge(((Nanny)obj).BirthDate < 18)
+                if (getAge(((Nanny)obj).BirthDate) < 18)
                     throw new Exception("Too young to be a nanny");
                 MyDal.Update(obj);
             }
             if (obj is Child)
             {
-                if (((Child)obj).Birthday))
+                if (getAge(((Child)obj).Birthday) < 0.03)
                     throw new Exception("Child is too young to leave his/her mother");
                 MyDal.Update(obj);
             }
