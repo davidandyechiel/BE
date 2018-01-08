@@ -23,10 +23,7 @@ namespace PL
                         BL.BL_Basic.Instance.Add(child);
                     }*/
 
-                BL.BL_Basic.Instance.Add(new Child(1 , 1, "hello" ,"kitty", E_gender.BOY, false, ":)", new DateTime(2015, 12, 29)));
-                BL.BL_Basic.Instance.Add(new Nanny(1, 1, "hello", "kitty", E_gender.BOY, false, ":)", new DateTime(2015, 12, 29)));
-                BL.BL_Basic.Instance.Add(new Mother(1, 1, "hello", "kitty", E_gender.BOY, false, ":)", new DateTime(2015, 12, 29)));
-           //     BL.BL_Basic.Instance.Add(n(1, 1, "hello", "kitty", E_gender.BOY, false, ":)", new DateTime(2015, 12, 29)));
+                BL.BL_Basic.Instance.Add(new Nanny(1,"ello) (1 , 1, "hello" ,"kitty", E_gender.BOY, false, ":)", new DateTime(2015, 12, 29)));
             }
             catch (Exception exp)
             {

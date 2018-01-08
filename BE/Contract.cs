@@ -166,6 +166,18 @@ namespace BE
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
+        public Contract(Nanny nanny , Mother mom, Child child)
+        { 
+
+            this.NannysID = nanny.Id;
+            this.ChildID = child.Id;
+            this.HadMeeting = hadMeeting;
+            this.IsSigned = isSigned;
+            this.Wages = wages;
+            this.Ishourly = ishourly;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+        }
 
 
 
