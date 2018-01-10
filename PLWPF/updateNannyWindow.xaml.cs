@@ -26,8 +26,8 @@ namespace PLWPF
         {
             InitializeComponent();
             this.updateNannyByIdcomboBox.ItemsSource = bl.getNannyDS();
-            this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
-            this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
+            this.updateNannyByIdcomboBox.DisplayMemberPath = "NannyName";
+            this.updateNannyByIdcomboBox.SelectedValuePath = "NannyId";
         }
 
         private void deleteNannycomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,5 +44,10 @@ namespace PLWPF
             }
         
     }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

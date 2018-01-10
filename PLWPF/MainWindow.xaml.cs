@@ -20,33 +20,59 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        BE.Nanny nanny;
+        BL.IBL bl;
         public MainWindow()
         {
+
             InitializeComponent();
+            this.deleteNannycomboBox.ItemsSource = bl.getNannyDS();
+            this.deleteNannycomboBox.DisplayMemberPath = "lastName";
+            this.deleteNannycomboBox.SelectedValuePath = "id";
+        }
+        //nanny
+        //private void NannyButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Window nannyWindow = new NannyWindow();
+        //    nannyWindow.Show();
+        //}
+        private void addNannybutton_Click(object sender, RoutedEventArgs e)
+        {
+            Window addNannyWindow = new AddNannyWindow();
+            addNannyWindow.Show();
         }
 
-        private void NannyButton_Click(object sender, RoutedEventArgs e)
+        private void updateNanny_Click(object sender, RoutedEventArgs e)
         {
-            Window nannyWindow = new NannyWindow();
-            nannyWindow.Show();
+
+            Window updateNannyWindow = new updateNannyWindow();
+            updateNannyWindow.Show();
         }
 
-        private void MomButton_Click(object sender, RoutedEventArgs e)
+
+        private void deleteNanntbutton_Click(object sender, RoutedEventArgs e)
         {
-            Window momWindow = new MomWindow();
-            momWindow.Show();
+            try
+            {
+                bl.Remove(nanny);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
-        private void ContractButton_Click(object sender, RoutedEventArgs e)
-        {
-            Window contractWindow = new ContractWindow();
-            contractWindow.Show();
-        }
+       
 
-        private void ChildButton_Click(object sender, RoutedEventArgs e)
-        {
-            Window childWindow = new ChildWindow();
-            childWindow.Show();
-        }
+
+
+
+
+//mom
+
+       
+        
     }
 }
