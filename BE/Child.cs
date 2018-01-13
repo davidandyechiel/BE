@@ -118,8 +118,8 @@ namespace BE
         public Child() { }
         public Child(int id, int mothersId, string fName, string lName, E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
         {
-            this.id = id;
-            this.mothersId = mothersId;
+            this.Id = id;
+            this.MothersId = mothersId;
             FName = fName;
             LName = lName;
             this.Gender = gender;
@@ -129,12 +129,12 @@ namespace BE
         }
         public Child(int id )
         {
-            this.id = id;
+            this.Id = id;
         }
         public Child(Child child)
         {
-            this.id = child.Id;
-            this.mothersId = child.MothersId;
+            this.Id = child.Id;
+            this.MothersId = child.MothersId;
             FName = child.FName;
             LName = child.LName;
             this.Gender = child.Gender;

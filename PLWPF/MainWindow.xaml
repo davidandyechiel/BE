@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1600" Width="1000">
+        Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,13 +15,10 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Menu x:Name="nannymenu" HorizontalAlignment="Left" Height="100" Margin="184,134,0,0" VerticalAlignment="Top" Width="150">
-            <Button x:Name="addNannybutton" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="19" Background="#FF3EF914" Click="addNannybutton_Click"/>
-            <Button x:Name="updateNanny" Content="Update" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.348,-2.505" Height="19" Background="#FFEEF513" Click="updateNanny_Click"/>
-            <ComboBox x:Name="deleteNannycomboBox" HorizontalAlignment="Left" SelectedItem="{Binding}" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.296,1.066" SelectionChanged="deleteNannycomboBox_SelectionChanged"/>
-            <Button x:Name="deleteNanntbutton" Content="DELETE" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Background="#FFF20D0D" Click="deleteNanntbutton_Click"/>
-        </Menu>
-        <Label x:Name="nannylabel" Content="Nanny" HorizontalAlignment="Left" Margin="192,107,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="NannyButton" Content="Nanny" HorizontalAlignment="Left" Margin="73,130,0,0" VerticalAlignment="Top" Width="75" Click="NannyButton_Click"/>
+        <Button x:Name="MomButton" Content="Mom" HorizontalAlignment="Left" Margin="84.667,130,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" Click="MomButton_Click"/>
+        <Button x:Name="ChildButton" Content="Child" HorizontalAlignment="Left" Margin="73,131,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Click="ChildButton_Click"/>
+        <Button x:Name="ContractButton" Content="Contract" HorizontalAlignment="Left" Margin="84.667,130,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="ContractButton_Click"/>
 
     </Grid>
 </Window>
