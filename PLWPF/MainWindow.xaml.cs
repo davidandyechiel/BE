@@ -20,11 +20,39 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        static MainPageMap mainPageMap;
+        #region dependency property
+
+        public static DependencyProperty CurrentPage =
+            DependencyProperty.Register("MyCurrentPage"
+                                            , typeof(MainPageMap)
+                                              , typeof(MainWindow)
+                                                 , new PropertyMetadata(mainPageMap));
+
+
+        public MainPageMap MyCurrentPage
+        {
+            get
+            {
+                return (MainPageMap)GetValue(CurrentPage);
+            }
+
+            set
+            {
+                SetValue(CurrentPage, value);
+            }
+        }
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-        }
+            mainPageMap = new MainPageMap();
 
+            
+                 //set the new map view
+        }
+        /*
         private void NannyButton_Click(object sender, RoutedEventArgs e)
         {
             Window nannyWindow = new NannyWindow();
@@ -47,6 +75,16 @@ namespace PLWPF
         {
             Window childWindow = new ChildWindow();
             childWindow.Show();
+        }*/
+
+        private void button_Copy2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = mainPageMap;
         }
     }
 }

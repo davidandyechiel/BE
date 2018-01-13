@@ -26,10 +26,10 @@ namespace PLWPF
             InitializeComponent();
            // this.deleteNannycomboBox.ItemsSource = BL.BL_Basic.Instance.getNannyDS();
 
-
+/*
             this.deleteNannycomboBox.ItemsSource = bl.getNannyDS();
             this.deleteNannycomboBox.DisplayMemberPath = "lastName,firstName";
-            this.deleteNannycomboBox.SelectedValuePath = "id";
+            this.deleteNannycomboBox.SelectedValuePath = "id";*/
         }
 
         private void addNannybutton_Click(object sender, RoutedEventArgs e)

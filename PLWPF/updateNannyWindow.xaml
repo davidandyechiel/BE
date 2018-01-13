@@ -198,12 +198,11 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Max Capacity:"/>
             <TextBox x:Name="maxCapacityTextBox" Width="120" VerticalAlignment="Center" Text="{Binding MaxCapacity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
-        <Button x:Name="updateButton" Width="107" VerticalAlignment="Top" Margin="348,275,0,0" Height="79" HorizontalAlignment="Left" FontSize="32" Content="Update" Click="addButton_Click" Background="#FF4BF714"/>
         <ComboBox x:Name="updateNannyByIdcomboBox" HorizontalAlignment="Left" SelectedItem="{Binding nanny}" Margin="97,20,0,0" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.296,1.066" SelectionChanged="updateNannyByIdcomboBox_SelectionChanged"/>
         <Grid x:Name="grid18" DataContext="{StaticResource nannyViewSource}" HorizontalAlignment="Left" Margin="326,384,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="126"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
