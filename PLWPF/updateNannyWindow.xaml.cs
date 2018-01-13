@@ -35,19 +35,28 @@ namespace PLWPF
 
         }
 
-        private void updateNannyByIdcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+    //    private void updateNannyByIdcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //    {
         
-            if (this.updateNannyByIdcomboBox.SelectedItem is Nanny)
-            { this.nannyToUpdate = ((Nanny)this.updateNannyByIdcomboBox.SelectedItem).GetCopy();
-                this.DataContext = nannyToUpdate;
-            }
+    //        if (this.updateNannyByIdcomboBox.SelectedItem is Nanny)
+    //        { this.nannyToUpdate = ((Nanny)this.updateNannyByIdcomboBox.SelectedItem).GetCopy();
+    //            this.DataContext = nannyToUpdate;
+    //        }
         
-    }
+    //}
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl.Add(nanny);
+                nanny = new BE.Nanny();
+                this.DataContext = nanny;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
     }
 }
