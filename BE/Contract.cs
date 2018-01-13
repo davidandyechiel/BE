@@ -148,14 +148,14 @@ namespace BE
         public Contract() { }
         public Contract(int nannyId , int chilId)
         {
-            this.nannysID = nannyId;
+            NannysID = nannyId;
             childID = chilId;
         }
 
         public Contract(int nannysID, int childID, bool hadMeeting, bool isSigned, double wages, bool ishourly, DateTime startDate, DateTime endDate)
         {
-            this.nannysID = nannysID;
-            this.childID = childID;
+            this.NannysID = nannysID;
+            this.ChildID = childID;
             this.HadMeeting = hadMeeting;
             this.IsSigned = isSigned;
             this.Wages = wages;
@@ -165,8 +165,8 @@ namespace BE
         }
         public Contract(Nanny nanny, Mother mom, Child child, double wages, bool ishourly, DateTime startDate, DateTime endDate)
         {
-            this.nannysID = nanny.Id;
-            this.childID = child.Id;
+            NannysID = nanny.Id;
+            ChildID = child.Id;
             HadMeeting = hadMeeting;
             IsSigned = false;
             // TODO: make these properties depended
