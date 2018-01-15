@@ -19,16 +19,11 @@ namespace BE
         private string spacialNeedsDescription;
         private DateTime birthday;
         #region Property
-        public int Id
+        public  int Id
         {
             get
             {
                 return id;
-            }
-
-            set
-            {
-                id = value;
             }
         }
 
@@ -39,10 +34,6 @@ namespace BE
                 return mothersId;
             }
 
-            set
-            {
-                mothersId = value;
-            }
         }
 
         public string FName
@@ -127,8 +118,8 @@ namespace BE
         public Child() { }
         public Child(int id, int mothersId, string fName, string lName, E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
         {
-            this.Id = id;
-            this.MothersId = mothersId;
+            this.id = id;
+            this.mothersId = mothersId;
             FName = fName;
             LName = lName;
             this.Gender = gender;
@@ -136,10 +127,14 @@ namespace BE
             this.SpacialNeedsDescription = spacialNeedsDescription;
             this.Birthday = birthday;
         }
+        public Child(int id )
+        {
+            this.id = id;
+        }
         public Child(Child child)
         {
-            this.Id = child.Id;
-            this.MothersId = child.MothersId;
+            this.id = child.Id;
+            this.mothersId = child.MothersId;
             FName = child.FName;
             LName = child.LName;
             this.Gender = child.Gender;

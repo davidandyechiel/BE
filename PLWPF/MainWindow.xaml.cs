@@ -20,59 +20,71 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        BE.Nanny nanny;
-        BL.IBL bl;
+        static MainPageMap mainPageMap;
+        #region dependency property
+
+        public static DependencyProperty CurrentPage =
+            DependencyProperty.Register("MyCurrentPage"
+                                            , typeof(MainPageMap)
+                                              , typeof(MainWindow)
+                                                 , new PropertyMetadata(mainPageMap));
+
+
+        public MainPageMap MyCurrentPage
+        {
+            get
+            {
+                return (MainPageMap)GetValue(CurrentPage);
+            }
+
+            set
+            {
+                SetValue(CurrentPage, value);
+            }
+        }
+        #endregion
+
         public MainWindow()
         {
-
             InitializeComponent();
-            this.deleteNannycomboBox.ItemsSource = bl.getNannyDS();
-            this.deleteNannycomboBox.DisplayMemberPath = "lastName";
-            this.deleteNannycomboBox.SelectedValuePath = "id";
+            mainPageMap = new MainPageMap();
+
+            
+                 //set the new map view
         }
-        //nanny
-        //private void NannyButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Window nannyWindow = new NannyWindow();
-        //    nannyWindow.Show();
-        //}
-        private void addNannybutton_Click(object sender, RoutedEventArgs e)
+        /*
+        private void NannyButton_Click(object sender, RoutedEventArgs e)
         {
-            Window addNannyWindow = new AddNannyWindow();
-            addNannyWindow.Show();
+            Window nannyWindow = new NannyWindow();
+            nannyWindow.Show();
         }
 
-        private void updateNanny_Click(object sender, RoutedEventArgs e)
+        private void MomButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window momWindow = new MomWindow();
+            momWindow.Show();
+        }
+
+        private void ContractButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window contractWindow = new ContractWindow();
+            contractWindow.Show();
+        }
+
+        private void ChildButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window childWindow = new ChildWindow();
+            childWindow.Show();
+        }*/
+
+        private void button_Copy2_Click(object sender, RoutedEventArgs e)
         {
 
-            Window updateNannyWindow = new updateNannyWindow();
-            updateNannyWindow.Show();
         }
 
-
-        private void deleteNanntbutton_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                bl.Remove(nanny);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            MainFrame.Content = mainPageMap;
         }
-
-       
-
-
-
-
-
-//mom
-
-       
-        
     }
 }
