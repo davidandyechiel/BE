@@ -45,17 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Child.cs" />
-    <Compile Include="ClockTime.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="EnumClasses.cs" />
-    <Compile Include="HoursInDay.cs" />
-    <Compile Include="HoursInWeek.cs" />
     <Compile Include="Mother.cs" />
     <Compile Include="Nanny.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="To_Do_List.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

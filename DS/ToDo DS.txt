@@ -1,4 +1,0 @@
-﻿ * to convert the switch case
-
- * to impimet Find
-
