@@ -9,16 +9,19 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="405*"/>
+            <ColumnDefinition Width="112*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="NannyButton" Content="Nanny" HorizontalAlignment="Left" Margin="73,130,0,0" VerticalAlignment="Top" Width="75" Click="NannyButton_Click"/>
-        <Button x:Name="MomButton" Content="Mom" HorizontalAlignment="Left" Margin="84.667,130,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" Click="MomButton_Click"/>
-        <Button x:Name="ChildButton" Content="Child" HorizontalAlignment="Left" Margin="73,131,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Click="ChildButton_Click"/>
-        <Button x:Name="ContractButton" Content="Contract" HorizontalAlignment="Left" Margin="84.667,130,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="ContractButton_Click"/>
+        <Menu x:Name="menu" Grid.Column="1" Margin="0,0,0,-1">
+            <Button x:Name="mainPage" Content="MAIN" Width="100" Height="30" Click="mainPage_Click"/>
+            <Button x:Name="signNanny" Content="SIGN UP NANNY" Width="100" Height="30" Click="signNanny_Click"/>
+            <Button x:Name="signMother" Content="SIGN UP MOTHER" Width="100" Height="30" Click="signMother_Click"/>
+            <Button x:Name="findNanny" Content="FIND A NANNY" Width="100" Height="30" Click="findNanny_Click"/>
+            <Button x:Name="setting" Content="SETTING" Width="100" Height="30" Click="setting_Click"/>
+        </Menu>
+        <Frame x:Name="curretPage" Content="map_view" Margin="0,0,0,-1"  NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

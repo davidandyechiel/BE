@@ -20,33 +20,51 @@ namespace PLWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Map_View mapView;
+        public SUNanny_page SUNannyPage;
+        public SUMother_page SUMotherPage;
+        public FNanny_page FNannyPage;
+        public Setting_page SettingPage;
+
         public MainWindow()
         {
+            mapView = new Map_View();
             InitializeComponent();
         }
 
-        private void NannyButton_Click(object sender, RoutedEventArgs e)
+        private void mainPage_Click(object sender, RoutedEventArgs e)
         {
-            Window nannyWindow = new NannyWindow();
-            nannyWindow.Show();
+            curretPage.Content = mapView;
         }
 
-        private void MomButton_Click(object sender, RoutedEventArgs e)
+        private void signNanny_Click(object sender, RoutedEventArgs e)
         {
-            Window momWindow = new MomWindow();
-            momWindow.Show();
+            if (SUNannyPage == null)
+                SUNannyPage = new SUNanny_page();
+            curretPage.Content = SUNannyPage;
         }
 
-        private void ContractButton_Click(object sender, RoutedEventArgs e)
+        private void signMother_Click(object sender, RoutedEventArgs e)
         {
-            Window contractWindow = new ContractWindow();
-            contractWindow.Show();
+            if (SUMotherPage == null)
+                SUMotherPage = new SUMother_page();
+            curretPage.Content = SUMotherPage;
+
         }
 
-        private void ChildButton_Click(object sender, RoutedEventArgs e)
+        private void findNanny_Click(object sender, RoutedEventArgs e)
         {
-            Window childWindow = new ChildWindow();
-            childWindow.Show();
+            if (FNannyPage == null)
+                FNannyPage = new FNanny_page();
+            curretPage.Content = FNannyPage;
+
+        }
+
+        private void setting_Click(object sender, RoutedEventArgs e)
+        {
+            if (SettingPage == null)
+                SettingPage = new Setting_page();
+            curretPage.Content = SettingPage;
         }
     }
 }
