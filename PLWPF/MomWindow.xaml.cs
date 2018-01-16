@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF
 {
@@ -20,25 +21,50 @@ namespace PLWPF
     public partial class MomWindow : Window
     {
         BE.Mother mom;
-        // TODO: BL.IBL bl;
+        BL.IBL bl;
+
+        public DependencyProperty BrothersProperty = DependencyProperty.Register("Brothers",typeof( List<Child>),typeof (MomWindow), new UIPropertyMetadata(""));
+        public List<Child> Brothers
+        {
+            get { return (List<Child>)GetValue(BrothersProperty); }
+            set { SetValue(BrothersProperty, value); }
+        }
+
+       
+        bool update;
         public MomWindow()
         {
-            
             InitializeComponent();
             mom = new BE.Mother();
             this.DataContext = mom;
-
-
+            children_combo_box.IsEnabled = false;
+            update = false;
             // TODO: this.studentCampusComboBox.ItemsSource = Enum.GetValues(typeof(BE.Campus));
-            //TODO: bl = BL.FactoryBL.GetBL();
+            bl = BL.BL_Basic.Instance;
+            children_combo_box.DataContext = Brothers;
         }
 
-        public MomWindow(BE.Mother _mom)
+        public MomWindow(FrameworkElement _mom)
         {
             InitializeComponent();
-            mom = new BE.Mother(_mom);
+            mom = new BE.Mother(_mom.DataContext as Mother);
             this.DataContext = mom;
-            //TODO: bl = BL.FactoryBL.GetBL();
+            bl = BL.BL_Basic.Instance;
+            Brothers = (BL.BL_Basic.Instance.collectBrothers(mom.Id).ToList());
+            idTextBox.IsEnabled = false; // lock the id
+            update = true;
+          
+        }
+
+        private void setComboBox()
+        {//TODO: see if needed
+            children_combo_box.Items.Clear();
+            foreach (Child child in Brothers)
+            {
+                ComboBoxItem newItem = new ComboBoxItem();
+                newItem.Content = child.FName;
+                children_combo_box.Items.Add(newItem);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -48,11 +74,6 @@ namespace PLWPF
             // Load data by setting the CollectionViewSource.Source property:
             // motherViewSource.Source = [generic data source]
         }
-
-       
-
-        
-
         
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -90,7 +111,7 @@ namespace PLWPF
               //TODO:  bl.AddStudent(student); + update the window list
               //  mom = new BE.Mother();
               //  this.DataContext = mom;
-                Close();
+                   Close();
 
                 //  this.idTextBox.ClearValue(TextBox.TextProperty);   // this.idTextBox.Text = ""
                 //  this.nameTextBox.ClearValue(TextBox.TextProperty);// this.nameTextBox.Text = ""
@@ -119,22 +140,27 @@ namespace PLWPF
 
         private void idTextBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            //TODO: check id in mother list
+            //TODO: thread
+            if (CC.bl.Exist(E_type.MOTHER, int.Parse(idTextBox.Text))
+                {
+
+
+
+            }
+            else (hiddenTextBox.Text = "")
+
         }
 
-        private void children_combo_box_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // TODO: bind the with collection tat take all the kids with the same mom, add "observer"
-        }
+        
 
         private void AddChild_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-
-
+            
             ChildWindow childwin = new ChildWindow();
+           /*TODO: add this in the update combobox
+            * 
+            *  if (!children_combo_box.IsEnabled)
+               children_combo_box.IsEnabled = true;*/
             childwin.Show();
                
         }
@@ -142,8 +168,16 @@ namespace PLWPF
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
             //TODO: take the child from the combobox to build new child and then update it
-            ChildWindow childwin = new ChildWindow();
+            ChildWindow childwin = new ChildWindow(children_combo_box.SelectedValue as BE.Child);
             childwin.Show();
         }
+
+        private void DeleteChild_Click(object sender, RoutedEventArgs e)
+        { // TODO: update the contract , send a masseage if ther is acontract with that child
+            CC.bl.Remove(children_combo_box.SelectedValue as Child);
+            brothers.RemoveAt(brothers.FindIndex(x => x.Id == (children_combo_box.SelectedValue as Child).Id));
+        }
+
+        // TODO: EXeptions handler include BInDING
     }
 }

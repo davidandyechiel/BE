@@ -19,6 +19,7 @@
             <Button x:Name="signNanny" Content="SIGN UP NANNY" Width="100" Height="30" Click="signNanny_Click"/>
             <Button x:Name="signMother" Content="SIGN UP MOTHER" Width="100" Height="30" Click="signMother_Click"/>
             <Button x:Name="findNanny" Content="FIND A NANNY" Width="100" Height="30" Click="findNanny_Click"/>
+            <Button x:Name="contracts" Content="CONTRACTS" Width="100" Height="30" Click="setting_Click"/>
             <Button x:Name="setting" Content="SETTING" Width="100" Height="30" Click="setting_Click"/>
         </Menu>
         <Frame x:Name="curretPage" Content="map_view" Margin="0,-5,0,4"  NavigationUIVisibility="Hidden"/>

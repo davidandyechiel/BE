@@ -20,9 +20,11 @@ namespace PLWPF
     /// </summary>
     public partial class SUMother_page : Page
     {
+        BL.IBL bl;
         public SUMother_page()
         {
             InitializeComponent();
+            bl = BL.BL_Basic.Instance;
         }
 
         private void ADD_Click(object sender, RoutedEventArgs e)
@@ -33,8 +35,22 @@ namespace PLWPF
 
         private void UPDATE_Click(object sender, RoutedEventArgs e)
         {
-            MomWindow momWin = new MomWindow();
-            momWin.Show();
+           // TODO: make a converter between the combobox item and the BE.Mother
+       //     MomWindow momWin = new MomWindow(comboBox.SelectionBoxItem as BE.Mother );
+         //   momWin.Show();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DELETE_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: update the list
+            bl.Remove(sender as BE.Mother);
+        }
+
+       
     }
 }

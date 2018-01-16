@@ -20,6 +20,7 @@ namespace BE
         private string notes;
         private int numOfKids; // number of the kids that need a nanny
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
+        private object dataContext;
 
 
         #region Property
@@ -251,6 +252,20 @@ namespace BE
 
         }
 
+        public Mother(Mother mom)
+        {
+            this.id = mom.Id;
+            this.lastName = mom.LastName;
+            this.firstName = mom.FirstName;
+            this.homePhoneNum = mom.HomePhoneNum;
+            this.cellPhoneNum = mom.CellPhoneNum;
+            this.address = mom.Address;
+            this.addressNearHere = mom.AddressNearHere;
+            this.notes = mom.Notes;
+            this.dthoursTable = mom.DThoursTable;
+            this.numOfKids = mom.NumOfKids;
+        }
+
 
         #endregion
 
@@ -270,6 +285,10 @@ namespace BE
         //    }
         //    return hours;
         //}
+
+
+
+
 
         public override string ToString()
         {
