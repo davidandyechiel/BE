@@ -23,8 +23,25 @@
                 <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" Header="Adress" Binding="{Binding Adress}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="AddNanny" Content="Add Nanny" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="AddNanny" Content="Add Nanny" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Width="75" Click="AddNanny_Click"/>
         <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="100,15,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="idComboBox" Grid.Column="1" DisplayMemberPath="Id" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+        </Grid>
 
     </Grid>
 </Page>

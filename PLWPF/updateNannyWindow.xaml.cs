@@ -28,21 +28,70 @@ namespace PLWPF
             this.updateNannyByIdcomboBox.ItemsSource = bl.getNannyDS();
             this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
             this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
+            this.DataContext = nanny;
         }
 
-        private void deleteNannycomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+      
 
+        private void updatebutton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+               
+                bl.Update(nanny);
+                nanny = new BE.Nanny();
+                this.DataContext = nanny;
+                MessageBox.Show("successfully updated nanny");
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Check your input and try again");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void updateNannyByIdcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-        
-            //if (this.updateNannyByIdcomboBox.SelectedItem is Nanny)
-            //{ this.nannyToUpdate = ((Nanny)this.updateNannyByIdcomboBox.SelectedItem).GetCopy();
-            //    this.DataContext = nannyToUpdate;
-            //}
-        
+            if ((sender is ComboBox && ((ComboBox)sender).SelectedIndex > -1))
+                try
+                {
+                nanny = (BE.Nanny)updateNannyByIdcomboBox.SelectedItem;
+                this.DataContext = nanny;
+                }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                bl.Remove(nanny);
+                nanny = new BE.Nanny();
+                this.DataContext = nanny;
+                MessageBox.Show("successfully DELETED nanny");
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Check your input and try again");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
-    }
+    
 }
