@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChildWindow.xaml.cs">
+      <DependentUpon>ChildWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FNanny_page.xaml.cs">
       <DependentUpon>FNanny_page.xaml</DependentUpon>
     </Compile>
@@ -99,9 +102,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ChildWindow.xaml.cs">
-      <DependentUpon>ChildWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContractWindow.xaml.cs">
       <DependentUpon>ContractWindow.xaml</DependentUpon>

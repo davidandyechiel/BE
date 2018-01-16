@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BE
 {
   
@@ -14,7 +15,7 @@ namespace BE
         private int mothersId;
         private string fName;
         private string lName;
-        private E_gender gender; // I added this for WPF desine
+        private E_gender gender; 
         private bool spacialNeeds;
         private string spacialNeedsDescription;
         private DateTime birthday;
@@ -66,12 +67,12 @@ namespace BE
         {
             get
             {
-                return gender;
+                return Gender1;
             }
 
             set
             {
-                gender = value;
+                Gender1 = value;
             }
         }
 
@@ -111,6 +112,19 @@ namespace BE
             set
             {
                 birthday = value;
+            }
+        }
+
+        public E_gender Gender1
+        {
+            get
+            {
+                return gender;
+            }
+
+            set
+            {
+                gender = value;
             }
         }
         #endregion

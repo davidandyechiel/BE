@@ -21,7 +21,7 @@ namespace BE
         private int numOfKids; // number of the kids that need a nanny
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
 
-    
+
         #region Property
         public int Id
         {
@@ -162,7 +162,7 @@ namespace BE
             }
         }
 
-   
+
 
         public int NumOfKids
         {
@@ -185,20 +185,20 @@ namespace BE
 
             set
             {
-                dthoursTable = value;
+                 dthoursTable = value;
             }
         }
 
         #endregion
         #region Ctor
-        public Mother( int id)
-        { 
-            this.id = id;
-            
+        public Mother()
+        {
+
         }
 
         public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids, DateTime[][] dthoursTable)
         {
+            
             this.id = id;
             this.lastName = lastName;
             this.firstName = firstName;
@@ -212,7 +212,29 @@ namespace BE
             this.notes = notes;
             this.numOfKids = numOfKids;
             this.dthoursTable = dthoursTable;
+            needNanny = new bool[6];
+            for (int i = 0; i < 6; i++)
+            {
+                needNanny[i] = (dthoursTable[i][0] == dthoursTable[i][1]) ? false:true;
+            }
+
         }
+
+
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, string notes, DateTime[][] dthoursTable, int numOfKids)
+        {
+            this.id = id;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.homePhoneNum = homePhoneNum;
+            this.cellPhoneNum = cellPhoneNum;
+            this.address = address;
+            this.addressNearHere = addressNearHere;
+            this.notes = notes;
+            this.dthoursTable = dthoursTable;
+            this.numOfKids = numOfKids;
+        }
+
         public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, string notes, int numOfKids)
         {
             this.id = id;
@@ -226,13 +248,28 @@ namespace BE
             this.daysNeeded = daysNeeded;
             this.notes = notes;
             this.numOfKids = numOfKids;
-           
+
         }
+
 
         #endregion
 
-
-
+        //private static DateTime convertToTime(this double d)
+        //{
+        //    IFormatProvider format  = ""
+        //    string str = Convert.ToString(d,)
+        //    return Convert.ToDateTime(d); 
+        //}
+        //static public DateTime[][] setHours(params double[] times)
+        //{
+        //    DateTime[][] hours = new DateTime[6][];
+        //    for (int i = 0; i < times.Length; i += 2)
+        //    {
+        //        hours[i / 2][0] = times[i];
+        //        hours[i / 2][1] = times[i + 1];
+        //    }
+        //    return hours;
+        //}
 
         public override string ToString()
         {

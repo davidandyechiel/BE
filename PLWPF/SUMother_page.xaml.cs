@@ -24,5 +24,17 @@ namespace PLWPF
         {
             InitializeComponent();
         }
+
+        private void ADD_Click(object sender, RoutedEventArgs e)
+        {
+            MomWindow momWin = new MomWindow();
+            momWin.Show();
+        }
+
+        private void UPDATE_Click(object sender, RoutedEventArgs e)
+        {
+            MomWindow momWin = new MomWindow();
+            momWin.Show();
+        }
     }
 }

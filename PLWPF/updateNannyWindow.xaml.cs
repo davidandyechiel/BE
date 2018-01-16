@@ -38,10 +38,10 @@ namespace PLWPF
         private void updateNannyByIdcomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         
-            if (this.updateNannyByIdcomboBox.SelectedItem is Nanny)
-            { this.nannyToUpdate = ((Nanny)this.updateNannyByIdcomboBox.SelectedItem).GetCopy();
-                this.DataContext = nannyToUpdate;
-            }
+            //if (this.updateNannyByIdcomboBox.SelectedItem is Nanny)
+            //{ this.nannyToUpdate = ((Nanny)this.updateNannyByIdcomboBox.SelectedItem).GetCopy();
+            //    this.DataContext = nannyToUpdate;
+            //}
         
     }
     }
