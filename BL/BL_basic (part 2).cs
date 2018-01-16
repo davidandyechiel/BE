@@ -122,12 +122,14 @@ namespace BL
 
         public string MotherWantedAddress(Mother mom)
         {
-
-
             return (mom.AddressNearHere == null ? mom.Address : mom.AddressNearHere);
-
         }
 
+
+         public IEnumerable<Child> collectBrothers(int id)
+        {
+            return (from item in MyDal.ChildDS where (item.MothersId == id) select item);
+        }
        
     }
 }

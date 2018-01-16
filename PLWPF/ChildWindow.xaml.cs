@@ -20,17 +20,22 @@ namespace PLWPF
     public partial class ChildWindow : Window
     {
         BE.Child child;
+        
+        bool update; // need an update or just add
+
         public ChildWindow()
         {
             InitializeComponent();
             child = new BE.Child();
             DataContext = child;
+            update = false;
         }
         public ChildWindow(BE.Child _child)
         {
             InitializeComponent();
             child = new BE.Child(_child);
             DataContext = child;
+            update = true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -42,8 +47,18 @@ namespace PLWPF
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             //TODO: bl add child + take care of the update the combobox;
+
+            try
+            {
+                if (update)
+                    CC.bl.Update(child);
+                else CC.bl.Add(child);
+                Close();
+            }
+
+            catch { }
 
         }
     }
