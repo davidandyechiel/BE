@@ -18,12 +18,14 @@ namespace BL
         void Remove( object obj);
         void Update( object obj);
 
+        
+
         Contract FindContract(Predicate<Contract> p);
         Child FindChild(Predicate<Child> p);
         Mother FindMother(Predicate<Mother> p);
         Nanny FindNanny(Predicate<Nanny> p);
-        
 
+        bool Exists(object obj);
     }
 
 

@@ -26,7 +26,8 @@ namespace DAL
         Mother FindMother(Predicate<Mother> p);
         Nanny FindNanny(Predicate<Nanny> p);
 
-     
+        bool Exists(object obj);
+
 
 
 

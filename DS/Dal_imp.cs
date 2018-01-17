@@ -77,7 +77,7 @@ namespace DS
             }
         }
 
-        private bool Exists(object obj)
+        public bool Exists(object obj)
         {
             switch (getEnum(obj))
             {
@@ -93,6 +93,7 @@ namespace DS
                     throw new Exception(obj + "cannot be Added");
             }
         }
+        
 
         public void Remove<T>(T obj)
         {
@@ -214,7 +215,7 @@ namespace DS
             return MyDS.getNannyDS().Find(p);
         }
 
-
+        
     } // Dal_imp
 }//namespace
 
