@@ -269,22 +269,7 @@ namespace BE
 
         #endregion
 
-        //private static DateTime convertToTime(this double d)
-        //{
-        //    IFormatProvider format  = ""
-        //    string str = Convert.ToString(d,)
-        //    return Convert.ToDateTime(d); 
-        //}
-        //static public DateTime[][] setHours(params double[] times)
-        //{
-        //    DateTime[][] hours = new DateTime[6][];
-        //    for (int i = 0; i < times.Length; i += 2)
-        //    {
-        //        hours[i / 2][0] = times[i];
-        //        hours[i / 2][1] = times[i + 1];
-        //    }
-        //    return hours;
-        //}
+        
 
 
 

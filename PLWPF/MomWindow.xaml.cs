@@ -20,7 +20,6 @@ namespace PLWPF
     /// </summary>
     public partial class MomWindow : Window
     {
-        BL.IBL bl;
         bool update;
 
         public DependencyProperty BrothersProperty = DependencyProperty.Register("Brothers", typeof(List<Child>), typeof(MomWindow), new UIPropertyMetadata(""));
@@ -35,6 +34,9 @@ namespace PLWPF
         }
 
 
+        
+
+
 
 
         /// <summary>
@@ -45,7 +47,6 @@ namespace PLWPF
             InitializeComponent();
             this.DataContext = new BE.Mother();
             update = false; // new mom
-            bl = BL.BL_Basic.Instance;
             children_combo_box.ItemsSource = Brothers;
         }
 
@@ -59,7 +60,6 @@ namespace PLWPF
            // mom = new BE.Mother(_mom.DataContext as Mother);
             this.DataContext = (_mom.DataContext as Mother);
             idTextBox.IsEnabled = false; // lock the id, id is inchangeable
-            bl = BL.BL_Basic.Instance;
             refreshBrotherList();
             children_combo_box.ItemsSource = Brothers;
             update = true;
@@ -67,7 +67,7 @@ namespace PLWPF
 
         public void refreshBrotherList()
         {
-            Brothers = (BL.BL_Basic.Instance.collectBrothers((this.DataContext as Mother).Id).ToList());
+              Brothers = ((CC.bl as BL.BL_Basic).collectBrothers((this.DataContext as Mother).Id).ToList());
             foreach (ComboBoxItem item in children_combo_box.Items)
                 item.Content = (item.DataContext as Child).FName;
             if (children_combo_box.Items.Count == -1)
@@ -189,7 +189,7 @@ namespace PLWPF
         }
 
         private void DeleteChild_Click(object sender, RoutedEventArgs e)
-        { // TODO: update the contract , send a masseage if ther is acontract with that child
+        { // TODO: update the contract , send a masseage if there is a contract with that child
             CC.bl.Remove(children_combo_box.SelectedValue as Child);
             refreshBrotherList();
         }
