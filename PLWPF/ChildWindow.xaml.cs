@@ -34,7 +34,7 @@ namespace PLWPF
         {
             InitializeComponent();
             child = new BE.Child(_child);
-            DataContext = child;
+            DataContext = _child;
             update = true;
         }
 
@@ -48,16 +48,16 @@ namespace PLWPF
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: bl add child + take care of the update the combobox;
-
-            try
+           try
             {
                 if (update)
                     CC.bl.Update(child);
                 else CC.bl.Add(child);
+
+
+                (sender as MomWindow).refreshBrotherList();
                 Close();
             }
-
             catch { }
 
         }

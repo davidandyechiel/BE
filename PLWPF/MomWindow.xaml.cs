@@ -20,44 +20,65 @@ namespace PLWPF
     /// </summary>
     public partial class MomWindow : Window
     {
-        BE.Mother mom;
-        BL.IBL bl;
+        bool update;
 
-        public DependencyProperty BrothersProperty = DependencyProperty.Register("Brothers",typeof( List<Child>),typeof (MomWindow), new UIPropertyMetadata(""));
+        public DependencyProperty BrothersProperty = DependencyProperty.Register("Brothers", typeof(List<Child>), typeof(MomWindow), new UIPropertyMetadata(""));
         public List<Child> Brothers
         {
             get { return (List<Child>)GetValue(BrothersProperty); }
-            set { SetValue(BrothersProperty, value); }
+            set
+            {
+                SetValue(BrothersProperty, value);
+
+            }
         }
 
-       
-        bool update;
-        public MomWindow()
+
+        
+
+
+
+
+        /// <summary>
+        /// Add new mom mode
+        /// </summary>
+        public MomWindow() // add new mom
         {
             InitializeComponent();
-            mom = new BE.Mother();
-            this.DataContext = mom;
-            children_combo_box.IsEnabled = false;
-            update = false;
-            // TODO: this.studentCampusComboBox.ItemsSource = Enum.GetValues(typeof(BE.Campus));
-            bl = BL.BL_Basic.Instance;
-            children_combo_box.DataContext = Brothers;
+            this.DataContext = new BE.Mother();
+            update = false; // new mom
+            children_combo_box.ItemsSource = Brothers;
         }
 
-        public MomWindow(FrameworkElement _mom)
+        /// <summary>
+        /// Mom update mode
+        /// </summary>
+        /// <param name="_mom"> existing mom </param>
+        public MomWindow(FrameworkElement _mom) // 
         {
             InitializeComponent();
-            mom = new BE.Mother(_mom.DataContext as Mother);
-            this.DataContext = mom;
-            bl = BL.BL_Basic.Instance;
-            Brothers = (BL.BL_Basic.Instance.collectBrothers(mom.Id).ToList());
-            idTextBox.IsEnabled = false; // lock the id
+           // mom = new BE.Mother(_mom.DataContext as Mother);
+            this.DataContext = (_mom.DataContext as Mother);
+            idTextBox.IsEnabled = false; // lock the id, id is inchangeable
+            refreshBrotherList();
+            children_combo_box.ItemsSource = Brothers;
             update = true;
-          
         }
 
+        public void refreshBrotherList()
+        {
+              Brothers = ((CC.bl as BL.BL_Basic).collectBrothers((this.DataContext as Mother).Id).ToList());
+            foreach (ComboBoxItem item in children_combo_box.Items)
+                item.Content = (item.DataContext as Child).FName;
+            if (children_combo_box.Items.Count == -1)
+                children_combo_box.IsEnabled = false;
+            else children_combo_box.IsEnabled = true;
+        }
+
+        /*
+         * TODO: see if needed maybe delete
         private void setComboBox()
-        {//TODO: see if needed
+        {
             children_combo_box.Items.Clear();
             foreach (Child child in Brothers)
             {
@@ -66,15 +87,9 @@ namespace PLWPF
                 children_combo_box.Items.Add(newItem);
             }
         }
+        */
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
 
-            System.Windows.Data.CollectionViewSource motherViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("motherViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // motherViewSource.Source = [generic data source]
-        }
-        
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
@@ -105,13 +120,31 @@ namespace PLWPF
 
             try
             {
+
+                
+                // If the user sure that he wants so save ...
+                if (CC.WindowSaving("save") == MessageBoxResult.Yes)
+                {
+                    Mother mom = new Mother(this.DataContext as Mother);
+                    
+
+                    if (update)
+                        CC.bl.Update(this.DataContext as Mother);
+                    else // need only to add
+                        CC.bl.Add(this.DataContext as Mother);
+                    (sender as SUMother_page).refreshList();
+                    Close();
+                }
+
+
+
                 //  course.CourseId = int.Parse(this.idTextBox.Text);
                 //  course.CourseName = this.nameTextBox.Text;
 
-              //TODO:  bl.AddStudent(student); + update the window list
-              //  mom = new BE.Mother();
-              //  this.DataContext = mom;
-                   Close();
+                //TODO:  bl.AddStudent(student); + update the window list
+                //  mom = new BE.Mother();
+                //  this.DataContext = mom;
+                
 
                 //  this.idTextBox.ClearValue(TextBox.TextProperty);   // this.idTextBox.Text = ""
                 //  this.nameTextBox.ClearValue(TextBox.TextProperty);// this.nameTextBox.Text = ""
@@ -124,60 +157,55 @@ namespace PLWPF
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-
-
-
         }
-
-
-                
-                
-                
-                
         
 
         private void idTextBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            //TODO: thread
-            if (CC.bl.Exist(E_type.MOTHER, int.Parse(idTextBox.Text))
-                {
-
-
-
+            //TODO: insert to thread
+           
+            if (!update && CC.bl.Exists(this.DataContext as Mother)) // if its new mom and she ready exist in DS so change to update mode
+            {
+                update = true;
+                idTextBox.IsEnabled = false;
+                this.DataContext = CC.bl.FindMother(x=> x.Id == int.Parse(idTextBox.Text));
+                refreshBrotherList();
             }
-            else (hiddenTextBox.Text = "")
-
         }
 
-        
+
 
         private void AddChild_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ChildWindow childwin = new ChildWindow();
-           /*TODO: add this in the update combobox
-            * 
-            *  if (!children_combo_box.IsEnabled)
-               children_combo_box.IsEnabled = true;*/
-            childwin.Show();
-               
+            childwin.Show(); // if there will be change, so Brother will be refreshing.
         }
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: take the child from the combobox to build new child and then update it
             ChildWindow childwin = new ChildWindow(children_combo_box.SelectedValue as BE.Child);
-            childwin.Show();
+            childwin.Show(); childwin.Show(); // if there will be change, so Brother will be refreshing.
         }
 
         private void DeleteChild_Click(object sender, RoutedEventArgs e)
-        { // TODO: update the contract , send a masseage if ther is acontract with that child
+        { // TODO: update the contract , send a masseage if there is a contract with that child
             CC.bl.Remove(children_combo_box.SelectedValue as Child);
-            brothers.RemoveAt(brothers.FindIndex(x => x.Id == (children_combo_box.SelectedValue as Child).Id));
+            refreshBrotherList();
         }
 
-        // TODO: EXeptions handler include BInDING
+        private void clear_Click(object sender, RoutedEventArgs e)
+        {
+            if (CC.WindowSaving("clear") == MessageBoxResult.Yes)
+            {
+                this.DataContext = new Mother();
+                Brothers.Clear();
+                update = false;
+                idTextBox.IsEnabled = false;
+            }
+        }
+
+        // TODO: EXeptions handler include BInDING Errors
+        // TODO: threads!
     }
 }

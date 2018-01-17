@@ -190,7 +190,11 @@ namespace BL
             return MyDal.NannyDS.Find(p);
         }
 
+        
 
-
+        public bool Exists(object obj)
+        {
+            return MyDal.Exists(obj);
+        }
     }
 }
