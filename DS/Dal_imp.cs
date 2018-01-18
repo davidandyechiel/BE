@@ -41,7 +41,7 @@ namespace DS
                         if (!(MyDS.getMotherDS().Exists(x => x.Id == (MyDS.getChildDS().Find(y => y.Id == ((obj as Contract).ChildID)).MothersId))))
                             //if the mother's Id of the child in the contract is not exist in the motherlist
                             throw new Exception("the mother is not exist in the DS");
-                        if (!(MyDS.getMotherDS().Exists(x => x.Id == ((obj as Contract).NannysID))))
+                        if (!(MyDS.getNannyDS().Exists(x => x.Id == ((obj as Contract).NannysID))))
                             //if the nanny's Id  in the contract is not exist in the nannylist
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
