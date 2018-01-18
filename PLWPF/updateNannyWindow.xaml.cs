@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF
 {
@@ -19,8 +20,20 @@ namespace PLWPF
     /// </summary>
     public partial class updateNannyWindow : Window
     {
-        BE.Nanny nanny;
-  
+       public static BE.Nanny nanny;
+
+        public static Nanny Nanny
+        {
+            get
+            {
+                return nanny;
+            }
+
+            set
+            {
+                nanny = value;
+            }
+        }
 
         public updateNannyWindow()
         {
@@ -28,7 +41,7 @@ namespace PLWPF
             this.updateNannyByIdcomboBox.ItemsSource = CC.bl.getNannyDS();
             this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
             this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
-            this.DataContext = nanny;
+            this.DataContext = Nanny;
             hourRateTextBox.IsEnabled = false;
         }
 
@@ -38,9 +51,9 @@ namespace PLWPF
         {
             try
             {
-                CC.bl.Update(nanny);
-                nanny = new BE.Nanny();
-                this.DataContext = nanny;
+                CC.bl.Update(Nanny);
+                Nanny = new BE.Nanny();
+                this.DataContext = Nanny;
                 MessageBox.Show("successfully updated nanny");
                 this.Close();
             }
@@ -60,8 +73,8 @@ namespace PLWPF
             if ((sender is ComboBox && ((ComboBox)sender).SelectedIndex > -1))
                 try
                 {
-                nanny = (BE.Nanny)updateNannyByIdcomboBox.SelectedItem;
-                this.DataContext = nanny;
+                Nanny = (BE.Nanny)updateNannyByIdcomboBox.SelectedItem;
+                this.DataContext = Nanny;
                 }
             catch (Exception ex)
             {
@@ -76,9 +89,9 @@ namespace PLWPF
             try
             {
 
-                CC.bl.Remove(nanny);
-                nanny = new BE.Nanny();
-                this.DataContext = nanny;
+                CC.bl.Remove(Nanny);
+                Nanny = new BE.Nanny();
+                this.DataContext = Nanny;
                 MessageBox.Show("successfully DELETED nanny");
                 this.Close();
             }
@@ -102,6 +115,12 @@ namespace PLWPF
         {
             hourRateTextBox.IsEnabled = false;
         }
+
+        private void Window_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
     }
     
 }

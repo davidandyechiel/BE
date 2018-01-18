@@ -7,7 +7,7 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.updateNannyWindow"
     xmlns:tp="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker"
         mc:Ignorable="d"
-        Title="updateNannyWindow" Height="900" Width="500" >
+        Title="updateNannyWindow" Height="900" Width="500"  >
     
     <Window.Resources>
         <tp:DigitalTimeConverter x:Key="DigitalTimeConverter"/>
