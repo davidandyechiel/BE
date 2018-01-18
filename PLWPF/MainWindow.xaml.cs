@@ -35,11 +35,19 @@ namespace PLWPF
 
         private static void AddDefaultValues()
         {
-           BE.Mother mom = new 
+            BE.Mother mom1 = new BE.Mother(1, "Cohen", "Sarah", 026541526, 0527412564, "הועד הלאומי12, ירושלים", "הועד הלאומי12, ירושלים", " ", null, 2);
+            BE.Child child11 = new BE.Child(123, 1, "Yossi", "Chohen", BE.E_gender.BOY, false, "", new DateTime(2017, 1, 1));
+            BE.Child child12 = new BE.Child(124, 1, "Moshe", "Chohen", BE.E_gender.BOY, false, "", new DateTime(2015, 1, 1));
+
+            BE.Mother mom2 = new BE.Mother(2, "Levi", "Ofra", 026584921, 0549853665, "הועד הלאומי13, ירושלים", "הועד הלאומי13, ירושלים", " ", null, 2);
+            BE.Child child21 = new BE.Child(125, 1, "Avraham", "Levi", BE.E_gender.BOY, false, "", new DateTime(2017, 5, 11));
+            BE.Child child22 = new BE.Child(126, 1, "Issac", "Levi", BE.E_gender.BOY, false, "", new DateTime(2015, 12, 23));
 
 
-
-
+            BE.Contract con1 = new BE.Contract(11, 123);
+            BE.Contract con2 = new BE.Contract(11, 124);
+            BE.Contract con3 = new BE.Contract(12, 125);
+            BE.Contract con4 = new BE.Contract(12, 126);
 
 
 
