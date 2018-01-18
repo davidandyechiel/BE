@@ -29,7 +29,7 @@ namespace PLWPF
 
         private void AddNanny_Click(object sender, RoutedEventArgs e)
         {
-            NannyWindow nannyWin = new NannyWindow();
+            AddNannyWindow nannyWin = new AddNannyWindow();
             nannyWin.Show();
           //  new AddNannyWindow().Show();
         }

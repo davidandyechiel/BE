@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" xmlns:TimePicker="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker" x:Class="PLWPF.AddNannyWindow"
         mc:Ignorable="d"
-        Title="AddNannyWindow" Height="900" Width="500" Loaded="Window_Loaded">
+        Title="AddNannyWindow" Height="900" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
         <CollectionViewSource x:Key="nannyDThoursTableViewSource" Source="{Binding DThoursTable, Source={StaticResource nannyViewSource}}"/>
@@ -16,7 +16,7 @@
             <ColumnDefinition MinWidth="138"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="347,582,0,0" VerticalAlignment="Top" Width="107" Height="79" FontSize="32" Background="#FF4BF714" Click="addButton_Click"/>
-        <Grid x:Name="grid1" DataContext="{StaticResource nannyViewSource}" HorizontalAlignment="Left" Margin="76,93,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid1" DataContext="{StaticResource nannyViewSource}" HorizontalAlignment="Left" Margin="36,92,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -89,7 +89,7 @@
 
         </Grid>
 
-        <Grid HorizontalAlignment="Left" Height="162" Margin="17,676,0,0" VerticalAlignment="Top" Width="454">
+        <Grid HorizontalAlignment="Left" Height="162" Margin="325,369,0,0" VerticalAlignment="Top" Width="454">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="3*"/>
