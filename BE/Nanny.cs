@@ -343,6 +343,29 @@ namespace BE
             //this.difference = difference;
         }
 
+        public Nanny(int id, string lastName, string firstName, DateTime birthDate, int phoneNum, bool elevator, string adress, int floor, int experince, int maxCapacity, double minAge, double maxAge, bool perHour, double hourRate, double monthlyRate, string recommendations, bool dependedDaysOff, bool[] daysOfWork, DateTime[][] dthoursTable)
+        {
+            this.id = id;
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.birthDate = birthDate;
+            this.phoneNum = phoneNum;
+            this.elevator = elevator;
+            this.adress = adress;
+            this.floor = floor;
+            this.experince = experince;
+            this.maxCapacity = maxCapacity;
+            this.minAge = minAge;
+            this.maxAge = maxAge;
+            this.perHour = perHour;
+            this.hourRate = hourRate;
+            this.monthlyRate = monthlyRate;
+            this.recommendations = recommendations;
+            this.dependedDaysOff = dependedDaysOff;
+            this.daysOfWork = daysOfWork;
+            this.dthoursTable = dthoursTable;
+        }
+
 
 
         #endregion

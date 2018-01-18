@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.AddNannyWindow"
+        xmlns:BE="clr-namespace:BE;assembly=BE" xmlns:TimePicker="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker" x:Class="PLWPF.AddNannyWindow"
         mc:Ignorable="d"
-        Title="AddNannyWindow" Height="700" Width="500" Loaded="Window_Loaded">
+        Title="AddNannyWindow" Height="900" Width="500" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
         <CollectionViewSource x:Key="nannyDThoursTableViewSource" Source="{Binding DThoursTable, Source={StaticResource nannyViewSource}}"/>
@@ -58,7 +58,7 @@
             <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
             <TextBox x:Name="floorTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Hour Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBox x:Name="hourRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding HourRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=perHourCheckBox }"/>
+            <TextBox x:Name="hourRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding HourRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=perHourCheckBox}"/>
             <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Max Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
@@ -86,7 +86,41 @@
             </Grid.RowDefinitions>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
-            
+
+        </Grid>
+
+        <Grid HorizontalAlignment="Left" Height="162" Margin="17,676,0,0" VerticalAlignment="Top" Width="454">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="2"  />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="2" />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="2" />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="2" />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="2"  />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="2"  />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="1" />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="1" />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="1" />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="1"  />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="1"  />
+            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="1"  />
+            <Label x:Name="label1" Content="Sunday" Grid.Column="0" Grid.Row="0" />
+            <Label x:Name="label2" Content="Monday" Grid.Column="1" Grid.Row="0" />
+            <Label x:Name="label3" Content="Tuesday" Grid.Column="2" Grid.Row="0" />
+            <Label x:Name="label4" Content="Wednesday" Grid.Column="3" Grid.Row="0" />
+            <Label x:Name="label5" Content="Thursday" Grid.Column="4" Grid.Row="0" />
+            <Label x:Name="label6" Content="Friday" Grid.Column="5" Grid.Row="0" />
         </Grid>
 
     </Grid>
