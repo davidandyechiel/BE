@@ -9,7 +9,7 @@ namespace BE
 {
   
 
-    public class Child : IComparable
+    public class Child : IComparable 
     {
         private int id;
         private int mothersId;
@@ -164,6 +164,7 @@ namespace BE
             return "Child: " + FName + LName + "ID: " + Id + "\n";
         }
 
+        
         public int CompareTo(object obj)
         {
             return id.CompareTo(((Child)obj).Id);

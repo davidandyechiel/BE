@@ -66,5 +66,11 @@ namespace PLWPF
                 SettingPage = new Setting_page();
             curretPage.Content = SettingPage;
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MomWindow mom = new MomWindow();
+            mom.Show();
+        }
     }
 }

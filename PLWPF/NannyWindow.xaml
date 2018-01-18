@@ -12,9 +12,9 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="addNannybutton" Content="Add" HorizontalAlignment="Left" Margin="8,23,0,0" VerticalAlignment="Top" Width="75" Height="19" Background="#FF3EF914" Click="addNannybutton_Click"/>
         <Button x:Name="updateNanny" Content="Update" HorizontalAlignment="Right" Margin="0,123,209,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.348,-2.505" Height="19" Background="#FFEEF513" Click="updateNanny_Click"/>
-        <ComboBox x:Name="deleteNannycomboBox" HorizontalAlignment="Left" SelectedItem="{Binding nanny}" Margin="10,216,0,0" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.296,1.066" SelectionChanged="deleteNannycomboBox_SelectionChanged"/>
+        <ComboBox x:Name="deleteNannycomboBox" HorizontalAlignment="Left" SelectedItem="{Binding nanny}" Margin="10,216,0,0" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.296,1.066"/>
         <Button x:Name="deleteNanntbutton" Content="DELETE" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" Width="75" Background="#FFF20D0D" Click="deleteNanntbutton_Click"/>
-        <ComboBox x:Name="deleteNannycomboBox_Copy" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.296,1.066" SelectionChanged="deleteNannycomboBox_SelectionChanged"/>
+        <ComboBox x:Name="deleteNannycomboBox_Copy" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="120" Height="22" RenderTransformOrigin="0.296,1.066"/>
 
     </Grid>
 </Window>

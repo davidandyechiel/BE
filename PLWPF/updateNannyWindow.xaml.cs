@@ -44,5 +44,10 @@ namespace PLWPF
             //}
         
     }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

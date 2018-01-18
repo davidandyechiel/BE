@@ -49,7 +49,7 @@ namespace PLWPF
 
                
 
-        private static DateTime DoubleToDateTime(double d)
+        public static DateTime DoubleToDateTime(double d)
         {
             int H = (int)d;
             int m = (int)((d - H) * 10);
@@ -57,7 +57,7 @@ namespace PLWPF
             return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
-        private static double DateTimeToDouble(DateTime dt)
+        public static double DateTimeToDouble(DateTime dt)
         {
             double H = dt.Hour;
             double m = (dt.Minute == 0 ? 0 : 0.5);

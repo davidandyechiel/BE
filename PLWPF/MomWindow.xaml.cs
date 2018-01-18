@@ -22,102 +22,91 @@ namespace PLWPF
     {
         bool update;
 
-        public DependencyProperty BrothersProperty = DependencyProperty.Register("Brothers", typeof(List<Child>), typeof(MomWindow), new UIPropertyMetadata(""));
+        public Boolean State
+        {
+            get { return (Boolean)this.GetValue(StateProperty); }
+            set { this.SetValue(StateProperty, value); }
+        }
+        public static readonly DependencyProperty StateProperty = DependencyProperty.Register(
+          "State", typeof(Boolean), typeof(MomWindow), new PropertyMetadata(false));
+
+        List<Child> brothers;
         public List<Child> Brothers
         {
-            get { return (List<Child>)GetValue(BrothersProperty); }
+            get { return brothers; }
             set
             {
-                SetValue(BrothersProperty, value);
-
+                brothers = value;
             }
         }
 
+          public Double Brothers1
+          {
+              get { return (Boolean)GetValue(BrothersProperty); }
+              set
+              {
+                  this.SetValue(BrothersProperty, value);
+              }
+          }
+          public static  DependencyProperty BrothersProperty = DependencyProperty.Register(
+              "Brothers1",typeof(Boolean), typeof(MomWindow), new PropertyMetadata(false));
 
-        
 
+          /// <summary>
+          /// Add new mom mode
+          /// </summary>
+          public  MomWindow() // add new mom
+          {
+              InitializeComponent();
+              this.DataContext = new BE.Mother();
+              update = false; // new mom
+              children_combo_box.ItemsSource = Brothers;
+          }
 
+          /// <summary>
+          /// Mom update mode
+          /// </summary>
+          /// <param name="_mom"> existing mom </param>
+          public  MomWindow(FrameworkElement _mom) // 
+          {
+              InitializeComponent();
+             // mom = new BE.Mother(_mom.DataContext as Mother);
+              this.DataContext = (_mom.DataContext as Mother);
+              idTextBox.IsEnabled = false; // lock the id, id is inchangeable
+              refreshBrotherList();
+              children_combo_box.ItemsSource = Brothers;
+              update = true;
+          }
 
+          public void refreshBrotherList()
+          {
+                Brothers = ((CC.bl as BL.BL_Basic).collectBrothers((this.DataContext as Mother).Id).ToList());
+              foreach (ComboBoxItem item in children_combo_box.Items)
+                  item.Content = (item.DataContext as Child).FName;
+              if (children_combo_box.Items.Count == -1)
+                  children_combo_box.IsEnabled = false;
+              else children_combo_box.IsEnabled = true;
+          }
 
-        /// <summary>
-        /// Add new mom mode
-        /// </summary>
-        public MomWindow() // add new mom
-        {
-            InitializeComponent();
-            this.DataContext = new BE.Mother();
-            update = false; // new mom
-            children_combo_box.ItemsSource = Brothers;
-        }
-
-        /// <summary>
-        /// Mom update mode
-        /// </summary>
-        /// <param name="_mom"> existing mom </param>
-        public MomWindow(FrameworkElement _mom) // 
-        {
-            InitializeComponent();
-           // mom = new BE.Mother(_mom.DataContext as Mother);
-            this.DataContext = (_mom.DataContext as Mother);
-            idTextBox.IsEnabled = false; // lock the id, id is inchangeable
-            refreshBrotherList();
-            children_combo_box.ItemsSource = Brothers;
-            update = true;
-        }
-
-        public void refreshBrotherList()
-        {
-              Brothers = ((CC.bl as BL.BL_Basic).collectBrothers((this.DataContext as Mother).Id).ToList());
-            foreach (ComboBoxItem item in children_combo_box.Items)
-                item.Content = (item.DataContext as Child).FName;
-            if (children_combo_box.Items.Count == -1)
-                children_combo_box.IsEnabled = false;
-            else children_combo_box.IsEnabled = true;
-        }
-
-        /*
-         * TODO: see if needed maybe delete
-        private void setComboBox()
-        {
-            children_combo_box.Items.Clear();
-            foreach (Child child in Brothers)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = child.FName;
-                children_combo_box.Items.Add(newItem);
-            }
-        }
-        */
+          /*
+           * TODO: see if needed maybe delete
+          private void setComboBox()
+          {
+              children_combo_box.Items.Clear();
+              foreach (Child child in Brothers)
+              {
+                  ComboBoxItem newItem = new ComboBoxItem();
+                  newItem.Content = child.FName;
+                  children_combo_box.Items.Add(newItem);
+              }
+          }
+          */
 
 
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            //BE.Mother mom = new BE.Mother(
-            //    int.Parse(idTextBox.Text),
-            //    lastNameTextBox.Text,
-            //    firstNameTextBox.Text,
-            //    int.Parse(homePhoneNumTextBox.Text),
-            //    int.Parse(cellPhoneNumTextBox.Text),
-            //    addressTextBox.Text,
-            //    addressNearHereTextBox.Text,
-            //    notesTextBox.Text,
-            //    BE.Mother.setHours(sunday_start_slider.Value,
-            //                       sunday_end_slider.Value,
-            //                       monday_start_slider.Value,
-            //                       monday_end_slider.Value,
-            //                       tuesday_start_slider.Value,
-            //                       tuesday_end_slider.Value,
-            //                       wednesday_start_slider.Value,
-            //                       wednesday_end_slider.Value,
-            //                       thursday_start_slider.Value,
-            //                       thursday_end_slider.Value,
-            //                       friday_start_slider.Value,
-            //                       friday_end_slider.Value
-            //                      ),
-            //    int.Parse(numOfKidsTextBox.Text));
-
-
+            
             try
             {
 
@@ -125,7 +114,11 @@ namespace PLWPF
                 // If the user sure that he wants so save ...
                 if (CC.WindowSaving("save") == MessageBoxResult.Yes)
                 {
-                    Mother mom = new Mother(this.DataContext as Mother);
+                 /*   Mother mom = new Mother(this.DataContext as Mother);
+                    foreach (item in daysSliders.)
+
+                    var hoursVal = from item in daysSliders where (item is Slider)
+                    mom.DThoursTable = 
                     
 
                     if (update)
@@ -133,7 +126,7 @@ namespace PLWPF
                     else // need only to add
                         CC.bl.Add(this.DataContext as Mother);
                     (sender as SUMother_page).refreshList();
-                    Close();
+                    Close();*/
                 }
 
 
@@ -204,6 +197,32 @@ namespace PLWPF
                 idTextBox.IsEnabled = false;
             }
         }
+
+        private void Slider_ValueChanged_start(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if ((sender as Slider).Value > sunday_end_slider.Value)
+                (sender as Slider).Value = sunday_end_slider.Value;
+            (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("from HH:mm");
+        }
+        private void Slider_ValueChanged_end(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if ((sender as Slider).Value < sunday_start_slider.Value)
+                (sender as Slider).Value = sunday_start_slider.Value;
+            (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("to HH:mm");
+        }
+
+        private void start_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("from HH:mm");
+        }
+        private void end_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
+        }
+
+        
+
+
 
         // TODO: EXeptions handler include BInDING Errors
         // TODO: threads!

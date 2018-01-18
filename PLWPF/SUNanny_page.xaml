@@ -15,7 +15,7 @@
 
     <Grid DataContext="{StaticResource nannyViewSource}">
 
-        <DataGrid x:Name="nannyDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="-5,70,0,0" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="nannyDataGrid_SelectionChanged">
+        <DataGrid x:Name="nannyDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="-5,70,0,0" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="lastNameColumn" Width="SizeToHeader" Header="Last Name" Binding="{Binding LastName}"/>
                 <DataGridTextColumn x:Name="firstNameColumn" Width="SizeToHeader" Header="First Name" Binding="{Binding FirstName}"/>

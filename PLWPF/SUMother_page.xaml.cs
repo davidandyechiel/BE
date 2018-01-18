@@ -27,6 +27,12 @@ namespace PLWPF
             bl = BL.BL_Basic.Instance;
         }
 
+        public SUMother_page(int i)
+        {
+            InitializeComponent();
+            bl = BL.BL_Basic.Instance;
+        }
+
         private void ADD_Click(object sender, RoutedEventArgs e)
         {
             MomWindow momWin = new MomWindow();
@@ -42,7 +48,9 @@ namespace PLWPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
+            MomWindow momwin;
+            momwin = new MomWindow();
+            momwin.Show();
         }
 
         private void DELETE_Click(object sender, RoutedEventArgs e)

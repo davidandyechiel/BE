@@ -6,284 +6,318 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.MomWindow"
         mc:Ignorable="d"
-        Title="Add New Mom" Height="497" Width="383" Loaded="Window_Loaded">
+        Title="Add New Mom" Height="600" Width="383">
     <Window.Resources>
         <CollectionViewSource x:Key="motherViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Mother}, CreateList=True}"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource motherViewSource}" Margin="-1,0,0,4">
+    <Grid DataContext="{StaticResource motherViewSource}" Margin="-1,0,0,4" RenderTransformOrigin="0.5,0.5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45*"/>
-            <RowDefinition Height="32*"/>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="121*"/>
-            <ColumnDefinition Width="219*"/>
-            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Save" Content="SAVE" HorizontalAlignment="Left" Margin="8,170,0,2" Width="75" Click="Save_Click" Grid.Column="2" Grid.Row="1"/>
-        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="425" Width="310" Grid.RowSpan="2">
+
+        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="25,0,0,25" Width="310">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="199"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="324"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*" MinHeight="66"/>
+                <RowDefinition Height="3*" MinHeight="44"/>
             </Grid.RowDefinitions>
-            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" Height="24" Margin="4,6,9,7" Grid.Row="3" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Address Near Here:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="addressNearHereTextBox" Grid.Column="1" Margin="4,5,9,6" Grid.Row="4" Text="{Binding AddressNearHere, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-            <Label Content="Cell Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,5" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="cellPhoneNumTextBox" Grid.Column="1" Margin="4,6,75,5" Grid.Row="5" Text="{Binding CellPhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-            <Label Content="Days Needed:" Grid.Column="0" Margin="0,31,32,0" Grid.Row="6" VerticalAlignment="Top" Grid.RowSpan="2"/>
-            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,5" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="firstNameTextBox" Grid.Column="1" Margin="4,8,7,7" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-            <Label Content="Home Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="homePhoneNumTextBox" Grid.Column="1" Margin="4,6,75,5" Grid.Row="6" Text="{Binding HomePhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" Margin="4,5,9,6" Grid.Row="2" Text="{Binding Id, Mode=OneWay}" MouseLeave="idTextBox_MouseLeave"/>
-            <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,6" VerticalAlignment="Center"/>
-            <TextBox x:Name="lastNameTextBox" Grid.Column="1" Margin="4,6,8,10" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-            <Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,5" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBox x:Name="notesTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="4,6,0,5" Grid.Row="8" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Add Children:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,5" Grid.Row="9" VerticalAlignment="Center"/>
-            <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="4,5,0,7" Grid.Row="9" Text="{Binding children_combo_box.Count, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
-            <ComboBox x:Name="children_combo_box" Grid.Column="1" HorizontalAlignment="Left" Margin="2,35,0,-21" Grid.Row="9" VerticalAlignment="Top" Width="120" SelectionChanged="children_combo_box_SelectionChanged" ItemsSource="{Binding}"     />
-            <Grid Margin="85,1,4,0" Grid.Row="7" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,11,0,10" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="55"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="1" Height="24" Margin="4,13,200,10" Grid.Row="3" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Content="Address Near Here:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,10" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="112"/>
+            <TextBox x:Name="addressNearHereTextBox" Grid.Column="1" Margin="4,5,200,6" Grid.Row="4" Text="{Binding AddressNearHere, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <Label Content="Cell Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,10,0,6" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="98"/>
+            <TextBox x:Name="cellPhoneNumTextBox" Grid.Column="1" Margin="4,6,200,5" Grid.Row="5" Text="{Binding CellPhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <Label Content="Days Needed:" Grid.Column="0" Margin="0,31,32,0" Grid.Row="6" VerticalAlignment="Top" Grid.RowSpan="2" Height="26"/>
+            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,14,0,5" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="70"/>
+            <TextBox x:Name="firstNameTextBox" Grid.Column="1" Margin="4,8,199,7" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <Label Content="Home Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,10" Grid.Row="6" VerticalAlignment="Center" Height="26" Width="111"/>
+            <TextBox x:Name="homePhoneNumTextBox" Grid.Column="1" Margin="4,6,200,5" Grid.Row="6" Text="{Binding HomePhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,11" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="23"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" Margin="4,5,200,6" Grid.Row="2" Text="{Binding Id, Mode=OneWay}" MouseLeave="idTextBox_MouseLeave"/>
+            <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,14" VerticalAlignment="Center" Height="26" Width="69"/>
+            <TextBox x:Name="lastNameTextBox" Grid.Column="1" Margin="4,6,200,10" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="1,5,0,35" Grid.Row="8" VerticalAlignment="Center" Height="26" Width="44"/>
+            <TextBox x:Name="notesTextBox" Grid.Column="1" Height="55" Margin="5,5,0,6" Grid.Row="8" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="185"/>
+            <Label Content="Add Children:" Grid.Column="0" Margin="3,8,30,12" Grid.Row="9"/>
+            <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="7,6,0,60" Grid.Row="9" Text="{Binding children_combo_box.Count, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
+            <Button x:Name="AddChild" Grid.Row="9" Content="ADD CHILD" Margin="30,10,0,0" Click="AddChild_Click" Grid.Column="1" HorizontalAlignment="Left" Width="95" Height="20" VerticalAlignment="Top"/>
+            <Button x:Name="UpdateChild" Grid.Row="9" Content="UPDATE" Grid.Column="1" Margin="115,38,0,0" Click="UpdateChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+            <ComboBox x:Name="children_combo_box" Grid.Column="1" HorizontalAlignment="Left" Margin="5,48,0,0" Grid.Row="9" Width="105" ItemsSource="{Binding}" Height="22" VerticalAlignment="Top"     />
+            <Grid x:Name="hoursInday" Margin="85,1,371,0" Grid.Row="7" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" RenderTransformOrigin="0.487,0.5"  >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="sunday" Content="Sunday" VerticalAlignment="Top" FontSize="8" Height="23" Margin="0,-5,5,0"/>
-                <Label x:Name="monday" Content="Moday" Margin="0,7,6,0" VerticalAlignment="Top" FontSize="8" Height="23"/>
-                <Label x:Name="tuesday" Content="Tuesday" HorizontalAlignment="Left" Margin="0,19,0,0" VerticalAlignment="Top" FontSize="8" Height="23" Width="48"/>
-                <Label x:Name="wednesday" Content="Wednesday" Margin="0,30,5,0" VerticalAlignment="Top" FontSize="8" Height="23"/>
-                <Label x:Name="thursday" Content="Thursday" HorizontalAlignment="Left" Margin="0,41,0,0" VerticalAlignment="Top" FontSize="8" Height="23" Width="43"/>
-                <Label x:Name="friday" Content="Friday" Margin="0,52,9,-5" VerticalAlignment="Top" FontSize="8" Height="23"/>
-                <Slider x:Name="sunday_start_slider" Grid.Column="1" HorizontalAlignment="Left" Margin="2,-4,0,50" Value="0" TickFrequency="0.5" Maximum="16.5" SelectionEnd="{Binding Value, ElementName=sunday_end_slider}" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="7" Minimum="7"  ValueChanged="Slider_TimeValueChanged">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold">Slider.value</TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="sunday_end_slider" Grid.Column="1" Margin="159,-4,-2,0" VerticalAlignment="Top" Value="16.5" TickFrequency="50" Maximum="16.5" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="{Binding Value, ElementName=sunday_start_slider}" SelectionEnd="18">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold">Slider.value</TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="monday_start_slider" Grid.Column="1" HorizontalAlignment="Left" Margin="2,6,0,40" Value="0" TickFrequency="0.5" Maximum="16.5" SelectionEnd="{Binding Value, ElementName=sunday_end_slider}" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="7" Minimum="7">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="monday_end_slider" Grid.Column="1" Margin="159,6,-2,0" VerticalAlignment="Top" Value="16.5" TickFrequency="50" Maximum="16.5" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="{Binding Value, ElementName=sunday_start_slider}" SelectionEnd="18">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="tuesday_start_slider" Grid.Column="1" HorizontalAlignment="Left" Margin="2,20,0,26" Value="0" TickFrequency="0.5" Maximum="16.5" SelectionEnd="{Binding Value, ElementName=sunday_end_slider}" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="7" Minimum="7">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="tuesday_end_slider" Grid.Column="1" Margin="159,20,-2,0" VerticalAlignment="Top" Value="16.5" TickFrequency="50" Maximum="16.5" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="{Binding Value, ElementName=sunday_start_slider}" SelectionEnd="18">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="wednesday_start_slider" Grid.Column="1" HorizontalAlignment="Left" Margin="2,35,0,11" Value="0" TickFrequency="0.5" Maximum="16.5" SelectionEnd="{Binding Value, ElementName=sunday_end_slider}" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="7" Minimum="7">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="wednesday_end_slider" Grid.Column="1" Margin="159,35,-2,0" VerticalAlignment="Top" Value="16.5" TickFrequency="50" Maximum="16.5" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="{Binding Value, ElementName=sunday_start_slider}" SelectionEnd="18">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="thursday_start_slider" Grid.Column="1" HorizontalAlignment="Left" Margin="2,45,0,1" Value="0" TickFrequency="0.5" Maximum="16.5" SelectionEnd="{Binding Value, ElementName=sunday_end_slider}" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="7" Minimum="7">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="thursday_end_slider" Grid.Column="1" Margin="159,45,-2,0" VerticalAlignment="Top" Value="16.5" TickFrequency="50" Maximum="16.5" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="{Binding Value, ElementName=sunday_start_slider}" SelectionEnd="18">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="friday_start_slider" Grid.Column="1" HorizontalAlignment="Left" Margin="2,56,0,-10" Value="0" TickFrequency="0.5" Maximum="16.5" SelectionEnd="{Binding Value, ElementName=sunday_end_slider}" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="7" Minimum="7">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
-                <Slider x:Name="friday_end_slider" Grid.Column="1" Margin="159,56,-2,-10" VerticalAlignment="Top" Value="16.5" TickFrequency="50" Maximum="16.5" TickPlacement="TopLeft" RenderTransformOrigin="0,1.09" SelectionStart="{Binding Value, ElementName=sunday_start_slider}" SelectionEnd="18">
-                    <Slider.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="0.5" ScaleX="-0.5"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="-180"/>
-                            <TranslateTransform Y="-24"/>
-                        </TransformGroup>
-                    </Slider.RenderTransform>
-                    <Slider.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold"><Run Text="Slider.value"/></TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Slider.ToolTip>
-                </Slider>
+                <Grid x:Name="Dayslable" Grid.RowSpan="6" Margin="0,1,0,-0.667" HorizontalAlignment="Left" Width="50" Height="88" VerticalAlignment="Top">
+                    <Label x:Name="sunday" Content="Sunday"   VerticalAlignment="Top" FontSize="8" Height="23" Margin="0,-5,0,0" HorizontalAlignment="Left" Width="55"/>
+                    <Label x:Name="monday" Content="Moday"   Margin="0,10,-5,0" VerticalAlignment="Top" FontSize="8" Height="23" HorizontalAlignment="Left" Width="55"/>
+                    <Label x:Name="tuesday" Content="Tuesday" Margin="0,26,-5,0" VerticalAlignment="Top" FontSize="8" Height="23" HorizontalAlignment="Left" Width="55"/>
+                    <Label x:Name="wednesday" Content="Wednesday" Margin="0,40,-5,0" VerticalAlignment="Top" FontSize="8" Height="23" HorizontalAlignment="Left" Width="55"/>
+                    <Label x:Name="thursday" Content="Thursday" Margin="0,55,-5,0" VerticalAlignment="Top" FontSize="8" Height="23" HorizontalAlignment="Left" Width="55"/>
+                    <Label x:Name="friday" Content="Friday" Margin="0,69,-5,-4" VerticalAlignment="Top" FontSize="8" Height="23" HorizontalAlignment="Left" Width="55"/>
+                </Grid>
+                <Grid x:Name="daysSliders" Margin="0,0,0,0" Grid.ColumnSpan="2" >
+                    <Grid x:Name="sunday_sliders" Margin="56,-4,-172,1">
+                        <Slider x:Name="sunday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                        <Slider x:Name="sunday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                    </Grid>
+                    <Grid x:Name="monday_sliders" Margin="56,11,-172,-14">
+                        <Slider x:Name="monday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                        <Slider x:Name="monday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                    </Grid>
+                    <Grid x:Name="tuesday_sliders" Margin="56,25,-172,-28">
+                        <Slider x:Name="tuesday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                        <Slider x:Name="tuesday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                    </Grid>
+                    <Grid x:Name="wednesday_sliders" Margin="56,41,-172,-44">
+                        <Slider x:Name="wednesday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                        <Slider x:Name="wednesday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                    </Grid>
+                    <Grid x:Name="thursday_sliders" Margin="55,56,-171,-59">
+                        <Slider x:Name="thursday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                        <Slider x:Name="thursday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                    </Grid>
+                    <Grid x:Name="friday_sliders" Margin="55,71,-171,-74">
+                        <Slider x:Name="friday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                        <Slider x:Name="friday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
+                            <Slider.LayoutTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.LayoutTransform>
+                            <Slider.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Slider.RenderTransform>
+                        </Slider>
+                    </Grid>
+                </Grid>
 
             </Grid>
+            <Button x:Name="eleteChild" Grid.Row="9" Content="DELETE" Grid.Column="1" Margin="115,60,0,0" Click="DeleteChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+
+
+
         </Grid>
-        <Button x:Name="AddChild" Content="ADD CHILD" Grid.Column="2" Margin="44,105,90,67" Grid.Row="1" Click="AddChild_Click"/>
-        <Button x:Name="UpdateChild" Content="UPDATE" Grid.Column="2" Margin="139,120,0,52" Grid.Row="1" Click="UpdateChild_Click"/>
-        <Button x:Name="DeleteChild" Content="DELETE" Grid.Column="2" Margin="139,145,0,27" Grid.Row="1" Click="DeleteChild_Click"/>
-        <Button x:Name="clear" Grid.ColumnSpan="2" Content="CLEAR" Grid.Column="1" Margin="50,170,215,2" Grid.Row="1" Click="clear_Click"/>
+
+        <Button x:Name="Save" Content="SAVE" HorizontalAlignment="Left" Margin="133,15,0,0" Width="75" Click="Save_Click" Grid.Column="1" Grid.Row="1" Height="26" VerticalAlignment="Top"/>
+        <Button x:Name="clear" Content="CLEAR" Grid.Column="1" Margin="50,15,0,0" Click="clear_Click" Grid.Row="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
     </Grid>
 </Window>
