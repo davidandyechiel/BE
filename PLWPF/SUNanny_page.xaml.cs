@@ -24,7 +24,7 @@ namespace PLWPF
         public SUNanny_page()
         {
             InitializeComponent();
-            idComboBox.ItemsSource = bl.getNannyDS();
+            idComboBox.ItemsSource = CC.bl.getNannyDS();
         }
 
         private void AddNanny_Click(object sender, RoutedEventArgs e)

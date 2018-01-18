@@ -20,15 +20,16 @@ namespace PLWPF
     public partial class updateNannyWindow : Window
     {
         BE.Nanny nanny;
-        BL.IBL bl;
+  
 
         public updateNannyWindow()
         {
             InitializeComponent();
-            this.updateNannyByIdcomboBox.ItemsSource = bl.getNannyDS();
+            this.updateNannyByIdcomboBox.ItemsSource = CC.bl.getNannyDS();
             this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
             this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
             this.DataContext = nanny;
+            hourRateTextBox.IsEnabled = false;
         }
 
       
@@ -38,7 +39,7 @@ namespace PLWPF
             try
             {
                
-                bl.Update(nanny);
+                CC.bl.Update(nanny);
                 nanny = new BE.Nanny();
                 this.DataContext = nanny;
                 MessageBox.Show("successfully updated nanny");
@@ -76,7 +77,7 @@ namespace PLWPF
             try
             {
 
-                bl.Remove(nanny);
+                CC.bl.Remove(nanny);
                 nanny = new BE.Nanny();
                 this.DataContext = nanny;
                 MessageBox.Show("successfully DELETED nanny");
@@ -91,6 +92,16 @@ namespace PLWPF
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void perHourCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            hourRateTextBox.IsEnabled = true;
+        }
+
+        private void perHourCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hourRateTextBox.IsEnabled = false;
         }
     }
     
