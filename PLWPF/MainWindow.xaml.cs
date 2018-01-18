@@ -29,7 +29,21 @@ namespace PLWPF
         public MainWindow()
         {
             mapView = new Map_View();
+            AddDefaultValues();
             InitializeComponent();
+        }
+
+        private static void AddDefaultValues()
+        {
+           BE.Mother mom = new 
+
+
+
+
+
+
+
+
         }
 
         private void mainPage_Click(object sender, RoutedEventArgs e)
@@ -69,8 +83,8 @@ namespace PLWPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            MomWindow mom = new MomWindow();
-            mom.Show();
+            updateNannyWindow nan = new updateNannyWindow();
+            nan.Show();
         }
     }
 }

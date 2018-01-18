@@ -27,7 +27,7 @@ namespace PLWPF
            // this.deleteNannycomboBox.ItemsSource = BL.BL_Basic.Instance.getNannyDS();
 
 
-            this.deleteNannycomboBox.ItemsSource = bl.getNannyDS();
+            this.deleteNannycomboBox.ItemsSource = CC.bl.getNannyDS();
             this.deleteNannycomboBox.DisplayMemberPath = "lastName,firstName";
             this.deleteNannycomboBox.SelectedValuePath = "id";
         }

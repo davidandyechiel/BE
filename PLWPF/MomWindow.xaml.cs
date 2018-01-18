@@ -40,14 +40,14 @@ namespace PLWPF
             }
         }
 
-          public Double Brothers1
+        /*  public Double Brothers1
           {
               get { return (Boolean)GetValue(BrothersProperty); }
               set
               {
                   this.SetValue(BrothersProperty, value);
               }
-          }
+          }*/
           public static  DependencyProperty BrothersProperty = DependencyProperty.Register(
               "Brothers1",typeof(Boolean), typeof(MomWindow), new PropertyMetadata(false));
 

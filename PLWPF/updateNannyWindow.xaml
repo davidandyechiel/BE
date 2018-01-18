@@ -7,11 +7,13 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.updateNannyWindow"
     xmlns:tp="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker"
         mc:Ignorable="d"
-        Title="updateNannyWindow" Height="900" Width="500">
+        Title="updateNannyWindow" Height="900" Width="500" >
+    
     <Window.Resources>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
+      
         <Grid x:Name="grid9" VerticalAlignment="Top" Margin="51,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource nannyViewSource}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -83,7 +85,7 @@
             <Label Content="Monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
             <TextBox x:Name="monthlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="13" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="14" VerticalAlignment="Center"/>
-            <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="14" VerticalAlignment="Center"/>
+            <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3,8,103,8" Grid.Row="14" VerticalAlignment="Center" Checked="perHourCheckBox_Checked" Unchecked="perHourCheckBox_Unchecked" />
             <Label Content="Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
             <TextBox x:Name="phoneNumTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="15" Text="{Binding PhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
@@ -94,9 +96,9 @@
         <Button x:Name="deleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="360,841,0,0" VerticalAlignment="Top" Width="75" Background="#FFFB0808" Click="deleteButton_Click" RenderTransformOrigin="0.589,8.9"/>
         <Grid HorizontalAlignment="Left" Height="162" Margin="9,638,0,0" VerticalAlignment="Top" Width="454">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="69*"/>
+                <RowDefinition Height="70*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
