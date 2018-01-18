@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         Title="updateNannyWindow" Height="900" Width="500">
     <Window.Resources>
+        <tp:DigitalTimeConverter x:Key="DigitalTimeConverter"/>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
@@ -117,7 +118,11 @@
             <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="1" />
             <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="1"  />
             <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="1"  />
-            <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="1"  />
+            <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="1"  >
+                <tp:TimePicker.BindingGroup>
+                    <BindingGroup/>
+                </tp:TimePicker.BindingGroup>
+            </tp:TimePicker>
             <Label x:Name="label1" Content="Sunday" Grid.Column="0" Grid.Row="0" />
             <Label x:Name="label2" Content="Monday" Grid.Column="1" Grid.Row="0" />
             <Label x:Name="label3" Content="Tuesday" Grid.Column="2" Grid.Row="0" />
