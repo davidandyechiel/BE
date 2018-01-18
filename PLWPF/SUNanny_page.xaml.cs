@@ -20,11 +20,18 @@ namespace PLWPF
     /// </summary>
     public partial class SUNanny_page : Page
     {
+        public BL.IBL bl;
         public SUNanny_page()
         {
             InitializeComponent();
+            idComboBox.ItemsSource = bl.getNannyDS();
         }
 
-        
+        private void AddNanny_Click(object sender, RoutedEventArgs e)
+        {
+            NannyWindow nannyWin = new NannyWindow();
+            nannyWin.Show();
+          //  new AddNannyWindow().Show();
+        }
     }
 }

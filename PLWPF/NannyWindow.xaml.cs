@@ -58,5 +58,10 @@ namespace PLWPF
             Window updateNannyWindow = new updateNannyWindow();
             updateNannyWindow.Show();
         }
+
+        private void deleteNannycomboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
