@@ -20,21 +20,14 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for MomWindow.xaml
     /// </summary>
-    public partial class MomWindow : Window
+    public partial class MomWindow : Window 
     {
         bool update;
         private ObservableCollection<BE.Child> brothers =
       new ObservableCollection<BE.Child>(CC.bl.getChildDS());
+        private BE.Mother mom;
 
-        public Boolean State
-        {
-            get { return (Boolean)this.GetValue(StateProperty); }
-            set { this.SetValue(StateProperty, value); }
-        }
-        public static readonly DependencyProperty StateProperty = DependencyProperty.Register(
-          "State", typeof(Boolean), typeof(MomWindow), new PropertyMetadata(false));
-
-        
+       
 
         /// <summary>
         /// Add new mom mode
@@ -66,33 +59,6 @@ namespace PLWPF
             update = true;
         }
 
-        public void refreshBrotherList()
-        {
-           // Brothers = ((CC.bl as BL.BL_Basic).collectBrothers((this.DataContext as Mother).Id).ToList());
-            foreach (ComboBoxItem item in children_combo_box.Items)
-                item.Content = (item.DataContext as Child).FName;
-            if (children_combo_box.Items.Count == -1)
-                children_combo_box.IsEnabled = false;
-            else children_combo_box.IsEnabled = true;
-        }
-
-        /*
-         * TODO: see if needed maybe delete
-        private void setComboBox()
-        {
-            children_combo_box.Items.Clear();
-            foreach (Child child in Brothers)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = child.FName;
-                children_combo_box.Items.Add(newItem);
-            }
-        }
-        */
-
-        
-        
-
         private void Save_Click(object sender, RoutedEventArgs e)
         {
 
@@ -103,8 +69,18 @@ namespace PLWPF
                 // If the user sure that he wants so save ...
                 if (CC.WindowSaving("save") == MessageBoxResult.Yes)
                 {
-                    /*   Mother mom = new Mother(this.DataContext as Mother);
-                       foreach (item in daysSliders.)
+                     mom = new Mother(this.DataContext as Mother);
+                    List<double> hoursList = new List<double>();
+                     foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
+                    {
+                        hoursList.Add(item.LowerValue);
+                        hoursList.Add(item.UpperValue);
+
+                    }
+                     //TODO: finish converting. maybe do the convertion here.
+
+
+
 
                        var hoursVal = from item in daysSliders where (item is Slider)
                        mom.DThoursTable = 
@@ -115,7 +91,7 @@ namespace PLWPF
                        else // need only to add
                            CC.bl.Add(this.DataContext as Mother);
                        (sender as SUMother_page).refreshList();
-                       Close();*/
+                       Close();*
                 }
 
 
@@ -189,7 +165,7 @@ namespace PLWPF
 
         private void Slider_ValueChanged_start(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (sunday_end_slider == null)
+          /*  if (sunday_end_slider == null)
             {
                 sunday_end_slider = new Slider();
                 sunday_end_slider = new Slider();
@@ -197,16 +173,16 @@ namespace PLWPF
        //     if (sunday_start_slider.Value > sunday_end_slider.Value)
        //         sunday_start_slider.Value = sunday_end_slider.Value;
             (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("from HH:mm");
-
+            */
         }
         private void Slider_ValueChanged_end(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (sender is Slider)
+          /*  if (sender is Slider)
             {
       //          if ((sender as Slider).Value < sunday_start_slider.Value)
        //             (sender as Slider).Value = sunday_start_slider.Value;
                 (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("to HH:mm");
-            }
+            }*/
         }
 
         private void start_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+
 namespace BE
 {
-    public class Mother : IComparable
+    public class Mother : IComparable , INotifyPropertyChanged
     {
         private int id;
         private string lastName;
@@ -20,7 +22,7 @@ namespace BE
         private string notes;
         private int numOfKids; // number of the kids that need a nanny
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
-        private object dataContext;
+
 
 
         #region Property
@@ -43,6 +45,8 @@ namespace BE
             set
             {
                 lastName = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("LastName"));
             }
         }
 
@@ -56,6 +60,8 @@ namespace BE
             set
             {
                 firstName = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("FirstName"));
             }
         }
 
@@ -69,6 +75,8 @@ namespace BE
             set
             {
                 homePhoneNum = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("HomePhoneNum"));
             }
         }
 
@@ -82,6 +90,8 @@ namespace BE
             set
             {
                 cellPhoneNum = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("CellPhoneNum"));
             }
         }
 
@@ -95,6 +105,8 @@ namespace BE
             set
             {
                 address = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Address"));
             }
         }
 
@@ -108,6 +120,8 @@ namespace BE
             set
             {
                 addressNearHere = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("AddressNearHere"));
             }
         }
 
@@ -121,6 +135,8 @@ namespace BE
             set
             {
                 hoursNeeded = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("HoursNeeded"));
             }
         }
 
@@ -134,6 +150,8 @@ namespace BE
             set
             {
                 daysNeeded = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("DaysNeeded"));
             }
         }
 
@@ -147,6 +165,8 @@ namespace BE
             set
             {
                 needNanny = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NeedNanny"));
             }
         }
 
@@ -160,6 +180,8 @@ namespace BE
             set
             {
                 notes = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Notes"));
             }
         }
 
@@ -175,6 +197,8 @@ namespace BE
             set
             {
                 numOfKids = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("numOfKids"));
             }
         }
         public DateTime[][] DThoursTable
@@ -187,9 +211,11 @@ namespace BE
             set
             {
                  dthoursTable = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("dthoursTable"));
             }
         }
-
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
         #region Ctor
         public Mother()

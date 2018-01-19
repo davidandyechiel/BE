@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Globalization;
+using System.Windows.Data;
 
 namespace PLWPF
 {
@@ -80,4 +82,59 @@ namespace PLWPF
 
 
     } // CC
+
+    public class StringToTimeViewStringConverter : IValueConverter
+    {
+        public object Convert(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            int H = int.Parse((string)value) / 10;
+            int m = (int.Parse((string)value) - (H * 10));
+           return string.Format("{0}:{1}", (H < 10 ? "0" + H.ToString() : H.ToString()), (m <50 ? "00" : "30")); // set string in format HH:mm
+        }
+
+        public object ConvertBack(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            
+            string[] str = ((string)value).Split(':');
+            if (str[0].First() == '0')
+                str[0].Remove(0, 1);
+                return str[0] + str[21];
+        }
+
+    }
+
+    public class IntToTimeViewStringConverter : IValueConverter
+    {
+        public object Convert(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            int H = (int)value / 10;
+            int m = (((int)value) - (H * 10));
+            return string.Format("{0}:{1}", (H < 10 ? "0" + H.ToString() : H.ToString()), (m < 50 ? "00" : "30")); // set string in format HH:mm
+        }
+
+        public object ConvertBack(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            string[] str = ((string)value).Split(':');
+            return int.Parse(str[0]) + int.Parse(str[1]);
+        }
+    }
+
+
+
 }//PLWPF

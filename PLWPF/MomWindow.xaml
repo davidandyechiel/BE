@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.MomWindow"
+        xmlns:BE="clr-namespace:BE;assembly=BE" 
+    x:Class="PLWPF.MomWindow"
+
     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     
     
@@ -85,48 +87,22 @@
                     <Label x:Name="friday" Content="Friday" Margin="0,69,-5,-4" VerticalAlignment="Top" FontSize="8" Height="23" HorizontalAlignment="Left" Width="55"/>
                 </Grid>
                 <Grid x:Name="daysSliders" Margin="0,0,0,0" Grid.ColumnSpan="2" >
-                    <Grid x:Name="sunday_sliders" Margin="56,-4,-172,1">
+                    <Grid x:Name="sunday_slider_grid" Margin="56,-4,-172,1" Background="LightGray">
 
-                        <Slider x:Name="sunday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
+                        <Controls:RangeSlider x:Name="sunday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" ToolTipService.ToolTip="{Binding ElementName=sunday_slider, Path=Value}" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                            <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
+                                    <ScaleTransform ScaleY="1.5"/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
-                        <Slider x:Name="sunday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
+                            </Controls:RangeSlider.RenderTransform>
+                        </Controls:RangeSlider>
                     </Grid>
                     <Grid x:Name="monday_slider_grid" Margin="56,11,-172,-14" Background="LightGray">
                        
-                            <Controls:RangeSlider x:Name="monday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" >
+                            <Controls:RangeSlider x:Name="monday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -138,157 +114,57 @@
                         </Controls:RangeSlider>
                         
                     </Grid>
-                    <Grid x:Name="tuesday_sliders" Margin="56,25,-172,-28">
-                        <Slider x:Name="tuesday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
+                    <Grid x:Name="tuesday_sliders_grid" Margin="56,25,-172,-28" Background="LightGray">
+
+                        <Controls:RangeSlider x:Name="tuesday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                            <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
+                                    <ScaleTransform ScaleY="1.5"/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
-                        <Slider x:Name="tuesday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
+                            </Controls:RangeSlider.RenderTransform>
+                        </Controls:RangeSlider>
                     </Grid>
-                    <Grid x:Name="wednesday_sliders" Margin="56,41,-172,-44">
-                        <Slider x:Name="wednesday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
+                    <Grid x:Name="wednesday_slider_grid" Margin="56,41,-172,-44" Background="LightGray">
+
+                        <Controls:RangeSlider x:Name="wednsday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                            <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
+                                    <ScaleTransform ScaleY="1.5"/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
-                        <Slider x:Name="wednesday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
+                            </Controls:RangeSlider.RenderTransform>
+                        </Controls:RangeSlider>
                     </Grid>
-                    <Grid x:Name="thursday_sliders" Margin="55,56,-171,-59">
-                        <Slider x:Name="thursday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
+                    <Grid x:Name="thursday_slider_grid" Margin="56,56,-172,-59" Background="LightGray">
+
+                        <Controls:RangeSlider x:Name="thursday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                            <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
+                                    <ScaleTransform ScaleY="1.5"/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
-                        <Slider x:Name="thursday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
+                            </Controls:RangeSlider.RenderTransform>
+                        </Controls:RangeSlider>
                     </Grid>
-                    <Grid x:Name="friday_sliders" Margin="55,71,-171,-74">
-                        <Slider x:Name="friday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
+                    <Grid x:Name="friday_sliders_grid" Margin="56,71,-172,-74" Background="LightGray">
+
+                        <Controls:RangeSlider x:Name="friday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                            <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
+                                    <ScaleTransform ScaleY="1.5"/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
-                        <Slider x:Name="friday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
+                            </Controls:RangeSlider.RenderTransform>
+                        </Controls:RangeSlider>
                     </Grid>
                 </Grid>
 
