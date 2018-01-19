@@ -14,52 +14,84 @@ using System.Windows.Shapes;
 
 namespace PLWPF
 {
+    /* public class AddChildCommand : ICommand
+     {
+         public event EventHandler CanExecuteChanged;
+
+         public BE.Child ChildProperty { get; set; }
+
+         //public AddCourseCommand(ref BE.Course c)
+         //{
+
+         //}
+
+         public bool CanExecute(object parameter)
+         {
+             if (ChildProperty != null)
+             {
+                 if (ChildProperty.Id != 0 && ChildProperty.FName != "")
+                     return true;
+             }
+             return false;
+         }
+
+         public void Execute(object parameter)
+         {
+             CC.bl.Add(ChildProperty); 
+         }
+     }*/
+
+
+
+
+
+
+
+
+
     /// <summary>
     /// Interaction logic for ChildWindow.xaml
     /// </summary>
     public partial class ChildWindow : Window
     {
-        BE.Child child;
-        
-        bool update; // need an update or just add
+        //TODO: change size event
 
-        public ChildWindow()
+        bool update; // need an update or just add
+        BE.Child child;
+        public ChildWindow(int momId)
         {
             InitializeComponent();
-            child = new BE.Child();
-            DataContext = child;
+            child = new BE.Child(momId);
+            grid1.DataContext = child;
             update = false;
+            genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.E_gender)).Cast<BE.E_gender>();
         }
         public ChildWindow(BE.Child _child)
         {
             InitializeComponent();
             child = new BE.Child(_child);
-            DataContext = _child;
+            grid1.DataContext = child;
             update = true;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
 
-            System.Windows.Data.CollectionViewSource childViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("childViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // childViewSource.Source = [generic data source]
-        }
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-           try
+            try
             {
                 if (update)
                     CC.bl.Update(child);
                 else CC.bl.Add(child);
-
-
-                (sender as MomWindow).refreshBrotherList();
                 Close();
             }
-            catch { }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
 
         }
-    }
+
+
+     }
 }

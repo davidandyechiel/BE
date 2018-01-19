@@ -5,6 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.MomWindow"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    
+    
+    
+      
         mc:Ignorable="d"
         Title="Add New Mom" Height="600" Width="383">
     <Window.Resources>
@@ -21,7 +26,7 @@
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="25,0,0,25" Width="310">
+        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="35,15,0,10" Width="310" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="324"/>
@@ -55,11 +60,11 @@
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" Margin="4,6,200,10" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
             <Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="1,5,0,35" Grid.Row="8" VerticalAlignment="Center" Height="26" Width="44"/>
             <TextBox x:Name="notesTextBox" Grid.Column="1" Height="55" Margin="5,5,0,6" Grid.Row="8" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="185"/>
-            <Label Content="Add Children:" Grid.Column="0" Margin="3,8,30,12" Grid.Row="9"/>
-            <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="7,6,0,60" Grid.Row="9" Text="{Binding children_combo_box.Count, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
+            <Label Content="Number of &#13;Childrens:" Grid.Column="0" Margin="3,8,30,12" Grid.Row="9"/>
+            <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="7,10,0,60" Grid.Row="9" Text="{Binding children_combo_box.Count, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
             <Button x:Name="AddChild" Grid.Row="9" Content="ADD CHILD" Margin="30,10,0,0" Click="AddChild_Click" Grid.Column="1" HorizontalAlignment="Left" Width="95" Height="20" VerticalAlignment="Top"/>
             <Button x:Name="UpdateChild" Grid.Row="9" Content="UPDATE" Grid.Column="1" Margin="115,38,0,0" Click="UpdateChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-            <ComboBox x:Name="children_combo_box" Grid.Column="1" HorizontalAlignment="Left" Margin="5,48,0,0" Grid.Row="9" Width="105" ItemsSource="{Binding}" Height="22" VerticalAlignment="Top"     />
+            <ComboBox x:Name="children_combo_box" DataContext="BE.Child" Grid.Column="1" HorizontalAlignment="Left" Margin="5,48,0,0" Grid.Row="9" Width="105" ItemsSource="{Binding}" Height="22" VerticalAlignment="Top"     />
             <Grid x:Name="hoursInday" Margin="85,1,371,0" Grid.Row="7" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" RenderTransformOrigin="0.487,0.5"  >
                 <Grid.ColumnDefinitions>
                 </Grid.ColumnDefinitions>
@@ -81,6 +86,7 @@
                 </Grid>
                 <Grid x:Name="daysSliders" Margin="0,0,0,0" Grid.ColumnSpan="2" >
                     <Grid x:Name="sunday_sliders" Margin="56,-4,-172,1">
+
                         <Slider x:Name="sunday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
                             <Slider.LayoutTransform>
                                 <TransformGroup>
@@ -118,43 +124,19 @@
                             </Slider.RenderTransform>
                         </Slider>
                     </Grid>
-                    <Grid x:Name="monday_sliders" Margin="56,11,-172,-14">
-                        <Slider x:Name="monday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
+                    <Grid x:Name="monday_slider_grid" Margin="56,11,-172,-14" Background="LightGray">
+                       
+                            <Controls:RangeSlider x:Name="monday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" >
+                            <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
+                                    <ScaleTransform ScaleY="1.5"/>
                                     <SkewTransform/>
                                     <RotateTransform/>
                                     <TranslateTransform/>
                                 </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
-                        <Slider x:Name="monday_end_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="5" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_end" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="end_slider_MouseLeftButtonDown">
-                            <Slider.LayoutTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="1" ScaleX="0.35"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.LayoutTransform>
-                            <Slider.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="0.5"/>
-                                    <SkewTransform/>
-                                    <RotateTransform/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </Slider.RenderTransform>
-                        </Slider>
+                            </Controls:RangeSlider.RenderTransform>
+                        </Controls:RangeSlider>
+                        
                     </Grid>
                     <Grid x:Name="tuesday_sliders" Margin="56,25,-172,-28">
                         <Slider x:Name="tuesday_start_slider" RenderTransformOrigin="0.5,0.5" Margin="0,-3,0,-7" BorderThickness="0" Minimum="7" Value="6" ToolTip="&quot;from 07:00&quot;" ValueChanged="Slider_ValueChanged_start" Maximum="16.5" SmallChange="0" TickFrequency="0.5" TickPlacement="TopLeft" MouseLeftButtonDown="start_slider_MouseLeftButtonDown">

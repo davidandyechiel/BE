@@ -3,39 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ComponentModel;
 
 namespace BE
 {
-  
 
-    public class Child : IComparable 
+
+    public class Child : IComparable, INotifyPropertyChanged
     {
         private int id;
         private int mothersId;
         private string fName;
         private string lName;
-        private E_gender gender; 
+        private E_gender gender;
         private bool spacialNeeds;
         private string spacialNeedsDescription;
         private DateTime birthday;
         #region Property
-        public  int Id
-        {
-            get
-            {
-                return id;
-            }
-        }
-
-        public int MothersId
-        {
-            get
-            {
-                return mothersId;
-            }
-
-        }
 
         public string FName
         {
@@ -46,7 +30,10 @@ namespace BE
 
             set
             {
+
                 fName = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("FName"));
             }
         }
 
@@ -60,19 +47,50 @@ namespace BE
             set
             {
                 lName = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("LName"));
             }
         }
 
-        internal E_gender Gender
+
+
+        public int Id
         {
             get
             {
-                return Gender1;
+                return id;
+            }
+            set
+            {
+                id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Id"));
+            }
+        }
+
+        public int MothersId
+        {
+            get
+            {
+                return mothersId;
+            }
+
+        }
+
+
+
+        public E_gender Gender
+        {
+            get
+            {
+                return gender;
             }
 
             set
             {
-                Gender1 = value;
+                gender = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Gender"));
             }
         }
 
@@ -86,6 +104,8 @@ namespace BE
             set
             {
                 spacialNeeds = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("SpacialNeeds"));
             }
         }
 
@@ -99,6 +119,8 @@ namespace BE
             set
             {
                 spacialNeedsDescription = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("SpacialNeedsDescription"));
             }
         }
 
@@ -112,24 +134,19 @@ namespace BE
             set
             {
                 birthday = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Birthday"));
             }
         }
 
-        public E_gender Gender1
-        {
-            get
-            {
-                return gender;
-            }
 
-            set
-            {
-                gender = value;
-            }
-        }
         #endregion
         #region Ctor
         public Child() { }
+        public Child(int momId)
+        {
+            mothersId = momId;
+        }
         public Child(int id, int mothersId, string fName, string lName, E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
         {
             this.id = id;
@@ -141,10 +158,7 @@ namespace BE
             this.SpacialNeedsDescription = spacialNeedsDescription;
             this.Birthday = birthday;
         }
-        public Child(int id )
-        {
-            this.id = id;
-        }
+
         public Child(Child child)
         {
             this.id = child.Id;
@@ -164,7 +178,7 @@ namespace BE
             return "Child: " + FName + LName + "ID: " + Id + "\n";
         }
 
-        
+
         public int CompareTo(object obj)
         {
             return id.CompareTo(((Child)obj).Id);
@@ -174,6 +188,9 @@ namespace BE
         {
             return (id.CompareTo(((Child)obj).Id) == 0);
         }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
 
     }

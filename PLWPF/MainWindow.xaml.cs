@@ -33,6 +33,7 @@ namespace PLWPF
             InitializeComponent();
         }
 
+        
         private static void AddDefaultValues()
         {
             BE.Mother mom1 = new BE.Mother(1, "Cohen", "Sarah", 026541526, 0527412564, "הועד הלאומי12, ירושלים", "הועד הלאומי12, ירושלים", " ", null, 2);
@@ -46,7 +47,7 @@ namespace PLWPF
             BE.Nanny nan1 = new BE.Nanny(11, "Salem", "Esther", new DateTime(1998 / 1 / 25), 0585802606, true, "הוועד הלאומי 21", 3, 5, 20, 1, 3, true, 30, 500, "yes", true, null, null);
             BE.Nanny nan2 = new BE.Nanny(12, "Dusi", "Grace", new DateTime(1994 / 1 / 25), 0585802608, true, "הוועד הלאומי 21", 2, 5, 20, 1, 3, true, 30, 600, "no", true, null, null);
 
-
+             
 
             BE.Contract con1 = new BE.Contract(11, 123);
             BE.Contract con2 = new BE.Contract(11, 124);
@@ -109,8 +110,10 @@ namespace PLWPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            updateNannyWindow nan = new updateNannyWindow();
+            MomWindow nan = new MomWindow();
             nan.Show();
         }
+
+        
     }
 }

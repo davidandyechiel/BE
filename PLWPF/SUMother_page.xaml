@@ -17,7 +17,7 @@
         <Button x:Name="ADD" Content="Add new Mother" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
         <Button x:Name="UPDATE" Content="Update" HorizontalAlignment="Left" Margin="130,275,0,0" VerticalAlignment="Top" Width="75" Click="UPDATE_Click"/>
         <Button x:Name="DELETE" Content="Delete" HorizontalAlignment="Left" Margin="210,275,0,0" VerticalAlignment="Top" Width="75" Click="DELETE_Click"/>
-        <ListView x:Name="motherListView" ItemsSource="{Binding}" Margin="0,40,-5,30" SelectionMode="Single" >
+        <ListView x:Name="motherListView"  Margin="0,40,-5,30" SelectionMode="Single" SelectionChanged="motherListView_SelectionChanged">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>

@@ -22,8 +22,16 @@ namespace PLWPF
                                              MessageBoxImage.Question);
         }
 
+        public static void WindowError(string str)
+        {
+             MessageBox.Show(String.Format( str),
+                                             "Window Error",
+                                             MessageBoxButton.OK,
+                                             MessageBoxImage.Exclamation);
+        }
 
-      
+
+
         static public DateTime[][] setHoursDT(params double[] times)
         {
             

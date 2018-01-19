@@ -25,6 +25,7 @@ namespace PLWPF
         {
             InitializeComponent();
             bl = BL.BL_Basic.Instance;
+            motherListView.ItemsSource = CC.bl.getMotherDS();
         }
 
         public SUMother_page(int i)
@@ -59,6 +60,9 @@ namespace PLWPF
             bl.Remove(sender as BE.Mother);
         }
 
-       
+        private void motherListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
