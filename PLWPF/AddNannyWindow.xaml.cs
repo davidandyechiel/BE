@@ -44,7 +44,7 @@ namespace PLWPF
         {
             try
             {
-                bl.Add(nanny);
+                CC.bl.Add(nanny);
                 nanny = new BE.Nanny();
                 this.DataContext = nanny;
             }
