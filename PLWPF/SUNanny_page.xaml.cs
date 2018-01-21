@@ -25,6 +25,7 @@ namespace PLWPF
         {
             InitializeComponent();
             idComboBox.ItemsSource = CC.bl.getNannyDS();
+            nannyDataGrid.ItemsSource = CC.bl.getNannyDS();
         }
 
         private void AddNanny_Click(object sender, RoutedEventArgs e)
@@ -32,6 +33,16 @@ namespace PLWPF
             AddNannyWindow nannyWin = new AddNannyWindow();
             nannyWin.Show();
           //  new AddNannyWindow().Show();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void nannyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

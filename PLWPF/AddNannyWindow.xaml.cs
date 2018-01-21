@@ -27,7 +27,8 @@ namespace PLWPF
         {
             InitializeComponent();
             nanny = new BE.Nanny();
-            this.DataContext = nanny;
+            this.grid1.DataContext = nanny;
+            this.grid2.DataContext = nanny;
 
           //  bl = BL.blfactory.getbl();
         }
@@ -44,9 +45,10 @@ namespace PLWPF
         {
             try
             {
+                nanny.Id = int.Parse(this.idTextBox.Text);
                 CC.bl.Add(nanny);
                 nanny = new BE.Nanny();
-                this.DataContext = nanny;
+                this.grid1.DataContext = nanny;
             }
             catch (Exception exception)
             {
@@ -54,5 +56,7 @@ namespace PLWPF
             }
 
         }
+
+       
     }
 }

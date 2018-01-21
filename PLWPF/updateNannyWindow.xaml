@@ -8,14 +8,14 @@
         x:Class="PLWPF.updateNannyWindow"
         xmlns:tp="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker"
         mc:Ignorable="d"
-        Title="updateNannyWindow" Height="900" Width="500"  >
-    
+        Title="updateNannyWindow" Height="900" Width="800"  >
+
     <Window.Resources>
         <tp:DigitalTimeConverter x:Key="DigitalTimeConverter"/>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
-      
+
         <Grid x:Name="grid9" VerticalAlignment="Top" Margin="51,10,0,0" HorizontalAlignment="Left" DataContext="{StaticResource nannyViewSource}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -93,10 +93,10 @@
             <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
             <TextBox x:Name="recommendationsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="16" Text="{Binding Recommendations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="updatebutton" Content="Update" HorizontalAlignment="Left" Margin="360,805,0,0" VerticalAlignment="Top" Width="75" Click="updatebutton_Click"/>
+        <Button x:Name="updatebutton" Content="Update" HorizontalAlignment="Left" Margin="674,315,0,0" VerticalAlignment="Top" Width="75" Click="updatebutton_Click"/>
         <Label x:Name="label" Content="please choose the nanny that you would like to update or delete" HorizontalAlignment="Left" Margin="58,21,0,0" VerticalAlignment="Top" Height="30" Width="377"/>
-        <Button x:Name="deleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="360,841,0,0" VerticalAlignment="Top" Width="75" Background="#FFFB0808" Click="deleteButton_Click" RenderTransformOrigin="0.589,8.9"/>
-        <Grid HorizontalAlignment="Left" Height="162" Margin="9,638,0,0" VerticalAlignment="Top" Width="454">
+        <Button x:Name="deleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="674,351,0,0" VerticalAlignment="Top" Width="75" Background="#FFFB0808" Click="deleteButton_Click" RenderTransformOrigin="0.589,8.9"/>
+        <Grid HorizontalAlignment="Left" Height="162" Margin="323,148,0,0" VerticalAlignment="Top" Width="454">
             <Grid.RowDefinitions>
                 <RowDefinition Height="23*"/>
                 <RowDefinition Height="69*"/>
