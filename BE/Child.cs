@@ -74,6 +74,12 @@ namespace BE
             {
                 return mothersId;
             }
+            set
+            {
+                mothersId = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("MothersId"));
+            }
 
         }
 

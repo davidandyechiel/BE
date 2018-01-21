@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" 
-    x:Class="PLWPF.MomWindow"
-
-    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-    
-    
-    
-      
+        x:Class="PLWPF.MomWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="Add New Mom" Height="600" Width="383">
     <Window.Resources>
         <CollectionViewSource x:Key="motherViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Mother}, CreateList=True}"/>
+        <local:EmptyTextToVisabilityConverter x:Key="emptyTextToVisability"/>
+        <local:ItemCollectionToInt x:Key="itemCollectionToInt"/>
+        <local:DoubleToTimeViewStringConverter  x:Key="doubleToTimeViewConverter"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource motherViewSource}" Margin="-1,0,0,4" RenderTransformOrigin="0.5,0.5">
         <Grid.RowDefinitions>
@@ -28,7 +26,7 @@
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="35,15,0,10" Width="310" Grid.ColumnSpan="2">
+        <Grid x:Name="grid1" Grid.Column="1" HorizontalAlignment="Left" Margin="35,15,0,45" Width="310" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="324"/>
@@ -57,16 +55,16 @@
             <Label Content="Home Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,10" Grid.Row="6" VerticalAlignment="Center" Height="26" Width="111"/>
             <TextBox x:Name="homePhoneNumTextBox" Grid.Column="1" Margin="4,6,200,5" Grid.Row="6" Text="{Binding HomePhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,11" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="23"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" Margin="4,5,200,6" Grid.Row="2" Text="{Binding Id, Mode=OneWay}" MouseLeave="idTextBox_MouseLeave"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" Margin="4,5,200,6" Grid.Row="2" Text="{Binding Id, Mode=OneWay}" />
             <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6,0,14" VerticalAlignment="Center" Height="26" Width="69"/>
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" Margin="4,6,200,10" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
             <Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="1,5,0,35" Grid.Row="8" VerticalAlignment="Center" Height="26" Width="44"/>
             <TextBox x:Name="notesTextBox" Grid.Column="1" Height="55" Margin="5,5,0,6" Grid.Row="8" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="185"/>
             <Label Content="Number of &#13;Childrens:" Grid.Column="0" Margin="3,8,30,12" Grid.Row="9"/>
-            <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="7,10,0,60" Grid.Row="9" Text="{Binding children_combo_box.Count, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
-            <Button x:Name="AddChild" Grid.Row="9" Content="ADD CHILD" Margin="30,10,0,0" Click="AddChild_Click" Grid.Column="1" HorizontalAlignment="Left" Width="95" Height="20" VerticalAlignment="Top"/>
-            <Button x:Name="UpdateChild" Grid.Row="9" Content="UPDATE" Grid.Column="1" Margin="115,38,0,0" Click="UpdateChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-            <ComboBox x:Name="children_combo_box" DataContext="BE.Child" Grid.Column="1" HorizontalAlignment="Left" Margin="5,48,0,0" Grid.Row="9" Width="105" ItemsSource="{Binding}" Height="22" VerticalAlignment="Top"     />
+            <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5,9,0,65" Grid.Row="9" IsEnabled="False" Text="{Binding ElementName=children_combo_box, Path=Items,Mode=OneWay, Converter={StaticResource itemCollectionToInt}, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
+            <Button x:Name="AddChild" Grid.Row="9" Content="ADD NEW CHILD" Visibility ="{Binding ElementName=idTextBox,Path=Text , Converter={StaticResource emptyTextToVisability}  }" Margin="5,69,0,0" Click="AddChild_Click" Grid.Column="1" HorizontalAlignment="Left" Width="95" Height="20" VerticalAlignment="Top"/>
+            <Button x:Name="UpdateChild" Grid.Row="9" Content="UPDATE" Grid.Column="1" Margin="5,39,0,0" Click="UpdateChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+            <ComboBox x:Name="children_combo_box" DataContext="BE.Child" Grid.Column="1" HorizontalAlignment="Left" Margin="30,9,0,0" Grid.Row="9" Width="160" ItemsSource="{Binding}" Height="22" VerticalAlignment="Top"     />
             <Grid x:Name="hoursInday" Margin="85,1,371,0" Grid.Row="7" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" RenderTransformOrigin="0.487,0.5"  >
                 <Grid.ColumnDefinitions>
                 </Grid.ColumnDefinitions>
@@ -89,7 +87,7 @@
                 <Grid x:Name="daysSliders" Margin="0,0,0,0" Grid.ColumnSpan="2" >
                     <Grid x:Name="sunday_slider_grid" Margin="56,-4,-172,1" Background="LightGray">
 
-                        <Controls:RangeSlider x:Name="sunday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" ToolTipService.ToolTip="{Binding ElementName=sunday_slider, Path=Value}" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                        <Controls:RangeSlider x:Name="sunday_slider" TickFrequency="1" Maximum="165" Minimum="70" LowerValue="70" UpperValue="70" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft"  Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="Arrow" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" AutoToolTipTextConverter="{Binding Mode=OneWay, Source={StaticResource doubleToTimeViewConverter}}" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -101,8 +99,8 @@
                         </Controls:RangeSlider>
                     </Grid>
                     <Grid x:Name="monday_slider_grid" Margin="56,11,-172,-14" Background="LightGray">
-                       
-                            <Controls:RangeSlider x:Name="monday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+
+                        <Controls:RangeSlider x:Name="monday_slider"  TickFrequency="1" Maximum="165" Minimum="70" LowerValue="70" UpperValue="70" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="Arrow" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" AutoToolTipTextConverter="{Binding Mode=OneWay, Source={StaticResource doubleToTimeViewConverter}}" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -112,11 +110,11 @@
                                 </TransformGroup>
                             </Controls:RangeSlider.RenderTransform>
                         </Controls:RangeSlider>
-                        
+
                     </Grid>
                     <Grid x:Name="tuesday_sliders_grid" Margin="56,25,-172,-28" Background="LightGray">
 
-                        <Controls:RangeSlider x:Name="tuesday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                        <Controls:RangeSlider x:Name="tuesday_slider"  TickFrequency="1" Maximum="165" Minimum="70" LowerValue="70" UpperValue="70" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft"  Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="Arrow" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" AutoToolTipTextConverter="{Binding Mode=OneWay, Source={StaticResource doubleToTimeViewConverter}}" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -129,7 +127,7 @@
                     </Grid>
                     <Grid x:Name="wednesday_slider_grid" Margin="56,41,-172,-44" Background="LightGray">
 
-                        <Controls:RangeSlider x:Name="wednsday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                        <Controls:RangeSlider x:Name="wednsday_slider"  TickFrequency="1" Maximum="165" Minimum="70" LowerValue="70" UpperValue="70" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft"  Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="Arrow" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" AutoToolTipTextConverter="{Binding Mode=OneWay, Source={StaticResource doubleToTimeViewConverter}}" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -142,7 +140,7 @@
                     </Grid>
                     <Grid x:Name="thursday_slider_grid" Margin="56,56,-172,-59" Background="LightGray">
 
-                        <Controls:RangeSlider x:Name="thursday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                        <Controls:RangeSlider x:Name="thursday_slider" TickFrequency="1" Maximum="165" Minimum="70" LowerValue="70" UpperValue="70" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft"  Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="Arrow" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" AutoToolTipTextConverter="{Binding Mode=OneWay, Source={StaticResource doubleToTimeViewConverter}}" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -155,7 +153,7 @@
                     </Grid>
                     <Grid x:Name="friday_sliders_grid" Margin="56,71,-172,-74" Background="LightGray">
 
-                        <Controls:RangeSlider x:Name="friday_slider" TickFrequency="1" Maximum="17" Minimum="0" LowerValue="0" UpperValue="17" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft" IsMoveToPointEnabled="True" Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="None" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" >
+                        <Controls:RangeSlider x:Name="friday_slider" TickFrequency="1" Maximum="165" Minimum="70" LowerValue="70" UpperValue="70" ExtendedMode="True" RenderTransformOrigin="0.5,0.5" AutoToolTipPlacement="TopLeft"  Background="Black" BorderBrush="Black" OpacityMask="Black" Cursor="Arrow" SmallChange="1" MinRangeWidth="12" Margin="-1,0,1,0" AutoToolTipTextConverter="{Binding Mode=OneWay, Source={StaticResource doubleToTimeViewConverter}}" >
                             <Controls:RangeSlider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1.5"/>
@@ -169,13 +167,9 @@
                 </Grid>
 
             </Grid>
-            <Button x:Name="eleteChild" Grid.Row="9" Content="DELETE" Grid.Column="1" Margin="115,60,0,0" Click="DeleteChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-
-
-
+            <Button x:Name="deleteChild" Grid.Row="9" Content="DELETE" Grid.Column="1" Margin="90,39,0,0" Click="DeleteChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
         </Grid>
 
-        <Button x:Name="Save" Content="SAVE" HorizontalAlignment="Left" Margin="133,15,0,0" Width="75" Click="Save_Click" Grid.Column="1" Grid.Row="1" Height="26" VerticalAlignment="Top"/>
-        <Button x:Name="clear" Content="CLEAR" Grid.Column="1" Margin="50,15,0,0" Click="clear_Click" Grid.Row="1" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+        <Button x:Name="Save" Content="SAVE" HorizontalAlignment="Left" Margin="30,15,0,0" Width="75" Click="Save_Click" Grid.Column="1" Grid.Row="1" Height="26" VerticalAlignment="Top"/>
     </Grid>
 </Window>

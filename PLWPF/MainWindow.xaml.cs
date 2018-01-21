@@ -36,13 +36,13 @@ namespace PLWPF
         
         private static void AddDefaultValues()
         {
-            BE.Mother mom1 = new BE.Mother(1, "Cohen", "Sarah", 026541526, 0527412564, "הועד הלאומי12, ירושלים", "הועד הלאומי12, ירושלים", " ", null, 2);
-            BE.Child child11 = new BE.Child(123, 1, "Yossi", "Chohen", BE.E_gender.BOY, false, "", new DateTime(2017, 1, 1));
-            BE.Child child12 = new BE.Child(124, 1, "Moshe", "Chohen", BE.E_gender.BOY, false, "", new DateTime(2015, 1, 1));
+            BE.Mother mom1 = new BE.Mother(0, "Cohen", "Sarah", 026541526, 0527412564, "הועד הלאומי12, ירושלים", "הועד הלאומי12, ירושלים", " ", null, 2);
+            BE.Child child11 = new BE.Child(123,0, "Yossi", "Chohen", BE.E_gender.BOY, false, "", new DateTime(2017, 1, 1));
+            BE.Child child12 = new BE.Child(124, 0, "Moshe", "Chohen", BE.E_gender.BOY, false, "", new DateTime(2015, 1, 1));
 
             BE.Mother mom2 = new BE.Mother(2, "Levi", "Ofra", 026584921, 0549853665, "הועד הלאומי13, ירושלים", "הועד הלאומי13, ירושלים", " ", null, 2);
-            BE.Child child21 = new BE.Child(125, 1, "Avraham", "Levi", BE.E_gender.BOY, false, "", new DateTime(2017, 5, 11));
-            BE.Child child22 = new BE.Child(126, 1, "Issac", "Levi", BE.E_gender.BOY, false, "", new DateTime(2015, 12, 23));
+            BE.Child child21 = new BE.Child(125, 2, "Avraham", "Levi", BE.E_gender.BOY, false, "", new DateTime(2017, 5, 11));
+            BE.Child child22 = new BE.Child(126, 2, "Issac", "Levi", BE.E_gender.BOY, false, "", new DateTime(2015, 12, 23));
 
             BE.Nanny nan1 = new BE.Nanny(11, "Salem", "Esther", new DateTime(1998 / 1 / 25), 0585802606, true, "הוועד הלאומי 21", 3, 5, 20, 1, 3, true, 30, 500, "yes", true, null, null);
             BE.Nanny nan2 = new BE.Nanny(12, "Dusi", "Grace", new DateTime(1994 / 1 / 25), 0585802608, true, "הוועד הלאומי 21", 2, 5, 20, 1, 3, true, 30, 600, "no", true, null, null);
@@ -110,7 +110,7 @@ namespace PLWPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            MomWindow nan = new MomWindow();
+            MomWindow nan = new MomWindow(new SUMother_page());
             nan.Show();
         }
 

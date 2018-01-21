@@ -16,12 +16,12 @@ namespace PLWPF
     {
         public static BL.IBL bl = BL.BL_Basic.Instance;
 
-        public static MessageBoxResult WindowSaving(string str)
+        public static bool YES_NO_Window(string str)
         {
-            return MessageBox.Show( String.Format("Are you sure you want to {0}?" , str),
+             return (MessageBox.Show( String.Format("Are you sure you want to {0}?" , str),
                                              "Window Saving",
                                              MessageBoxButton.YesNo,
-                                             MessageBoxImage.Question);
+                                             MessageBoxImage.Question) == MessageBoxResult.Yes)? true:false;
         }
 
         public static void WindowError(string str)
@@ -62,15 +62,15 @@ namespace PLWPF
         public static DateTime DoubleToDateTime(double d)
         {
             int H = (int)d;
-            int m = (int)((d - H) * 10);
-            string str = string.Format("{0}:{1}", (H < 10 ? "0" + H.ToString() : H.ToString()), (m == 0 ? "00" : "30")); // set string in format HH:mm
+            int m = (int)(d - H);
+            string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H/10).ToString() : (H/10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
             return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public static double DateTimeToDouble(DateTime dt)
         {
-            double H = dt.Hour;
-            double m = (dt.Minute == 0 ? 0 : 0.5);
+            double H = dt.Hour*10;
+            double m = (dt.Minute == 0 ? 0 : 5);
             return H + m;
         }
         
@@ -83,7 +83,7 @@ namespace PLWPF
 
     } // CC
 
-    public class StringToTimeViewStringConverter : IValueConverter
+    public class DoubleToTimeViewStringConverter : IValueConverter
     {
         public object Convert(
           object value,
@@ -91,9 +91,10 @@ namespace PLWPF
           object parameter,
           CultureInfo culture)
         {
-            int H = int.Parse((string)value) / 10;
-            int m = (int.Parse((string)value) - (H * 10));
-           return string.Format("{0}:{1}", (H < 10 ? "0" + H.ToString() : H.ToString()), (m <50 ? "00" : "30")); // set string in format HH:mm
+            double d = (double)value/10 ;
+            int H = (int)d;
+            double m = d - H;
+            return  string.Format("{0}:{1}", (H < 10 ? "0" + H.ToString() : (H).ToString()), (m < 0.5 ? "00" : "30")); // set string in format HH:mm
         }
 
         public object ConvertBack(
@@ -102,11 +103,10 @@ namespace PLWPF
           object parameter,
           CultureInfo culture)
         {
-            
-            string[] str = ((string)value).Split(':');
-            if (str[0].First() == '0')
-                str[0].Remove(0, 1);
-                return str[0] + str[21];
+            string[] spliter = ((string)value).Split(':');
+            double H = double.Parse(spliter[0]) * 10;
+            double m = (spliter[1] == "00") ? 0 : 0.5;
+            return H + m;
         }
 
     }
@@ -134,6 +134,62 @@ namespace PLWPF
             return int.Parse(str[0]) + int.Parse(str[1]);
         }
     }
+    public class EmptyTextToVisabilityConverter : IValueConverter
+    {
+        public object Convert(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            string str = (string)value;
+            if (str == "")
+            {
+                return Visibility.Collapsed;
+            }
+            else
+            {
+                return Visibility.Visible;
+            }
+        }
+
+        public object ConvertBack(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            string[] str = ((string)value).Split(':');
+            return int.Parse(str[0]) + int.Parse(str[1]);
+        }
+    }
+
+    public class ItemCollectionToInt : IValueConverter
+    {
+        public object Convert(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            System.Windows.Controls.ItemCollection items = (System.Windows.Controls.ItemCollection)value;
+            
+                return items.Count;
+            
+        }
+
+        public object ConvertBack(
+          object value,
+          Type targetType,
+          object parameter,
+          CultureInfo culture)
+        {
+            string[] str = ((string)value).Split(':');
+            return int.Parse(str[0]) + int.Parse(str[1]);
+        }
+    }
+
+
 
 
 

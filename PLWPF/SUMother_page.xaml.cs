@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF
 {
@@ -36,7 +37,7 @@ namespace PLWPF
 
         private void ADD_Click(object sender, RoutedEventArgs e)
         {
-            MomWindow momWin = new MomWindow();
+            MomWindow momWin = new MomWindow(this);
             momWin.Show();
         }
 
@@ -50,7 +51,7 @@ namespace PLWPF
         private void button_Click(object sender, RoutedEventArgs e)
         {
             MomWindow momwin;
-            momwin = new MomWindow();
+            momwin = new MomWindow(this);
             momwin.Show();
         }
 
@@ -63,6 +64,11 @@ namespace PLWPF
         private void motherListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        internal void hadChange(Mother mom, bool update)
+        {
+            throw new NotImplementedException();
         }
     }
 }

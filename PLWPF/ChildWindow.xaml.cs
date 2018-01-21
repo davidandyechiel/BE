@@ -58,20 +58,25 @@ namespace PLWPF
 
         bool update; // need an update or just add
         BE.Child child;
-        public ChildWindow(int momId)
+        MomWindow mom;
+       
+
+        public ChildWindow(MomWindow _mom)
         {
             InitializeComponent();
-            child = new BE.Child(momId);
+            mom = _mom;
+            child = new BE.Child();
             grid1.DataContext = child;
             update = false;
             genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.E_gender)).Cast<BE.E_gender>();
         }
-        public ChildWindow(BE.Child _child)
+        public ChildWindow(MomWindow _mom, BE.Child _child)
         {
             InitializeComponent();
             child = new BE.Child(_child);
             grid1.DataContext = child;
             update = true;
+            mom = _mom;
         }
 
 
@@ -82,7 +87,7 @@ namespace PLWPF
             {
                 if (update)
                     CC.bl.Update(child);
-                else CC.bl.Add(child);
+                mom.hadChange(child, update);
                 Close();
             }
             catch (Exception exp)
@@ -93,5 +98,5 @@ namespace PLWPF
         }
 
 
-     }
+    }
 }
