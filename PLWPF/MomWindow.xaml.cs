@@ -53,7 +53,7 @@ namespace PLWPF
             this.DataContext = mom;
             update = false; // new mom
             foreach (BE.Child child in CC.bl.collectBrothers(mom.Id))
-            Brothers.Add(child);
+                Brothers.Add(child);
             SUmom = fromSUmom;
             children_combo_box.DataContext = Brothers;
         }
@@ -62,14 +62,15 @@ namespace PLWPF
         /// Mom update mode
         /// </summary>
         /// <param name="_mom"> existing mom </param>
-        public MomWindow(SUMother_page fromSUmom, FrameworkElement _mom) // 
+        public MomWindow(SUMother_page fromSUmom, Mother _mom) // 
         {
             InitializeComponent();
-            mom = new BE.Mother(_mom.DataContext as Mother);
+            mom = new BE.Mother(_mom);
             this.DataContext = mom;
             idTextBox.IsEnabled = false; // lock the id, id is inchangeable
             SUmom = fromSUmom;
-            Brothers = (ObservableCollection<BE.Child>)CC.bl.collectBrothers(mom.Id);
+            foreach (BE.Child brother in CC.bl.collectBrothers(mom.Id))
+                Brothers.Add(brother);
             children_combo_box.DataContext = CC.bl.getChildDS().Select(x => x.MothersId == mom.Id);
             update = true;
         }
@@ -182,8 +183,9 @@ namespace PLWPF
                 if (CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id) != null)
                     //if yes, do delete the contract too.
                     if (CC.YES_NO_Window("Delete this child?\n this child is aready in contract,\n deleting this child will lead to delete the contract"))
-                    { CC.bl.Remove(CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id));
-                      CC.bl.Remove(children_combo_box.SelectedValue as Child);
+                    {
+                        CC.bl.Remove(CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id));
+                        CC.bl.Remove(children_combo_box.SelectedValue as Child);
                         brothers.Remove(children_combo_box.SelectedValue as Child);
                     }
                     //if no, return.
@@ -194,7 +196,7 @@ namespace PLWPF
                         CC.bl.Remove(children_combo_box.SelectedValue as Child);
                     brothers.Remove(children_combo_box.SelectedValue as Child);
                 }
-              }
+            }
             catch (Exception exp)
             {
                 CC.WindowError(exp.Message);
