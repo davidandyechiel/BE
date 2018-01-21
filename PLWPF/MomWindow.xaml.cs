@@ -112,18 +112,8 @@ namespace PLWPF
                     Close();
                 }
 
-
-
-                //  course.CourseId = int.Parse(this.idTextBox.Text);
-                //  course.CourseName = this.nameTextBox.Text;
-
-                //TODO:  bl.AddStudent(student); + update the window list
-                //  mom = new BE.Mother();
-                //  this.DataContext = mom;
-
-
-                //  this.idTextBox.ClearValue(TextBox.TextProperty);   // this.idTextBox.Text = ""
-                //  this.nameTextBox.ClearValue(TextBox.TextProperty);// this.nameTextBox.Text = ""
+                             
+                
             }
             catch (FormatException)
             {
@@ -212,16 +202,51 @@ namespace PLWPF
 
         }
 
-        /*    private void clear_Click(object sender, RoutedEventArgs e)
+
+        private void start_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("from HH:mm");
+        }
+        private void end_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                if (CC.YES_NO_Window("clear"))
+                if (CC.YES_NO_Window("Clear"))
                 {
                     mom = new Mother();
-                    DataContext = mom;
+                    grid1.DataContext = mom;
                     update = false;
                     idTextBox.IsEnabled = true;
+
                 }
-            }*/
+
+            }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
+
+
+
+        }
+
+
+        /*    private void Clear_Click(object sender, RoutedEventArgs e)
+             {
+                 if (CC.YES_NO_Window("clear"))
+                 {
+                 mom = new Mother();
+                 grid1.DataContext = mom;
+
+                     update = false;
+                     idTextBox.IsEnabled = true;
+                 }
+             }*/
 
         private void Slider_ValueChanged_start(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -243,37 +268,6 @@ namespace PLWPF
          //             (sender as Slider).Value = sunday_start_slider.Value;
                   (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("to HH:mm");
               }*/
-        }
-
-        private void start_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("from HH:mm");
-        }
-        private void end_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
-        }
-
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (CC.YES_NO_Window("Clear"))
-                {
-                    mom = new Mother();
-                    idTextBox.IsEnabled = true;
-                    update = false;
-                    lastNameTextBox.BeginChange();
-                }
-
-            }
-            catch (Exception exp)
-            {
-                CC.WindowError(exp.Message);
-            }
-
-
-
         }
 
 
