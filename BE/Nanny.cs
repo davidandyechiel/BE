@@ -42,6 +42,7 @@ namespace BE
             {
                 return id;
             }
+            set { id = value; }
         }
 
         public string LastName

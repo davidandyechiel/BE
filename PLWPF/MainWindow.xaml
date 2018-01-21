@@ -21,7 +21,7 @@
             <Button x:Name="findNanny" Content="FIND A NANNY" Width="100" Height="30" Click="findNanny_Click"/>
             <Button x:Name="contracts" Content="CONTRACTS" Width="100" Height="30" Click="setting_Click"/>
             <Button x:Name="settings" Content="SETTINGS" Width="100" Height="30" Click="setting_Click"/>
-            <Button x:Name="button" Content="Button" Width="75" Click="button_Click"/>
+            <Button x:Name="button" Content="Update Nanny" Width="75" Click="button_Click"/>
         </Menu>
         <Frame x:Name="curretPage" Content="map_view" Margin="0,-5,0,4"  NavigationUIVisibility="Hidden"/>
 

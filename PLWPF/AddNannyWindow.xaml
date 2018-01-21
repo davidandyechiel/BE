@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" xmlns:TimePicker="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker" x:Class="PLWPF.AddNannyWindow"
         mc:Ignorable="d"
-        Title="AddNannyWindow" Height="900" Width="800" Loaded="Window_Loaded">
+        Title="AddNannyWindow" Height="900" Width="800" Loaded="Window_Loaded" WindowState="Maximized">
     <Window.Resources>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>
         <CollectionViewSource x:Key="nannyDThoursTableViewSource" Source="{Binding DThoursTable, Source={StaticResource nannyViewSource}}"/>
@@ -85,7 +85,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=OneWay}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay}" VerticalAlignment="Center" Width="120" TextChanged="idTextBox_TextChanged"/>
 
         </Grid>
 
