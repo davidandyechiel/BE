@@ -34,25 +34,25 @@ namespace PLWPF
 
 
 
-        static public DateTime[][] setHoursDT(params double[] times)
+        static public DateTime[,] setHoursDT(params double[] times)
         {
             
-            DateTime[][] hours = new DateTime[6][];
+            DateTime[,] hours = new DateTime[6,2];
             for (int i = 0; i < times.Length; i += 2)
             {
-                hours[i / 2][0] = DoubleToDateTime(times[i]);
-                hours[i / 2][1] = DoubleToDateTime(times[i + 1]);
+                hours[i / 2,0] = DoubleToDateTime(times[i]);
+                hours[i / 2,1] = DoubleToDateTime(times[i + 1]);
             }
             return hours;
         }
-        static public double[] setHoursD(DateTime[][] times)
+        static public double[] setHoursD(DateTime[,] times)
         {
 
             double[] hours = new double[12];
             for (int i = 0; i < hours.Length; i += 2)
             {
-                hours[i] = DateTimeToDouble(times[i][0]);
-                hours[i + 1] = DateTimeToDouble(times[i][1]);
+                hours[i] = DateTimeToDouble(times[i,0]);
+                hours[i + 1] = DateTimeToDouble(times[i,1]);
             }
             return hours;
         }

@@ -21,7 +21,7 @@ namespace BE
         private bool[] needNanny;//days of the week mother needs a nanny
         private string notes;
         private int numOfKids; // number of the kids that need a nanny
-        private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
+        private DateTime[,] dthoursTable;//table that stores the start and end time of each day of the week
 
 
 
@@ -31,6 +31,13 @@ namespace BE
             get
             {
                 return id;
+            }
+            set
+            {
+                id = value;
+
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Id"));
             }
 
         }
@@ -201,7 +208,7 @@ namespace BE
                     PropertyChanged(this, new PropertyChangedEventArgs("numOfKids"));
             }
         }
-        public DateTime[][] DThoursTable
+        public DateTime[,] DThoursTable
         {
             get
             {
@@ -220,10 +227,10 @@ namespace BE
         #region Ctor
         public Mother()
         {
-
+            dthoursTable = new DateTime[6,2];
         }
 
-        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids, DateTime[][] dthoursTable)
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids, DateTime[,] dthoursTable)
         {
             
             this.id = id;
@@ -242,13 +249,13 @@ namespace BE
             needNanny = new bool[6];
             for (int i = 0; i < 6; i++)
             {
-                needNanny[i] = (dthoursTable[i][0] == dthoursTable[i][1]) ? false:true;
+                needNanny[i] = (dthoursTable[i,0] == dthoursTable[i,1]) ? false:true;
             }
 
         }
 
 
-        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, string notes, DateTime[][] dthoursTable, int numOfKids)
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, string notes, DateTime[,] dthoursTable, int numOfKids)
         {
             this.id = id;
             this.lastName = lastName;
@@ -290,6 +297,7 @@ namespace BE
             this.notes = mom.Notes;
             this.dthoursTable = mom.DThoursTable;
             this.numOfKids = mom.NumOfKids;
+            dthoursTable = new DateTime[6, 2];
         }
 
 

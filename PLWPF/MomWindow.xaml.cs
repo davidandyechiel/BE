@@ -50,6 +50,7 @@ namespace PLWPF
         {
             InitializeComponent();
             mom = new BE.Mother();
+            idTextBox.IsReadOnly = false;
             grid1.DataContext = mom;
             update = false; // new mom
             foreach (BE.Child child in CC.bl.collectBrothers(mom.Id))
@@ -62,18 +63,19 @@ namespace PLWPF
         /// Mom update mode
         /// </summary>
         /// <param name="_mom"> existing mom </param>
-        public MomWindow(SUMother_page fromSUmom, Mother _mom)  
+        public MomWindow(SUMother_page fromSUmom, Mother _mom)
         {
             InitializeComponent();
             mom = new BE.Mother(_mom);
             grid1.DataContext = mom;
-            idTextBox.IsEnabled = false; // lock the id, id is inchangeable
+            idTextBox.IsReadOnly = true;
+           // idTextBox.IsEnabled = false; // lock the id, id is inchangeable
             update = true;
             SUmom = fromSUmom;
             foreach (BE.Child brother in CC.bl.collectBrothers(mom.Id))
                 Brothers.Add(brother);
             children_combo_box.DataContext = Brothers;
-            
+
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -85,7 +87,7 @@ namespace PLWPF
                 if (CC.YES_NO_Window("save"))
                 {
                     //set new mother
-        //            mom = new Mother(mom);
+                    //            mom = new Mother(mom);
                     //set houtsTable
                     List<double> hoursList = new List<double>();
                     foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
@@ -112,8 +114,8 @@ namespace PLWPF
                     Close();
                 }
 
-                             
-                
+
+
             }
             catch (FormatException)
             {

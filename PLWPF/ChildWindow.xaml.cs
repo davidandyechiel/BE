@@ -70,6 +70,7 @@ namespace PLWPF
             update = false;
             genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.E_gender)).Cast<BE.E_gender>();
         }
+
         public ChildWindow(MomWindow _mom, BE.Child _child)
         {
             InitializeComponent();
