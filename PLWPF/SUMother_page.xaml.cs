@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BE;
 
 namespace PLWPF
@@ -21,19 +22,36 @@ namespace PLWPF
     /// </summary>
     public partial class SUMother_page : Page
     {
-        BL.IBL bl;
+        private ObservableCollection<Mother> motherCollection;
+        #region PROPERTY
+        public ObservableCollection<Mother> MotherCollection
+        {
+            get
+            {
+                return motherCollection;
+            }
+
+            set
+            {
+                motherCollection = value;
+            }
+        }
+        #endregion
+
+
+
+
         public SUMother_page()
         {
             InitializeComponent();
-            bl = BL.BL_Basic.Instance;
-            motherListView.ItemsSource = CC.bl.getMotherDS();
+            motherCollection = new ObservableCollection<Mother>(CC.bl.getMotherDS());
+            motherDataGrid.ItemsSource = motherCollection;
+            DataContext = motherCollection;
         }
+         
 
-        public SUMother_page(int i)
-        {
-            InitializeComponent();
-            bl = BL.BL_Basic.Instance;
-        }
+
+        
 
         private void ADD_Click(object sender, RoutedEventArgs e)
         {
@@ -42,10 +60,10 @@ namespace PLWPF
         }
 
         private void UPDATE_Click(object sender, RoutedEventArgs e)
-        {
-           // TODO: make a converter between the combobox item and the BE.Mother
-       //     MomWindow momWin = new MomWindow(comboBox.SelectionBoxItem as BE.Mother );
-         //   momWin.Show();
+        { //TODO:  build this window
+          
+        MomWindow momWin = new MomWindow(this,motherDataGrid.SelectedValue as Mother );
+          momWin.Show();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -58,7 +76,7 @@ namespace PLWPF
         private void DELETE_Click(object sender, RoutedEventArgs e)
         {
             //TODO: update the list
-            bl.Remove(sender as BE.Mother);
+            CC.bl.Remove(sender as BE.Mother);
         }
 
         private void motherListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,7 +86,11 @@ namespace PLWPF
 
         internal void hadChange(Mother mom, bool update)
         {
-            throw new NotImplementedException();
+            if (update)
+                motherCollection.Remove(mom);
+            motherCollection.Add(mom);
         }
+
+        
     }
 }

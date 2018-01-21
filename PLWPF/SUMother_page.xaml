@@ -13,61 +13,19 @@
         <CollectionViewSource x:Key="motherViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Mother}, CreateList=True}"/>
     </Page.Resources>
 
-    <Grid DataContext="{StaticResource motherViewSource}" Margin="0,0,5,0">
+    <Grid x:Name="MotherDataGrid" DataContext="{StaticResource motherViewSource}" Margin="0,0,5,0" HorizontalAlignment="Stretch">
         <Button x:Name="ADD" Content="Add new Mother" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
-        <Button x:Name="UPDATE" Content="Update" HorizontalAlignment="Left" Margin="130,275,0,0" VerticalAlignment="Top" Width="75" Click="UPDATE_Click"/>
-        <Button x:Name="DELETE" Content="Delete" HorizontalAlignment="Left" Margin="210,275,0,0" VerticalAlignment="Top" Width="75" Click="DELETE_Click"/>
-        <ListView x:Name="motherListView"  Margin="0,40,-5,30" SelectionMode="Single" SelectionChanged="motherListView_SelectionChanged">
-            <ListView.ItemContainerStyle>
-                <Style>
-                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
-                    
-                    
-                    <GridViewColumn x:Name="lastNameColumn" Header="Last Name" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>                   
-                    <GridViewColumn x:Name="firstNameColumn" Header="First Name" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="idColumn" Header="Id" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding Id, Mode=OneWay}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="addressNearHereColumn" Header="Address Near Here" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding AddressNearHere, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    
-                    <GridViewColumn x:Name="numOfKidsColumn" Header="Num Of Kids" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding NumOfKids, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="5,273,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="UPDATE" Content="Update" HorizontalAlignment="Left" Margin="125,0,0,25" Width="75" Click="UPDATE_Click" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="DELETE" Content="Delete" HorizontalAlignment="Left" Margin="210,0,0,25" Width="75" Click="DELETE_Click" Height="20" VerticalAlignment="Bottom"/>
+        <DataGrid x:Name="motherDataGrid" DataContext="BE.Mother" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="Auto" ItemsSource="{Binding}" Margin="5,45,0,55" RowDetailsVisibilityMode="VisibleWhenSelected" Width="Auto" IsReadOnly="True" SelectionChanged="motherDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="lastNameColumn" Binding="{Binding LastName}" Header="Last Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="firstNameColumn" Binding="{Binding FirstName}" Header="First Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="cellPhone" Binding="{Binding CellPhoneNum}" Header="Cell Phone Num" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="numOfKidsColumn" Binding="{Binding NumOfKids}" Header="Num Of Kids" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

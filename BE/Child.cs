@@ -181,7 +181,7 @@ namespace BE
 
         public override string ToString()
         {
-            return "Child: " + FName + LName + "ID: " + Id + "\n";
+            return string.Format ("{0} {1} ID: {2}", FName , LName , Id );
         }
 
 

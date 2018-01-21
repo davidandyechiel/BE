@@ -53,7 +53,7 @@ namespace PLWPF
             this.DataContext = mom;
             update = false; // new mom
             foreach (BE.Child child in CC.bl.collectBrothers(mom.Id))
-                Brothers.Add(child);
+            Brothers.Add(child);
             SUmom = fromSUmom;
             children_combo_box.DataContext = Brothers;
         }
@@ -69,8 +69,7 @@ namespace PLWPF
             this.DataContext = mom;
             idTextBox.IsEnabled = false; // lock the id, id is inchangeable
             SUmom = fromSUmom;
-            Brothers = new ObservableCollection<BE.Child>(CC.bl.getChildDS());
-            Brothers = new ObservableCollection<BE.Child>(CC.bl.collectBrothers(mom.Id));
+            Brothers = (ObservableCollection<BE.Child>)CC.bl.collectBrothers(mom.Id);
             children_combo_box.DataContext = CC.bl.getChildDS().Select(x => x.MothersId == mom.Id);
             update = true;
         }
