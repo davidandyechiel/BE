@@ -57,6 +57,9 @@ namespace PLWPF
 
         }
 
-       
+        private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

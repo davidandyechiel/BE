@@ -91,6 +91,9 @@ namespace PLWPF
             motherCollection.Add(mom);
         }
 
-        
+        private void motherDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
