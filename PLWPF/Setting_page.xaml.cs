@@ -19,7 +19,11 @@ namespace PLWPF
     /// Interaction logic for Setting_page.xaml
     /// </summary>
     public partial class Setting_page : Page
-    {
+    {/*TODO:
+        1. set langugh
+        2. set DS
+        3. ser ADDRESS
+        */
         public Setting_page()
         {
             InitializeComponent();

@@ -14,11 +14,12 @@ namespace BL
    public sealed partial class BL_Basic : IBL
     {
         private static Idal MyDal;
+       
 
         #region Singleton
         private static readonly BL_Basic instance = new BL_Basic();
 
-        public static BL_Basic Instance
+        public static IBL Instance
         {
             get { return instance; }
         }
@@ -189,6 +190,9 @@ namespace BL
         {
             return MyDal.NannyDS.Find(p);
         }
+
+        public IBL myInstance()
+        { return Instance; }
 
         
 

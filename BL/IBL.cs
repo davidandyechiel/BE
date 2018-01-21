@@ -7,27 +7,23 @@ using BE;
 
 namespace BL
 {
-
-    public interface IBL 
+    public interface IBL
     {
         List<Nanny> getNannyDS();
         List<Mother> getMotherDS();
         List<Child> getChildDS();
         List<Contract> getContractDS();
-        void Add( object obj);
-        void Remove( object obj);
-        void Update( object obj);
-
-        
-
+        void Add(object obj);
+        void Remove(object obj);
+        void Update(object obj);
         Contract FindContract(Predicate<Contract> p);
         Child FindChild(Predicate<Child> p);
         Mother FindMother(Predicate<Mother> p);
         Nanny FindNanny(Predicate<Nanny> p);
-
         bool Exists(object obj);
+        IEnumerable<Child> collectBrothers(int id);
     }
-
+}
 
         /*
         void addNanny(BE.Nanny nanny);
@@ -48,7 +44,7 @@ namespace BL
         */
 
 
-    }
+    
 /*
     internal class BL_Basic: IBL
     {

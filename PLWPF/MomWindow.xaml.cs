@@ -11,122 +11,99 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BE;
 
 namespace PLWPF
 {
+    //TODO: set datacontext and!!! the open child window
     /// <summary>
     /// Interaction logic for MomWindow.xaml
     /// </summary>
     public partial class MomWindow : Window
     {
         bool update;
+        private BE.Mother mom;
+        private SUMother_page SUmom;
+        private ObservableCollection<BE.Child> brothers = new ObservableCollection<Child>();
 
-        public Boolean State
+        public ObservableCollection<Child> Brothers
         {
-            get { return (Boolean)this.GetValue(StateProperty); }
-            set { this.SetValue(StateProperty, value); }
-        }
-        public static readonly DependencyProperty StateProperty = DependencyProperty.Register(
-          "State", typeof(Boolean), typeof(MomWindow), new PropertyMetadata(false));
+            get
+            {
+                return brothers;
+            }
 
-        List<Child> brothers;
-        public List<Child> Brothers
-        {
-            get { return brothers; }
             set
             {
                 brothers = value;
             }
         }
 
-        /*  public Double Brothers1
-          {
-              get { return (Boolean)GetValue(BrothersProperty); }
-              set
-              {
-                  this.SetValue(BrothersProperty, value);
-              }
-          }*/
-          public static  DependencyProperty BrothersProperty = DependencyProperty.Register(
-              "Brothers1",typeof(Boolean), typeof(MomWindow), new PropertyMetadata(false));
+        // TODO: 
 
 
-          /// <summary>
-          /// Add new mom mode
-          /// </summary>
-          public  MomWindow() // add new mom
-          {
-              InitializeComponent();
-              this.DataContext = new BE.Mother();
-              update = false; // new mom
-              children_combo_box.ItemsSource = Brothers;
-          }
+        /// <summary>
+        /// Add new mom mode
+        /// </summary>
+        public MomWindow(SUMother_page fromSUmom) // add new mom
+        {
+            InitializeComponent();
+            mom = new BE.Mother();
+            this.DataContext = mom;
+            update = false; // new mom
+            foreach (BE.Child child in CC.bl.collectBrothers(mom.Id))
+            Brothers.Add(child);
+            SUmom = fromSUmom;
+            children_combo_box.DataContext = Brothers;
+        }
 
-          /// <summary>
-          /// Mom update mode
-          /// </summary>
-          /// <param name="_mom"> existing mom </param>
-          public  MomWindow(FrameworkElement _mom) // 
-          {
-              InitializeComponent();
-             // mom = new BE.Mother(_mom.DataContext as Mother);
-              this.DataContext = (_mom.DataContext as Mother);
-              idTextBox.IsEnabled = false; // lock the id, id is inchangeable
-              refreshBrotherList();
-              children_combo_box.ItemsSource = Brothers;
-              update = true;
-          }
-
-          public void refreshBrotherList()
-          {
-                Brothers = ((CC.bl as BL.BL_Basic).collectBrothers((this.DataContext as Mother).Id).ToList());
-              foreach (ComboBoxItem item in children_combo_box.Items)
-                  item.Content = (item.DataContext as Child).FName;
-              if (children_combo_box.Items.Count == -1)
-                  children_combo_box.IsEnabled = false;
-              else children_combo_box.IsEnabled = true;
-          }
-
-          /*
-           * TODO: see if needed maybe delete
-          private void setComboBox()
-          {
-              children_combo_box.Items.Clear();
-              foreach (Child child in Brothers)
-              {
-                  ComboBoxItem newItem = new ComboBoxItem();
-                  newItem.Content = child.FName;
-                  children_combo_box.Items.Add(newItem);
-              }
-          }
-          */
-
-
+        /// <summary>
+        /// Mom update mode
+        /// </summary>
+        /// <param name="_mom"> existing mom </param>
+        public MomWindow(SUMother_page fromSUmom, FrameworkElement _mom) // 
+        {
+            InitializeComponent();
+            mom = new BE.Mother(_mom.DataContext as Mother);
+            this.DataContext = mom;
+            idTextBox.IsEnabled = false; // lock the id, id is inchangeable
+            SUmom = fromSUmom;
+            Brothers = (ObservableCollection<BE.Child>)CC.bl.collectBrothers(mom.Id);
+            children_combo_box.DataContext = CC.bl.getChildDS().Select(x => x.MothersId == mom.Id);
+            update = true;
+        }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            
+
             try
             {
-
-                
                 // If the user sure that he wants so save ...
-                if (CC.WindowSaving("save") == MessageBoxResult.Yes)
+                if (CC.YES_NO_Window("save"))
                 {
-                 /*   Mother mom = new Mother(this.DataContext as Mother);
-                    foreach (item in daysSliders.)
-
-                    var hoursVal = from item in daysSliders where (item is Slider)
-                    mom.DThoursTable = 
-                    
-
+                    //set new mother
+                    mom = new Mother(mom);
+                    //set houtsTable
+                    List<double> hoursList = new List<double>();
+                    foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
+                    {
+                        hoursList.Add(item.LowerValue);
+                        hoursList.Add(item.UpperValue);
+                    }
+                    List<double> times = new List<double>();
+                    foreach (Slider slider in daysSliders.Children)
+                        times.Add(slider.Value);
+                    mom.DThoursTable = CC.setHoursDT(times.ToArray());
+                    //update the the mother id of the children before delete
+                    foreach (Child child in children_combo_box.Items)
+                        child.MothersId = int.Parse(idTextBox.Text);
                     if (update)
-                        CC.bl.Update(this.DataContext as Mother);
+                        CC.bl.Update(mom);
                     else // need only to add
-                        CC.bl.Add(this.DataContext as Mother);
-                    (sender as SUMother_page).refreshList();
-                    Close();*/
+                        CC.bl.Add(mom);
+                    SUmom.hadChange(mom, update);
+                    Close();
                 }
 
 
@@ -137,7 +114,7 @@ namespace PLWPF
                 //TODO:  bl.AddStudent(student); + update the window list
                 //  mom = new BE.Mother();
                 //  this.DataContext = mom;
-                
+
 
                 //  this.idTextBox.ClearValue(TextBox.TextProperty);   // this.idTextBox.Text = ""
                 //  this.nameTextBox.ClearValue(TextBox.TextProperty);// this.nameTextBox.Text = ""
@@ -151,64 +128,111 @@ namespace PLWPF
                 MessageBox.Show(ex.Message);
             }
         }
-        
 
-        private void idTextBox_MouseLeave(object sender, MouseEventArgs e)
+        internal void hadChange(Child child, bool needUpdate)
         {
-            //TODO: insert to thread
-           
-            if (!update && CC.bl.Exists(this.DataContext as Mother)) // if its new mom and she ready exist in DS so change to update mode
-            {
-                update = true;
-                idTextBox.IsEnabled = false;
-                this.DataContext = CC.bl.FindMother(x=> x.Id == int.Parse(idTextBox.Text));
-                refreshBrotherList();
-            }
+            if (needUpdate)
+                brothers.Remove(child);
+            brothers.Add(child);
         }
+
+
+
 
 
 
         private void AddChild_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var s = children_combo_box.Items;
+                ChildWindow childwin = new ChildWindow(this);
+                childwin.Show();
 
-            ChildWindow childwin = new ChildWindow();
-            childwin.Show(); // if there will be change, so Brother will be refreshing.
+            } // if there will be change, so Brother will be refreshing.
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
         }
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
-            ChildWindow childwin = new ChildWindow(children_combo_box.SelectedValue as BE.Child);
-            childwin.Show(); childwin.Show(); // if there will be change, so Brother will be refreshing.
+            try
+            {
+
+                ChildWindow childwin = new ChildWindow(this, children_combo_box.SelectedValue as BE.Child);
+                childwin.Show(); // if there will be change, so Brother will be refreshing.
+            }
+
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
+
+
         }
 
         private void DeleteChild_Click(object sender, RoutedEventArgs e)
         { // TODO: update the contract , send a masseage if there is a contract with that child
-            CC.bl.Remove(children_combo_box.SelectedValue as Child);
-            refreshBrotherList();
+
+            try
+            {
+                //if there is a contract whith that chils so ask the user if he realy want to delete the child
+                if (CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id) != null)
+                    //if yes, do delete the contract too.
+                    if (CC.YES_NO_Window("Delete this child?\n this child is aready in contract,\n deleting this child will lead to delete the contract"))
+                    { CC.bl.Remove(CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id));
+                      CC.bl.Remove(children_combo_box.SelectedValue as Child);
+                        brothers.Remove(children_combo_box.SelectedValue as Child);
+                    }
+                    //if no, return.
+                    else return;
+                else if (CC.YES_NO_Window("Delete" + (children_combo_box.SelectedValue as Child).ToString()))
+                {
+                    if (update)
+                        CC.bl.Remove(children_combo_box.SelectedValue as Child);
+                    brothers.Remove(children_combo_box.SelectedValue as Child);
+                }
+              }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
+
         }
 
-        private void clear_Click(object sender, RoutedEventArgs e)
-        {
-            if (CC.WindowSaving("clear") == MessageBoxResult.Yes)
+        /*    private void clear_Click(object sender, RoutedEventArgs e)
             {
-                this.DataContext = new Mother();
-                Brothers.Clear();
-                update = false;
-                idTextBox.IsEnabled = false;
-            }
-        }
+                if (CC.YES_NO_Window("clear"))
+                {
+                    mom = new Mother();
+                    DataContext = mom;
+                    update = false;
+                    idTextBox.IsEnabled = true;
+                }
+            }*/
 
         private void Slider_ValueChanged_start(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if ((sender as Slider).Value > sunday_end_slider.Value)
-                (sender as Slider).Value = sunday_end_slider.Value;
-            (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("from HH:mm");
+            /*  if (sunday_end_slider == null)
+              {
+                  sunday_end_slider = new Slider();
+                  sunday_end_slider = new Slider();
+              }
+         //     if (sunday_start_slider.Value > sunday_end_slider.Value)
+         //         sunday_start_slider.Value = sunday_end_slider.Value;
+              (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("from HH:mm");
+              */
         }
         private void Slider_ValueChanged_end(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if ((sender as Slider).Value < sunday_start_slider.Value)
-                (sender as Slider).Value = sunday_start_slider.Value;
-            (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("to HH:mm");
+            /*  if (sender is Slider)
+              {
+        //          if ((sender as Slider).Value < sunday_start_slider.Value)
+         //             (sender as Slider).Value = sunday_start_slider.Value;
+                  (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("to HH:mm");
+              }*/
         }
 
         private void start_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -220,11 +244,13 @@ namespace PLWPF
             (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
         }
 
-        
+
+
+
 
 
 
         // TODO: EXeptions handler include BInDING Errors
         // TODO: threads!
     }
-}
+}// PLWPL
