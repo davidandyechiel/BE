@@ -50,10 +50,10 @@ namespace PLWPF
         {
             InitializeComponent();
             mom = new BE.Mother();
-            this.DataContext = mom;
+            grid1.DataContext = mom;
             update = false; // new mom
             foreach (BE.Child child in CC.bl.collectBrothers(mom.Id))
-            Brothers.Add(child);
+                Brothers.Add(child);
             SUmom = fromSUmom;
             children_combo_box.DataContext = Brothers;
         }
@@ -62,16 +62,18 @@ namespace PLWPF
         /// Mom update mode
         /// </summary>
         /// <param name="_mom"> existing mom </param>
-        public MomWindow(SUMother_page fromSUmom, FrameworkElement _mom) // 
+        public MomWindow(SUMother_page fromSUmom, Mother _mom)  
         {
             InitializeComponent();
-            mom = new BE.Mother(_mom.DataContext as Mother);
-            this.DataContext = mom;
+            mom = new BE.Mother(_mom);
+            grid1.DataContext = mom;
             idTextBox.IsEnabled = false; // lock the id, id is inchangeable
-            SUmom = fromSUmom;
-            Brothers = (ObservableCollection<BE.Child>)CC.bl.collectBrothers(mom.Id);
-            children_combo_box.DataContext = CC.bl.getChildDS().Select(x => x.MothersId == mom.Id);
             update = true;
+            SUmom = fromSUmom;
+            foreach (BE.Child brother in CC.bl.collectBrothers(mom.Id))
+                Brothers.Add(brother);
+            children_combo_box.DataContext = Brothers;
+            
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -83,7 +85,7 @@ namespace PLWPF
                 if (CC.YES_NO_Window("save"))
                 {
                     //set new mother
-                    mom = new Mother(mom);
+        //            mom = new Mother(mom);
                     //set houtsTable
                     List<double> hoursList = new List<double>();
                     foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
@@ -91,13 +93,17 @@ namespace PLWPF
                         hoursList.Add(item.LowerValue);
                         hoursList.Add(item.UpperValue);
                     }
-                    List<double> times = new List<double>();
-                    foreach (Slider slider in daysSliders.Children)
-                        times.Add(slider.Value);
-                    mom.DThoursTable = CC.setHoursDT(times.ToArray());
+                    mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
                     //update the the mother id of the children before delete
+
                     foreach (Child child in children_combo_box.Items)
-                        child.MothersId = int.Parse(idTextBox.Text);
+                        if (!CC.bl.Exists(child))
+                        {
+                            child.MothersId = int.Parse(idTextBox.Text);
+                            CC.bl.Add(child);
+                        }
+                    // add new brothers to DS
+
                     if (update)
                         CC.bl.Update(mom);
                     else // need only to add
@@ -132,7 +138,10 @@ namespace PLWPF
         internal void hadChange(Child child, bool needUpdate)
         {
             if (needUpdate)
+            {
                 brothers.Remove(child);
+                CC.bl.Update(child);
+            }
             brothers.Add(child);
         }
 
@@ -182,8 +191,9 @@ namespace PLWPF
                 if (CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id) != null)
                     //if yes, do delete the contract too.
                     if (CC.YES_NO_Window("Delete this child?\n this child is aready in contract,\n deleting this child will lead to delete the contract"))
-                    { CC.bl.Remove(CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id));
-                      CC.bl.Remove(children_combo_box.SelectedValue as Child);
+                    {
+                        CC.bl.Remove(CC.bl.FindContract(x => x.ChildID == (children_combo_box.SelectedValue as Child).Id));
+                        CC.bl.Remove(children_combo_box.SelectedValue as Child);
                         brothers.Remove(children_combo_box.SelectedValue as Child);
                     }
                     //if no, return.
@@ -194,7 +204,7 @@ namespace PLWPF
                         CC.bl.Remove(children_combo_box.SelectedValue as Child);
                     brothers.Remove(children_combo_box.SelectedValue as Child);
                 }
-              }
+            }
             catch (Exception exp)
             {
                 CC.WindowError(exp.Message);
@@ -242,6 +252,28 @@ namespace PLWPF
         private void end_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (CC.YES_NO_Window("Clear"))
+                {
+                    mom = new Mother();
+                    idTextBox.IsEnabled = true;
+                    update = false;
+                    lastNameTextBox.BeginChange();
+                }
+
+            }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
+
+
+
         }
 
 

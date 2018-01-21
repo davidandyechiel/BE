@@ -23,6 +23,7 @@ namespace PLWPF
     public partial class SUMother_page : Page
     {
         private ObservableCollection<Mother> motherCollection;
+        private Mother currentMom;
         #region PROPERTY
         public ObservableCollection<Mother> MotherCollection
         {
@@ -47,6 +48,7 @@ namespace PLWPF
             motherCollection = new ObservableCollection<Mother>(CC.bl.getMotherDS());
             motherDataGrid.ItemsSource = motherCollection;
             DataContext = motherCollection;
+            currentMom = new Mother();
         }
          
 
@@ -62,7 +64,7 @@ namespace PLWPF
         private void UPDATE_Click(object sender, RoutedEventArgs e)
         { //TODO:  build this window
           
-        MomWindow momWin = new MomWindow(this,motherDataGrid.SelectedValue as Mother );
+        MomWindow momWin = new MomWindow(this, motherDataGrid.SelectedItem as Mother);
           momWin.Show();
         }
 
@@ -81,7 +83,7 @@ namespace PLWPF
 
         private void motherListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            currentMom = (motherDataGrid.SelectedItem as Mother);
         }
 
         internal void hadChange(Mother mom, bool update)
