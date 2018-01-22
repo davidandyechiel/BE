@@ -22,6 +22,11 @@ namespace BL
         Nanny FindNanny(Predicate<Nanny> p);
         bool Exists(object obj);
         IEnumerable<Child> collectBrothers(int id);
+        IEnumerable<Contract> FilterBy(Predicate<Contract> p);
+
+        IEnumerable<Contract> FilterBy(IEnumerable<Contract> list, Predicate<Contract> p);
+
+
     }
 }
 

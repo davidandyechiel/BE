@@ -28,5 +28,63 @@ namespace PLWPF
         {
             InitializeComponent();
         }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Slider s = e.Source as Slider;
+            if (s.Value == 0)
+                s.Value = 1;
+            else
+                s.Value = 0;
+
+
+        }
+
+        private void LANGslider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void DSslider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+           
+        }
+
+        private void DSslider_TouchDown(object sender, TouchEventArgs e)
+        {
+
+        }
+
+        private void DSslider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            
+
+        }
+
+        private void DSslider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        private void DSslider_GotMouseCapture(object sender, MouseEventArgs e)
+        {
+            Slider s = e.Source as Slider;
+           
+            if (s.Value < 0.5)
+                s.Value = 1;
+            else
+                s.Value = 0;
+
+        }
+
+        private void DSslider_ValueChanged_2(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }

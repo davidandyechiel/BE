@@ -122,13 +122,13 @@ namespace BL
         public List<Nanny> nannysThatCanWorkForMe(Mother m)
         {
             bool flag = true;
-            DateTime[][] momhours = m.DThoursTable;
+            DateTime[,] momhours = m.DThoursTable;
             List<Nanny> list = new List<Nanny>();
             foreach (Nanny nanny in getNannyDS())
             {
                 for (int i = 0; i <= 6; i++)
                 {
-                    if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0][i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1][i]) >= 0))
+                    if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0,i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1,i]) >= 0))
                         // !  if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
                         flag = false;
                 }
@@ -140,7 +140,7 @@ namespace BL
         public List<Nanny> nannysThatCanWorkForMePlus(Mother m)
         {
             bool flag = true;
-            DateTime[][] momhours = m.DThoursTable;
+            DateTime[,] momhours = m.DThoursTable;
             List<Nanny> list = new List<Nanny>();
             List<Nanny> listPro = new List<Nanny>();
             foreach (Nanny nanny in getNannyDS())
@@ -148,10 +148,10 @@ namespace BL
                  nanny.Difference = 0;
                 for (int i = 0; i <= 6; i++)
                 {
-                    if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0][i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1][i]) >= 0))
+                    if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0,i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1,i]) >= 0))
                     {//   if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
                         flag = false;
-                        nanny.Difference += (nanny.DThoursTable[1][i].Hour * 60 + nanny.DThoursTable[1][i].Minute) - (m.DThoursTable[1][i].Hour * 60 + m.DThoursTable[1][i].Minute);
+                        nanny.Difference += (nanny.DThoursTable[1][i].Hour * 60 + nanny.DThoursTable[1][i].Minute) - (m.DThoursTable[1,i].Hour * 60 + m.DThoursTable[1,i].Minute);
                         listPro.Add(nanny);
                     }
                 }
