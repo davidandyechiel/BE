@@ -15,7 +15,7 @@ namespace BE
         private int id;
         private string lastName;
         private string firstName;
-        private DateTime birthDate;
+        private DateTime birthDate; 
         private int phoneNum;
         private bool elevator; // if ther is elevator in the bulding
         private string adress;
