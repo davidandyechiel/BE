@@ -23,7 +23,7 @@ namespace PLWPF
     public partial class SUContract_page : Page
     {
         private ObservableCollection<Contract> contractCollection;
-     //   private currentCont;
+        //   private currentCont;
         #region PROPERTY
         public ObservableCollection<Contract> MotherCollection
         {
@@ -52,13 +52,14 @@ namespace PLWPF
         }
 
         private void filterButton_Click(object sender, RoutedEventArgs e)
-        { 
-               if (textBox.Text == "")
-               {
+        {
+            if (textBox.Text == "")
+            {
                 //list = all the grup
 
-               }
-               else if ()
-            
+            }
+            //else if ()
+
         }
+    }
 }
