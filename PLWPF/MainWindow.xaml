@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" BindingGroup="{Binding DependencyObjectType.Id, Mode=OneWay, RelativeSource={RelativeSource Self}}" >
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,7 +24,7 @@
             <Button x:Name="settings" Content="SETTINGS" Width="100" Height="30" Click="setting_Click"/>
             <Button x:Name="button" Content="Update Nanny" Width="75" Click="button_Click"/>
         </Menu>
-        <Frame x:Name="curretPage" Content="map_view" Margin="0,-5,0,4"  NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="curretPage"   Content="map_view" Margin="0,0,0,-1"  NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

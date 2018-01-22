@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid x:Name="contractDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,135,0,30" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="contractDataGrid_SelectionChanged" IsReadOnly="True">
+        <DataGrid x:Name="contractDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,135,0,30" ItemsSource="{Binding st}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="contractDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="contractNumColumn" Width="SizeToHeader" Header="Contract #" Binding="{Binding ElementName=contractDataGrid}" MinWidth="65" />
                 <DataGridTextColumn x:Name="childIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Child ID"  Binding="{Binding ChildID}" MinWidth="150"/>
@@ -35,7 +35,7 @@
             <RadioButton x:Name="radioButtonNannynum" Content="Nanny ID" Margin="147,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="73"/>
         </Grid>
         <Label x:Name="label" Content="Filter By:" HorizontalAlignment="Left" Margin="5,-1,0,0" VerticalAlignment="Top" FontWeight="Medium"/>
-        <TextBox x:Name="textBox" Height="23" Margin="73,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+        <TextBox x:Name="textBox" Height="23" Margin="73,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -45,7 +45,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
         </Grid>
-        <ComboBox x:Name="comboBoxSign"  HorizontalAlignment="Left" Margin="74,87,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="3">
+        <ComboBox x:Name="comboBoxSign"  HorizontalAlignment="Left" Margin="74,87,0,0" VerticalAlignment="Top" Width="101" SelectedIndex="3">
             <ComboBoxItem x:Name="BOTH" Content="BOTH" />
             <ComboBoxItem x:Name="YES" Content="YES" />
             <ComboBoxItem  x:Name="NO" Content="NO" />

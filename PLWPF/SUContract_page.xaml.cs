@@ -42,8 +42,7 @@ namespace PLWPF
             set
             {
                 contractCollection = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("ContractCollection"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ContractCollection"));
             }
         }
         #endregion
@@ -54,9 +53,6 @@ namespace PLWPF
             ContractCollection = new ObservableCollection<Contract>(CC.bl.getContractDS());
             contractDataGrid.ItemsSource = ContractCollection;
             DataContext = ContractCollection;
-           // comboBoxSign.SelectedItem;
-           // currentMom = new Mother();
-
         }
 
         private void contractDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,39 +62,50 @@ namespace PLWPF
 
         private void filterButton_Click(object sender, RoutedEventArgs e)
         {
-            //radio button condition
-            IEnumerable<Contract> filteredList = null;
+            try
+            {
+                //radio button condition
+                IEnumerable<Contract> filteredList = null;
 
-            if (radioButtoChildnum.IsChecked.Value)
-            {
-                filteredList = CC.bl.FilterBy(x => x.ChildID == int.Parse(textBox.Text));
+                if (radioButtoChildnum.IsChecked.Value)
+                {
+                    filteredList = CC.bl.FilterBy(x => x.ChildID == int.Parse(textBox.Text));
+                }
+                else if (radioButtonContnum.IsChecked.Value)
+                {
+                    filteredList = CC.bl.FilterBy(x => x.ContractNum == int.Parse(textBox.Text));
+                }
+                else if (radioButtonNannynum.IsChecked.Value)
+                {
+                    filteredList = CC.bl.FilterBy(x => x.NannysID == int.Parse(textBox.Text));
+                }
+                else
+                {
+                    filteredList = CC.bl.getContractDS();
+                }
+
+                //is signed condition
+
+                /*     if (comboBoxSign.SelectedItem )
+                     {
+                         filteredList = filteredList.FilterBy(x => (x.IsSigned));
+                     }
+                     if (comboBoxSign.SelectedItem.ToString() == "NO")
+                     {
+                         filteredList = filteredList.FilterBy( x => !(x.IsSigned));
+                     }
+                     */
+
+
+
+
+                contractCollection.Clone(filteredList);
             }
-            if (radioButtonContnum.IsChecked.Value)
+            catch (Exception ex)
             {
-                filteredList = CC.bl.FilterBy(x => x.ContractNum == int.Parse(textBox.Text));
-            }
-            if (radioButtonNannynum.IsChecked.Value)
-            {
-                filteredList = CC.bl.FilterBy(x => x.NannysID == int.Parse(textBox.Text));
-            }
-            else
-            {
-                filteredList = CC.bl.getContractDS();
+                MessageBox.Show(ex.Message);
             }
 
-            //is signed condition
-
-       /*     if (comboBoxSign.SelectedItem )
-            {
-                filteredList = filteredList.FilterBy(x => (x.IsSigned));
-            }
-            if (comboBoxSign.SelectedItem.ToString() == "NO")
-            {
-                filteredList = filteredList.FilterBy( x => !(x.IsSigned));
-            }
-            */
-            ContractCollection = new ObservableCollection<Contract>(filteredList);
-            
         }
 
            

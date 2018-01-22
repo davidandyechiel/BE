@@ -77,6 +77,7 @@ namespace PLWPF
             child = new BE.Child(_child);
             grid1.DataContext = child;
             update = true;
+            idTextBox.IsEnabled = false;
             mom = _mom;
             genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.EnumClasses.E_gender)).Cast<BE.EnumClasses.E_gender>();
         }

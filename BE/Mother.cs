@@ -230,7 +230,7 @@ namespace BE
             dthoursTable = new DateTime[6,2];
         }
 
-        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids, DateTime[,] dthoursTable)
+        public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids)
         {
             
             this.id = id;
@@ -245,7 +245,7 @@ namespace BE
             this.needNanny = needNanny;
             this.notes = notes;
             this.numOfKids = numOfKids;
-            this.dthoursTable = dthoursTable;
+            
             needNanny = new bool[6];
             for (int i = 0; i < 6; i++)
             {

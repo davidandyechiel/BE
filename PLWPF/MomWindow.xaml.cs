@@ -93,6 +93,17 @@ namespace PLWPF
                 Brothers.Add(brother);
             children_combo_box.DataContext = Brothers;
 
+            //set the sliders
+
+            DateTime[,] hourArray = _mom.DThoursTable;
+            int i = 0;
+            foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
+            {
+                
+                item.LowerValue = CC.DateTimeToDouble(hourArray[i, 0]);
+                item.UpperValue = CC.DateTimeToDouble(hourArray[i, 1]);
+                i++;
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -103,8 +114,7 @@ namespace PLWPF
                 // If the user sure that he wants so save ...
                 if (CC.YES_NO_Window("save"))
                 {
-                    //set new mother
-                    //            mom = new Mother(mom);
+
                     //set houtsTable
                     List<double> hoursList = new List<double>();
                     foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
@@ -113,6 +123,7 @@ namespace PLWPF
                         hoursList.Add(item.UpperValue);
                     }
                     Mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
+
                     //update the the mother id of the children before delete
 
                     foreach (Child child in children_combo_box.Items)
@@ -121,8 +132,8 @@ namespace PLWPF
                             child.MothersId = int.Parse(idTextBox.Text);
                             CC.bl.Add(child);
                         }
-                    // add new brothers to DS
 
+                    // add new brothers to DS
                     if (update)
                         CC.bl.Update(Mom);
                     else // need only to add
@@ -131,13 +142,8 @@ namespace PLWPF
                     Close();
                 }
 
-
-
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("check your input and try again");
-            }
+            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -280,6 +286,11 @@ namespace PLWPF
         private void idTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
 
+
+        }
+
+        private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }

@@ -209,7 +209,7 @@ namespace PLWPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            MomWindow nan = new MomWindow(new SUMother_page());
+            updateNannyWindow nan = new updateNannyWindow();
             nan.Show();
         }
 

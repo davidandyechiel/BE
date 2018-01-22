@@ -7,6 +7,9 @@ using System.Windows;
 using System.Globalization;
 using System.Windows.Data;
 using BE;
+
+using System.Collections.ObjectModel;
+
 namespace PLWPF
 {
     /// <summary>
@@ -89,6 +92,19 @@ namespace PLWPF
         {
             return CC.bl.FilterBy(list, p);
         }
+
+        public static void Clone(this ObservableCollection<Contract> list, IEnumerable<Contract> cloneFrom)
+        {
+            list.Clear();
+            foreach (var item in cloneFrom)
+            {
+                list.Add(item);
+            }
+           
+
+        }
+
+
     }
 
 
