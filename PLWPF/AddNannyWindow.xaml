@@ -22,59 +22,60 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="adressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Adress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Birth Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <DatePicker x:Name="birthDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="{Binding BirthDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Depended Days Off:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <CheckBox x:Name="dependedDaysOffCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DependedDaysOff, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <Label Content="Difference:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="differenceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Difference, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <CheckBox x:Name="elevatorCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Elevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <Label Content="Experince:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="experinceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Experince, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <TextBox x:Name="floorTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Hour Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBox x:Name="hourRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding HourRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=perHourCheckBox}"/>
-            <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
-            <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Max Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
-            <TextBox x:Name="maxAgeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="11" Text="{Binding MaxAge, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Max Capacity:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="12" VerticalAlignment="Center"/>
-            <TextBox x:Name="maxCapacityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="12" Text="{Binding MaxCapacity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Min Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
-            <TextBox x:Name="minAgeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="13" Text="{Binding MinAge, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="14" VerticalAlignment="Center"/>
-            <TextBox x:Name="monthlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="14" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
-            <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,8,102.667,8" Grid.Row="15" VerticalAlignment="Center"/>
-            <Label Content="Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
-            <TextBox x:Name="phoneNumTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="16" Text="{Binding PhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="17" VerticalAlignment="Center"/>
-            <TextBox x:Name="recommendationsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="17" Text="{Binding Recommendations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="adressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="3" Text="{Binding Adress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Birth Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="4" VerticalAlignment="Center"/>
+            <DatePicker x:Name="birthDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3.333,4,0,4" Grid.Row="4" SelectedDate="{Binding BirthDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Content="Depended Days Off:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="14" VerticalAlignment="Center"/>
+            <CheckBox x:Name="dependedDaysOffCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DependedDaysOff, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3.333,8,0,8" Grid.Row="14" VerticalAlignment="Center"/>
+            <Label Content="Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="5" VerticalAlignment="Center"/>
+            <CheckBox x:Name="elevatorCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Elevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3.333,8,0,8" Grid.Row="5" VerticalAlignment="Center"/>
+            <Label Content="Experince:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="16" VerticalAlignment="Center"/>
+            <TextBox x:Name="experinceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="16" Text="{Binding Experince, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="floorTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="6" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Hour Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="9" VerticalAlignment="Center"/>
+            <TextBox x:Name="hourRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="9" Text="{Binding HourRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=perHourCheckBox}"/>
+            <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center" />
+            <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Max Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="12" VerticalAlignment="Center"/>
+            <TextBox x:Name="maxAgeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="12" Text="{Binding MaxAge, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Max Capacity:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="13" VerticalAlignment="Center"/>
+            <TextBox x:Name="maxCapacityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="13" Text="{Binding MaxCapacity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Min Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="11" VerticalAlignment="Center"/>
+            <TextBox x:Name="minAgeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="11" Text="{Binding MinAge, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="10" VerticalAlignment="Center"/>
+            <TextBox x:Name="monthlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="10" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="8" VerticalAlignment="Center"/>
+            <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,8,102.667,8" Grid.Row="8" VerticalAlignment="Center"/>
+            <Label Content="Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="phoneNumTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="7" Text="{Binding PhoneNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="15" VerticalAlignment="Center"/>
+            <TextBox x:Name="recommendationsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="15" Text="{Binding Recommendations, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="14,-2,0,8" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="idTextBox" HorizontalAlignment="Left" Height="23" Margin="3,1,0,8" Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=TwoWay}" VerticalAlignment="Center" Width="120"  />
         </Grid>
         <Grid x:Name="grid2" DataContext="{StaticResource nannyViewSource}" HorizontalAlignment="Left" Margin="99,38,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -84,12 +85,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay}" VerticalAlignment="Center" Width="120" />
 
-        </Grid>
+        </Grid> 
 
-        <Grid HorizontalAlignment="Left" Height="162" Margin="325,369,0,0" VerticalAlignment="Top" Width="454">
+        <Grid x:Name="tpGrid" HorizontalAlignment="Left" Height="162" Margin="325,369,0,0" VerticalAlignment="Top" Width="454">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="3*"/>
@@ -103,18 +102,24 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="2"  />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="2" />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="2" />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="2" />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="2"  />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="2"  />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="1" />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="1" />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="1" />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="1"  />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="1"  />
-            <TimePicker:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="1"  />
+            <TimePicker:TimePicker x:Name="tpSundatSart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="1" />
+            <TimePicker:TimePicker  x:Name="tpSundatEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="2"  />
+            <TimePicker:TimePicker x:Name="tpMondayStart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="1" />
+            <TimePicker:TimePicker x:Name="tpMondayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="2" />
+            <TimePicker:TimePicker  x:Name="tpTuesdayStart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="1" />
+            <TimePicker:TimePicker  x:Name="tpTuesdayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="2" />
+            <TimePicker:TimePicker  x:Name="tpWednesdayStart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="1"  />
+            <TimePicker:TimePicker  x:Name="tpWednesdayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="2" />
+            <TimePicker:TimePicker  x:Name="tpThursdayStart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="1"  />
+            <TimePicker:TimePicker  x:Name="tpThursdayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="2"  />
+            <TimePicker:TimePicker  x:Name="tpFridayStart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="1"  />
+            <TimePicker:TimePicker  x:Name="tpFridayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="2"  />
+           
+           
+            
+           
+           
+            
             <Label x:Name="label1" Content="Sunday" Grid.Column="0" Grid.Row="0" />
             <Label x:Name="label2" Content="Monday" Grid.Column="1" Grid.Row="0" />
             <Label x:Name="label3" Content="Tuesday" Grid.Column="2" Grid.Row="0" />

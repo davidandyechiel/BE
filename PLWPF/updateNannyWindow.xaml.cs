@@ -38,22 +38,36 @@ namespace PLWPF
         public updateNannyWindow()
         {
             InitializeComponent();
+             
             this.updateNannyByIdcomboBox.ItemsSource = CC.bl.getNannyDS();
             this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
             this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
-            this.DataContext = Nanny;
+            grid1.DataContext = Nanny;
             hourRateTextBox.IsEnabled = false;
         }
+        /// <summary>
+        /// Nanny update mode
+        /// </summary>
+        /// <param name="_nanny"> existing nanny </param>
+        public updateNannyWindow(SUNanny_page fromSUnanny, Nanny _nanny)
+        {
+            InitializeComponent();
+            nanny = new BE.Nanny(_nanny);
+            grid1.DataContext = nanny;
+           
 
-      
+        }
+
 
         private void updatebutton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                CC.bl.Update(Nanny);
-                Nanny = new BE.Nanny();
-                this.DataContext = Nanny;
+                
+                CC.bl.Update(nanny);
+              //  Nanny = new BE.Nanny();
+               // grid1.DataContext = Nanny;
+              //  CC.bl.Update(Nanny);
                 MessageBox.Show("successfully updated nanny");
                 this.Close();
             }
@@ -74,7 +88,7 @@ namespace PLWPF
                 try
                 {
                 Nanny = (BE.Nanny)updateNannyByIdcomboBox.SelectedItem;
-                this.DataContext = Nanny;
+                grid1.DataContext = Nanny;
                 }
             catch (Exception ex)
             {

@@ -24,7 +24,7 @@
                 <DataGridTextColumn x:Name="lastNameColumn" Width="SizeToHeader" Header="Last Name" Binding="{Binding LastName}"/>
                 <DataGridTextColumn x:Name="firstNameColumn" Width="SizeToHeader" Header="First Name" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" Header="Adress" Binding="{Binding Adress}"/>
+                <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" Header="Nannys Address" Binding="{Binding Adress}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="AddNanny" Content="Add Nanny" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Width="90" Click="AddNanny_Click" Grid.ColumnSpan="2"/>
@@ -38,7 +38,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="idComboBox" Grid.Column="1" DisplayMemberPath="Id" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="idComboBox" Grid.Column="1" DisplayMemberPath="Id" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="idComboBox_SelectionChanged">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
