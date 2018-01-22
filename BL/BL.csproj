@@ -47,7 +47,6 @@
     <Compile Include="BL_basic %28part 2%29.cs" />
     <Compile Include="BL_Basic.cs" />
     <Compile Include="IBL.cs" />
-    <Compile Include="Nanny.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

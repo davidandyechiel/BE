@@ -47,10 +47,13 @@ namespace PLWPF
            
             try
             {
+               
                 DateTime[][]hourList= new DateTime[6][];
                 int i = 0;
                 foreach (RoyT.TimePicker.TimePicker tp in tpGrid.Children)
                 {
+                    if (hourList[i / 2] == null)
+                        hourList[i / 2] = new DateTime[2];
                     hourList[i / 2][ i % 2] = CC.DoubleToDateTime(tp.Time.Hour, tp.Time.Minute);
                     i++;
                 }

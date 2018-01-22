@@ -81,7 +81,7 @@ namespace PLWPF
         }
         public static DateTime DoubleToDateTime(int H ,int m)
         {
-            string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H / 10).ToString() : (H / 10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
+            string str = string.Format("{0}:{1}", (H < 10 ? "0" + (H / 10).ToString() : (H / 10).ToString()), (m < 30 ? "00" : "30")); // set string in format HH:mm
             return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
