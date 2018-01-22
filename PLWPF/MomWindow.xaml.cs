@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using BE;
 
 namespace PLWPF
@@ -20,12 +21,14 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for MomWindow.xaml
     /// </summary>
-    public partial class MomWindow : Window
+    public partial class MomWindow : Window , INotifyPropertyChanged
     {
         bool update;
         private BE.Mother mom;
         private SUMother_page SUmom;
         private ObservableCollection<BE.Child> brothers = new ObservableCollection<Child>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Child> Brothers
         {
@@ -40,6 +43,19 @@ namespace PLWPF
             }
         }
 
+        public Mother Mom
+        {
+            get
+            {
+                return mom;
+            }
+
+            set
+            {
+                mom = value;
+            }
+        }
+
         // TODO: 
 
 
@@ -49,11 +65,11 @@ namespace PLWPF
         public MomWindow(SUMother_page fromSUmom) // add new mom
         {
             InitializeComponent();
-            mom = new BE.Mother();
+            Mom = new BE.Mother();
             idTextBox.IsReadOnly = false;
-            grid1.DataContext = mom;
+            grid1.DataContext = Mom;
             update = false; // new mom
-            foreach (BE.Child child in CC.bl.collectBrothers(mom.Id))
+            foreach (BE.Child child in CC.bl.collectBrothers(Mom.Id))
                 Brothers.Add(child);
             SUmom = fromSUmom;
             children_combo_box.DataContext = Brothers;
@@ -66,13 +82,13 @@ namespace PLWPF
         public MomWindow(SUMother_page fromSUmom, Mother _mom)
         {
             InitializeComponent();
-            mom = new BE.Mother(_mom);
-            grid1.DataContext = mom;
+            Mom = new BE.Mother(_mom);
+            grid1.DataContext = Mom;
             idTextBox.IsReadOnly = true;
            // idTextBox.IsEnabled = false; // lock the id, id is inchangeable
             update = true;
             SUmom = fromSUmom;
-            foreach (BE.Child brother in CC.bl.collectBrothers(mom.Id))
+            foreach (BE.Child brother in CC.bl.collectBrothers(Mom.Id))
                 Brothers.Add(brother);
             children_combo_box.DataContext = Brothers;
 
@@ -95,7 +111,7 @@ namespace PLWPF
                         hoursList.Add(item.LowerValue);
                         hoursList.Add(item.UpperValue);
                     }
-                    mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
+                    Mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
                     //update the the mother id of the children before delete
 
                     foreach (Child child in children_combo_box.Items)
@@ -107,10 +123,10 @@ namespace PLWPF
                     // add new brothers to DS
 
                     if (update)
-                        CC.bl.Update(mom);
+                        CC.bl.Update(Mom);
                     else // need only to add
-                        CC.bl.Add(mom);
-                    SUmom.hadChange(mom, update);
+                        CC.bl.Add(Mom);
+                    SUmom.hadChange(Mom, update);
                     Close();
                 }
 
@@ -220,8 +236,8 @@ namespace PLWPF
             {
                 if (CC.YES_NO_Window("Clear"))
                 {
-                    mom = new Mother();
-                    grid1.DataContext = mom;
+                    Mom = new Mother();
+                    grid1.DataContext = Mom;
                     update = false;
                     idTextBox.IsEnabled = true;
 
@@ -238,17 +254,7 @@ namespace PLWPF
         }
 
 
-        /*    private void Clear_Click(object sender, RoutedEventArgs e)
-             {
-                 if (CC.YES_NO_Window("clear"))
-                 {
-                 mom = new Mother();
-                 grid1.DataContext = mom;
-
-                     update = false;
-                     idTextBox.IsEnabled = true;
-                 }
-             }*/
+          
 
         private void Slider_ValueChanged_start(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -270,6 +276,12 @@ namespace PLWPF
          //             (sender as Slider).Value = sunday_start_slider.Value;
                   (sender as Slider).ToolTip = CC.DoubleToDateTime(e.NewValue).ToString("to HH:mm");
               }*/
+        }
+
+        private void idTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+         
+
         }
 
 

@@ -12,15 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;using System.ComponentModel;
 using BE;
 
-namespace PLWPF
+namespace PLWPF 
 {
     /// <summary>
     /// Interaction logic for SUMother_page.xaml
     /// </summary>
-    public partial class SUMother_page : Page
+    public partial class SUMother_page : Page  
     {
         private ObservableCollection<Mother> motherCollection;
         private Mother currentMom;

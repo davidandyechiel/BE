@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace BE
 {
-    public class Contract : IComparable
+    public class Contract : IComparable, INotifyPropertyChanged
     {
         public static int ContractNumCounter = 10000000;
 
@@ -30,6 +31,8 @@ namespace BE
             set
             {
                 contractNum = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("contractNum"));
             }
 
         }
@@ -40,6 +43,13 @@ namespace BE
             {
                 return nannysID;
             }
+            set
+            {
+                nannysID = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NannysID"));
+
+            }
 
         }
 
@@ -48,6 +58,13 @@ namespace BE
             get
             {
                 return childID;
+            }
+            set
+            {
+                childID = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ChildID"));
+
             }
 
         }
@@ -62,6 +79,8 @@ namespace BE
             set
             {
                 hadMeeting = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("HadMeeting"));
             }
         }
 
@@ -75,6 +94,8 @@ namespace BE
             set
             {
                 isSigned = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("IsSigned"));
             }
         }
 
@@ -88,6 +109,8 @@ namespace BE
             set
             {
                 wages = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Wages"));
             }
         }
 
@@ -114,6 +137,8 @@ namespace BE
             set
             {
                 ishourly = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Ishourly"));
             }
         }
 
@@ -127,6 +152,8 @@ namespace BE
             set
             {
                 startDate = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("StartDate"));
             }
         }
 
@@ -140,9 +167,11 @@ namespace BE
             set
             {
                 endDate = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("EndDate"));
             }
         }
-
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
         #region Ctors
         public Contract() { }
@@ -194,6 +223,7 @@ namespace BE
         {
             return (NannysID == (((Contract)obj).NannysID) && ChildID == (((Contract)obj).ChildID));
         }
+
 
 
     }

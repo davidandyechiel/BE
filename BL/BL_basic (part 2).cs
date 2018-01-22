@@ -49,7 +49,7 @@ namespace BL
             //       return conditionMakers.ToList();
 
             //var newArray =MyDal.getContractDS().where(item => item 2 == 0).select(item => item * 2);
-            var arr = from item in MyDal.ContractDS where (conditions(item)) select item ;
+            var arr = from item in MyDal.ContractDS where (conditions(item)) select item;
             return arr.ToList();
             /*List<Contract> list = new List<Contract>();
             foreach (Contract contract in getContractDS())
@@ -57,7 +57,7 @@ namespace BL
                     list.Add(contract);
             return list;*/
         }
-    
+
         public int CountTheContractsHow(Del condition)
         {
             return (AllTheContractsHow(condition).Count);
@@ -104,7 +104,7 @@ namespace BL
             {
                 list.Sort(delegate (Contract x, Contract y)
                 {
-                     return findMotherFromContract(x).CompareTo(findMotherFromContract(y));
+                    return findMotherFromContract(x).CompareTo(findMotherFromContract(y));
                 });
             }
             return list.GroupBy
@@ -113,12 +113,21 @@ namespace BL
                 , contract => contract);
         }
 
-        private Nanny findNannyFromContract(Contract contract)
+        public IEnumerable<IGrouping<bool, Contract>> FilterBy(Predicate<Contract> p)
         {
-             return MyDal.FindNanny(x => x.Id == contract.NannysID);
+            List<Contract> list = getContractDS();
+            return list.GroupBy(cont => p(cont), cont => cont);
         }
 
-        
+
+
+
+        private Nanny findNannyFromContract(Contract contract)
+        {
+            return MyDal.FindNanny(x => x.Id == contract.NannysID);
+        }
+
+
 
         public string MotherWantedAddress(Mother mom)
         {
@@ -126,13 +135,13 @@ namespace BL
         }
 
 
-         public IEnumerable<Child> collectBrothers(int id)
+        public IEnumerable<Child> collectBrothers(int id)
         {
             return (from item in MyDal.ChildDS where (item.MothersId == id) select item);
         }
 
 
-       
+
 
 
     }

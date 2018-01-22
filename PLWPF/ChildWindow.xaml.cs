@@ -55,7 +55,7 @@ namespace PLWPF
     public partial class ChildWindow : Window
     {
         //TODO: change size event
-
+        //TODO: Inotipfy for child
         bool update; // need an update or just add
         BE.Child child;
         MomWindow mom;

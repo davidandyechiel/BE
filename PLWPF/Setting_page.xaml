@@ -9,6 +9,20 @@
       Title="Setting_page">
 
     <Grid>
-        
+        <Label x:Name="Main_menu_Adress" Content="Main menu Adress:" HorizontalAlignment="Left" Margin="12,9,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="TextAddress" HorizontalAlignment="Left" Height="23" Margin="140,10,0,0" TextWrapping="Wrap" Text="הועד הלאומי 21, ירושלים" VerticalAlignment="Top" Width="150" TextChanged="textBox_TextChanged"/>
+        <Separator HorizontalAlignment="Left" Height="25" Margin="0,55,0,0" VerticalAlignment="Top" Width="300"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="180,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.583,0.556" Width="32" Maximum="1" SmallChange="1"/>
+        <Label x:Name="Data_Source" Content="Data Source:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="XML" HorizontalAlignment="Left" Margin="146,85,0,0" TextWrapping="Wrap" Text="XML" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LIST" HorizontalAlignment="Left" Margin="215,85,0,0" TextWrapping="Wrap" Text="LIST" VerticalAlignment="Top"/>
+        <Separator HorizontalAlignment="Left" Height="25" Margin="0,119,0,0" VerticalAlignment="Top" Width="300"/>
+        <Slider x:Name="slider_Copy" HorizontalAlignment="Left" Margin="180,149,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.583,0.556" Width="32" Maximum="1" SmallChange="1"/>
+        <Label x:Name="Language" Content="Language:" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="ENG" HorizontalAlignment="Left" Margin="146,149,0,0" TextWrapping="Wrap" Text="ENG" VerticalAlignment="Top"/>
+        <TextBlock x:Name="HEB" HorizontalAlignment="Left" Margin="215,149,0,0" TextWrapping="Wrap" Text="HEB" VerticalAlignment="Top"/>
+        <Separator HorizontalAlignment="Left" Height="25" Margin="0,175,0,0" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="TextAddressToLocation" HorizontalAlignment="Left" Height="23" Margin="140,37,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="150" TextChanged="textBox_TextChanged"/>
+
     </Grid>
 </Page>
