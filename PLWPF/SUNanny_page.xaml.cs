@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using BE;
 
 namespace PLWPF
 {
@@ -20,10 +22,30 @@ namespace PLWPF
     /// </summary>
     public partial class SUNanny_page : Page
     {
+        private ObservableCollection<Nanny> nannyCollection;
+        private Nanny currentnanny;
+        #region PROPERTY
+        public ObservableCollection<Nanny> NannyCollection
+        {
+            get
+            {
+                return nannyCollection;
+            }
+
+            set
+            {
+                nannyCollection = value;
+            }
+        }
+        #endregion
         public BL.IBL bl;
         public SUNanny_page()
         {
             InitializeComponent();
+            nannyCollection = new ObservableCollection<Nanny>(CC.bl.getNannyDS());
+            nannyDataGrid.ItemsSource = nannyCollection;
+            DataContext = nannyCollection;
+            currentnanny = new Nanny();
             idComboBox.ItemsSource = CC.bl.getNannyDS();
             nannyDataGrid.ItemsSource = CC.bl.getNannyDS();
         }
@@ -37,10 +59,16 @@ namespace PLWPF
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-
+            updateNannyWindow updNan = new updateNannyWindow(this,idComboBox.SelectedItem as Nanny);
+            updNan.Show();
         }
 
         private void nannyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void idComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

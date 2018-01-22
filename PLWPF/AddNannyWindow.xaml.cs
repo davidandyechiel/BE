@@ -27,8 +27,9 @@ namespace PLWPF
         {
             InitializeComponent();
             nanny = new BE.Nanny();
+            this.DataContext = nanny;
             this.grid1.DataContext = nanny;
-            this.grid2.DataContext = nanny;
+           
 
           //  bl = BL.blfactory.getbl();
         }
@@ -43,18 +44,31 @@ namespace PLWPF
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+           
             try
             {
+                DateTime[][]hourList= new DateTime[6][];
+                int i = 0;
+                foreach (RoyT.TimePicker.TimePicker tp in tpGrid.Children)
+                {
+                    hourList[i / 2][ i % 2] = CC.DoubleToDateTime(tp.Time.Hour, tp.Time.Minute);
+                    i++;
+                }
+                nanny.DThoursTable = hourList;
                 nanny.Id = int.Parse(this.idTextBox.Text);
                 CC.bl.Add(nanny);
                 nanny = new BE.Nanny();
-                this.grid1.DataContext = nanny;
+                grid1.DataContext = nanny;
+                grid2.DataContext = nanny;
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
 
+            var v = tpFridayEnd.Time;
+            
+            
         }
 
         private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace BE
 {
     
 
 
-    public class Nanny : IComparable
+    public class Nanny : IComparable,INotifyPropertyChanged
     {
         private int id;
         private string lastName;
@@ -34,6 +35,8 @@ namespace BE
         private DateTime[][] dthoursTable;//table that stores the start and end time of each day of the week
         private int difference; // 
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
         #region Property
         public int Id
@@ -42,7 +45,12 @@ namespace BE
             {
                 return id;
             }
-            set { id = value; }
+            set { id = value;
+
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Id"));
+                
+            }
         }
 
         public string LastName
@@ -55,6 +63,7 @@ namespace BE
             set
             {
                 lastName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LastName"));
             }
         }
 
@@ -68,6 +77,7 @@ namespace BE
             set
             {
                 firstName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FirstName"));
             }
         }
 
@@ -81,6 +91,7 @@ namespace BE
             set
             {
                 birthDate = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BirthDate"));
             }
         }
 
@@ -94,6 +105,7 @@ namespace BE
             set
             {
                 phoneNum = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PhoneNum"));
             }
         }
 
@@ -107,6 +119,7 @@ namespace BE
             set
             {
                 elevator = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Elevator"));
             }
         }
 
@@ -120,6 +133,7 @@ namespace BE
             set
             {
                 adress = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Adress"));
             }
         }
 
@@ -133,6 +147,7 @@ namespace BE
             set
             {
                 floor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Floor"));
             }
         }
 
@@ -146,6 +161,7 @@ namespace BE
             set
             {
                 experince = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Experince"));
             }
         }
 
@@ -159,6 +175,7 @@ namespace BE
             set
             {
                 maxCapacity = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MaxCapacity"));
             }
         }
 
@@ -172,6 +189,7 @@ namespace BE
             set
             {
                 minAge = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MinAge"));
             }
         }
 
@@ -185,6 +203,7 @@ namespace BE
             set
             {
                 maxAge = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MaxAge"));
             }
         }
 
@@ -198,6 +217,7 @@ namespace BE
             set
             {
                 perHour = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PerHour"));
             }
         }
 
@@ -211,6 +231,7 @@ namespace BE
             set
             {
                 hourRate = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HourRate"));
             }
         }
 
@@ -225,6 +246,7 @@ namespace BE
             set
             {
                 recommendations = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Recommendations"));
             }
         }
 
@@ -238,6 +260,7 @@ namespace BE
             set
             {
                 dependedDaysOff = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DependedDaysOff"));
             }
         }
 
@@ -251,6 +274,7 @@ namespace BE
             set
             {
                 daysOfWork = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DaysOfWork"));
             }
         }
 
@@ -276,6 +300,7 @@ namespace BE
             set
             {
                 dthoursTable = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DThoursTable"));
             }
         }
 
@@ -289,6 +314,7 @@ namespace BE
             set
             {
                 difference = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Difference"));
             }
         }
 
@@ -302,6 +328,7 @@ namespace BE
             set
             {
                 monthlyRate = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MonthlyRate"));
             }
         }
 
@@ -365,6 +392,30 @@ namespace BE
             this.dependedDaysOff = dependedDaysOff;
             this.daysOfWork = daysOfWork;
             this.dthoursTable = dthoursTable;
+        }
+
+        public Nanny(Nanny nanny)
+        {
+            this.id = nanny.id;
+            this.lastName = nanny.lastName;
+            this.firstName = nanny.firstName;
+            this.birthDate = nanny.birthDate;
+            this.phoneNum = nanny.phoneNum;
+            this.elevator = nanny.elevator;
+            this.adress = nanny.adress;
+            this.floor = nanny.floor;
+            this.experince = nanny.experince;
+            this.maxCapacity = nanny.maxCapacity;
+            this.minAge = nanny.minAge;
+            this.maxAge = nanny.maxAge;
+            this.perHour = nanny.perHour;
+            this.hourRate = nanny.hourRate;
+            this.monthlyRate = nanny.monthlyRate;
+            this.recommendations = nanny.recommendations;
+            this.dependedDaysOff = nanny.dependedDaysOff;
+            this.daysOfWork = nanny.daysOfWork;
+            this.dthoursTable = nanny.dthoursTable;
+            this.difference = nanny.difference;
         }
 
 

@@ -31,7 +31,17 @@ namespace PLWPF
                                              MessageBoxButton.OK,
                                              MessageBoxImage.Exclamation);
         }
+        static public DateTime[][] setHoursIntDT(params int[] times)
+        {
 
+            DateTime[][] hours = new DateTime[6][];
+            for (int i = 0; i < times.Length; i ++)
+            {
+                hours[i ][0] = DoubleToDateTime(times[i]);
+                hours[i ][1] = DoubleToDateTime(times[i + 1]);
+            }
+            return hours;
+        }
 
 
         static public DateTime[][] setHoursDT(params double[] times)
@@ -64,6 +74,11 @@ namespace PLWPF
             int H = (int)d;
             int m = (int)(d - H);
             string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H/10).ToString() : (H/10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
+            return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
+        public static DateTime DoubleToDateTime(int H ,int m)
+        {
+            string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H / 10).ToString() : (H / 10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
             return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
