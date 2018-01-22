@@ -15,7 +15,7 @@ namespace BE
         private int mothersId;
         private string fName;
         private string lName;
-        private E_gender gender;
+        private EnumClasses.E_gender gender;
         private bool spacialNeeds;
         private string spacialNeedsDescription;
         private DateTime birthday;
@@ -85,7 +85,7 @@ namespace BE
 
 
 
-        public E_gender Gender
+        public EnumClasses.E_gender Gender
         {
             get
             {
@@ -153,7 +153,7 @@ namespace BE
         {
             mothersId = momId;
         }
-        public Child(int id, int mothersId, string fName, string lName, E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
+        public Child(int id, int mothersId, string fName, string lName,  EnumClasses.E_gender gender, bool spacialNeeds, string spacialNeedsDescription, DateTime birthday)
         {
             this.id = id;
             this.mothersId = mothersId;

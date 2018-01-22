@@ -68,7 +68,7 @@ namespace PLWPF
             child = new BE.Child();
             grid1.DataContext = child;
             update = false;
-            genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.E_gender)).Cast<BE.E_gender>();
+            genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.EnumClasses.E_gender)).Cast<BE.EnumClasses.E_gender>();
         }
 
         public ChildWindow(MomWindow _mom, BE.Child _child)
@@ -78,7 +78,7 @@ namespace PLWPF
             grid1.DataContext = child;
             update = true;
             mom = _mom;
-            genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.E_gender)).Cast<BE.E_gender>();
+            genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.EnumClasses.E_gender)).Cast<BE.EnumClasses.E_gender>();
         }
 
 

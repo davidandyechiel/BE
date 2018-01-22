@@ -12,7 +12,7 @@
         <Label x:Name="Main_menu_Adress" Content="Main menu Adress:" HorizontalAlignment="Left" Margin="12,9,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="TextAddress" HorizontalAlignment="Left" Height="23" Margin="140,10,0,0" TextWrapping="Wrap" Text="הועד הלאומי 21, ירושלים" VerticalAlignment="Top" Width="150" TextChanged="textBox_TextChanged"/>
         <Separator HorizontalAlignment="Left" Height="25" Margin="0,55,0,0" VerticalAlignment="Top" Width="300"/>
-        <Slider x:Name="DSslider" HorizontalAlignment="Left" Margin="180,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.583,0.556" Width="32" Maximum="1" SmallChange="1" GotMouseCapture="DSslider_GotMouseCapture" TickFrequency="0"  />
+        <Slider x:Name="DSslider" HorizontalAlignment="Left" Margin="180,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.583,0.556" Width="32" Maximum="1" SmallChange="1" GotMouseCapture="DSslider_GotMouseCapture" TickFrequency="0" ValueChanged="DSslider_ValueChanged_2"  />
         
         <Label x:Name="Data_Source" Content="Data Source:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock x:Name="XML" HorizontalAlignment="Left" Margin="146,85,0,0" TextWrapping="Wrap" Text="XML" VerticalAlignment="Top"/>

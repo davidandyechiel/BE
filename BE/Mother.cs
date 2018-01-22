@@ -300,10 +300,15 @@ namespace BE
             dthoursTable = new DateTime[6, 2];
         }
 
+        public Mother(int id)
+        {
+            this.id = id;
+        }
+
 
         #endregion
 
-        
+
 
 
 

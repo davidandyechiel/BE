@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BE;
 using DAL;
 
-
 namespace DS
 {
 
@@ -37,7 +36,7 @@ namespace DS
             if (!(Exists(obj))) // it the object isnt exist
                 switch (getEnum(obj))
                 {
-                    case (E_type.CONTRACT):
+                    case (EnumClasses.E_type.CONTRACT):
                         if (!(MyDS.getMotherDS().Exists(x => x.Id == (MyDS.getChildDS().Find(y => y.Id == ((obj as Contract).ChildID)).MothersId))))
                             //if the mother's Id of the child in the contract is not exist in the motherlist
                             throw new Exception("the mother is not exist in the DS");
@@ -49,13 +48,13 @@ namespace DS
                         (obj as Contract).IsSigned = true; // sign the contract
                         MyDS.getContractDS().Add(obj as Contract);
                         break;
-                    case (E_type.CHILD):
+                    case (EnumClasses.E_type.CHILD):
                         MyDS.getChildDS().Add(obj as Child);
                         break;
-                    case (E_type.MOTHER):
+                    case (EnumClasses.E_type.MOTHER):
                         MyDS.getMotherDS().Add(obj as Mother);
                         break;
-                    case (E_type.NANNY):
+                    case (EnumClasses.E_type.NANNY):
                         MyDS.getNannyDS().Add(obj as Nanny);
                         break;
                     default:
@@ -81,13 +80,13 @@ namespace DS
         {
             switch (getEnum(obj))
             {
-                case (E_type.CONTRACT):
+                case (EnumClasses.E_type.CONTRACT):
                     return MyDS.getContractDS().Exists((obj as Contract).Equals);
-                case (E_type.CHILD):
+                case (EnumClasses.E_type.CHILD):
                     return MyDS.getChildDS().Exists((obj as Child).Equals);
-                case (E_type.MOTHER):
+                case (EnumClasses.E_type.MOTHER):
                     return MyDS.getMotherDS().Exists((obj as Mother).Equals);
-                case (E_type.NANNY):
+                case (EnumClasses.E_type.NANNY):
                     return MyDS.getNannyDS().Exists((obj as Nanny).Equals);
                 default:
                     throw new Exception(obj + "cannot be Added");
@@ -100,16 +99,16 @@ namespace DS
             if (Exists(obj)) // it the object is exist
                 switch (getEnum(obj))
                 {
-                    case (E_type.CONTRACT):
+                    case (EnumClasses.E_type.CONTRACT):
                         MyDS.getContractDS().RemoveAt(MyDS.getContractDS().FindIndex(obj.Equals));
                         break;
-                    case (E_type.CHILD):
+                    case (EnumClasses.E_type.CHILD):
                         MyDS.getChildDS().RemoveAt(MyDS.getChildDS().FindIndex(obj.Equals));
                         break;
-                    case (E_type.MOTHER):
+                    case (EnumClasses.E_type.MOTHER):
                         MyDS.getMotherDS().RemoveAt(MyDS.getMotherDS().FindIndex(obj.Equals));
                         break;
-                    case (E_type.NANNY):
+                    case (EnumClasses.E_type.NANNY):
                         MyDS.getNannyDS().RemoveAt(MyDS.getNannyDS().FindIndex(obj.Equals));
                         break;
                     default:
@@ -124,19 +123,19 @@ namespace DS
             if (Exists(obj)) // it the object is exist
                 switch (getEnum(obj))
                 {
-                    case (E_type.CONTRACT):
+                    case (EnumClasses.E_type.CONTRACT):
                         Remove(obj as Contract);
                         Add(obj as Contract);
                         break;
-                    case (E_type.CHILD):
+                    case (EnumClasses.E_type.CHILD):
                         Remove(obj as Child);
                         Add(obj as Child);
                         break;
-                    case (E_type.MOTHER):
+                    case (EnumClasses.E_type.MOTHER):
                         Remove(obj as Mother);
                         Add(obj as Mother);
                         break;
-                    case (E_type.NANNY):
+                    case (EnumClasses.E_type.NANNY):
                         Remove(obj as Nanny);
                         Add(obj as Nanny);
                         break;
@@ -183,17 +182,17 @@ namespace DS
         #endregion
 
 
-        public static E_type getEnum(object obj)
+        public static EnumClasses.E_type getEnum(object obj)
         {
 
             if (obj is Contract)
-                return E_type.CONTRACT;
+                return EnumClasses.E_type.CONTRACT;
             if (obj is Child)
-                return E_type.CHILD;
+                return EnumClasses.E_type.CHILD;
             if (obj is Mother)
-                return E_type.MOTHER;
+                return EnumClasses.E_type.MOTHER;
             if (obj is Nanny)
-                return E_type.NANNY;
+                return EnumClasses.E_type.NANNY;
             else throw new Exception("Unknown Type");
         }
 

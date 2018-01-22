@@ -4,13 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PLWPF"
-      xmlns:BE="clr-namespace:BE;assembly=BE" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="PLWPF.SUContract_page"
+      xmlns:BE="clr-namespace:BE;assembly=BE" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" xmlns:ImageryService="clr-namespace:PLWPF.ImageryService" x:Class="PLWPF.SUContract_page"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="SUContract_page">
 
     <Page.Resources>
         <CollectionViewSource x:Key="contractViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Contract}, CreateList=True}"/>
+        <CollectionViewSource x:Key="mapUriResponseViewSource" d:DesignSource="{d:DesignInstance {x:Type ImageryService:MapUriResponse}, CreateList=True}"/>
     </Page.Resources>
 
     <Grid DataContext="{StaticResource contractViewSource}">
@@ -19,19 +20,42 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid x:Name="contractDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="-5,130,5,0" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="contractDataGrid_SelectionChanged">
+        <DataGrid x:Name="contractDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,135,0,30" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="contractDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="contractNumColumn" Width="SizeToHeader" Header="Contract #" Binding="{Binding ContractNum}" MinWidth="65" />
+                <DataGridTextColumn x:Name="contractNumColumn" Width="SizeToHeader" Header="Contract #" Binding="{Binding ElementName=contractDataGrid}" MinWidth="65" />
                 <DataGridTextColumn x:Name="childIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Child ID"  Binding="{Binding ChildID}" MinWidth="150"/>
                 <DataGridTextColumn x:Name="nannysIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Nannys ID" Binding="{Binding NannysID}" MinWidth="150"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="filterButton" Content="FILTER" Margin="110,95,115,0" Height="20" VerticalAlignment="Top" Click="filterButton_Click"/>
-        <RadioButton x:Name="contnum" Content="Contract &#xA; Number" Margin="20,25,0,0" VerticalAlignment="Top" Custom:ButtonHelper.PreserveTextCase="True" HorizontalAlignment="Left" Width="67"/>
-        <RadioButton x:Name="childnum" Content="Childs ID&#13;Number" Margin="110,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="66"/>
-        <RadioButton x:Name="nannynum" Content="Nannys ID&#13;number" Margin="202,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="73"/>
+        <Button x:Name="filterButton" Content="FILTER" Margin="200,65,0,0" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top"/>
+        <Grid x:Name="RadioButtonsGrid">
+            <RadioButton x:Name="radioButtonAll" Content="All" Margin="70,5,0,0" IsChecked="True" VerticalAlignment="Top" Custom:ButtonHelper.PreserveTextCase="True" HorizontalAlignment="Left" Width="67" Checked="radioButtonAll_Checked"/>
+            <RadioButton x:Name="radioButtonContnum" Content="Contract #" Margin="148,5,0,0" VerticalAlignment="Top" Custom:ButtonHelper.PreserveTextCase="True" HorizontalAlignment="Left" Width="67"/>
+            <RadioButton x:Name="radioButtoChildnum" Content="Child ID" Margin="70,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="66"/>
+            <RadioButton x:Name="radioButtonNannynum" Content="Nanny ID" Margin="147,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="73"/>
+        </Grid>
         <Label x:Name="label" Content="Filter By:" HorizontalAlignment="Left" Margin="5,-1,0,0" VerticalAlignment="Top" FontWeight="Medium"/>
-        <TextBox x:Name="textBox" Height="23" Margin="45,65,50,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" Height="23" Margin="73,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <ComboBox x:Name="comboBoxSign"  HorizontalAlignment="Left" Margin="74,87,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="3">
+            <ComboBoxItem x:Name="BOTH" Content="BOTH" />
+            <ComboBoxItem x:Name="YES" Content="YES" />
+            <ComboBoxItem  x:Name="NO" Content="NO" />
+
+        </ComboBox>
+        <Label x:Name="idFilterLable" Content="Enter ID #:" HorizontalAlignment="Left" Margin="5,47,0,0" VerticalAlignment="Top" FontWeight="Medium"/>
+        <Label x:Name="isSignedLable" Content="Is Signed:" HorizontalAlignment="Left" Margin="8,79,0,0" VerticalAlignment="Top" FontWeight="Medium"/>
+        <Button x:Name="updateButton" Content="UPDATE" Margin="5,0,0,5" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="deleteButton" Content="DELETE" Margin="90,0,0,5" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="saveButton" Content="SAVE" Margin="210,0,0,5" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Page>

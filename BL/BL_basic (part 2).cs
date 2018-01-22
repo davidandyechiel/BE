@@ -113,11 +113,18 @@ namespace BL
                 , contract => contract);
         }
 
-        public IEnumerable<IGrouping<bool, Contract>> FilterBy(Predicate<Contract> p)
+        public IEnumerable<Contract> FilterBy(Predicate<Contract> p)
         {
-            List<Contract> list = getContractDS();
-            return list.GroupBy(cont => p(cont), cont => cont);
+            return (from item in MyDal.ContractDS where p(item) select item);
         }
+
+        public IEnumerable<Contract> FilterBy(IEnumerable<Contract> list,Predicate<Contract> p)
+        {
+            return (from item in MyDal.ContractDS where p(item) select item);
+        }
+        
+
+
 
 
 

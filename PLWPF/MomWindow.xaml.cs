@@ -21,7 +21,7 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for MomWindow.xaml
     /// </summary>
-    public partial class MomWindow : Window , INotifyPropertyChanged
+    public partial class MomWindow : Window, INotifyPropertyChanged
     {
         bool update;
         private BE.Mother mom;
@@ -53,6 +53,7 @@ namespace PLWPF
             set
             {
                 mom = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mom"));
             }
         }
 
@@ -85,7 +86,7 @@ namespace PLWPF
             Mom = new BE.Mother(_mom);
             grid1.DataContext = Mom;
             idTextBox.IsReadOnly = true;
-           // idTextBox.IsEnabled = false; // lock the id, id is inchangeable
+            // idTextBox.IsEnabled = false; // lock the id, id is inchangeable
             update = true;
             SUmom = fromSUmom;
             foreach (BE.Child brother in CC.bl.collectBrothers(Mom.Id))
@@ -236,11 +237,9 @@ namespace PLWPF
             {
                 if (CC.YES_NO_Window("Clear"))
                 {
-                    Mom = new Mother();
-                    grid1.DataContext = Mom;
-                    update = false;
-                    idTextBox.IsEnabled = true;
 
+                    Mom = new Mother(int.Parse(idTextBox.Text));
+                    grid1.DataContext = Mom;
                 }
 
             }
@@ -254,7 +253,7 @@ namespace PLWPF
         }
 
 
-          
+
 
         private void Slider_ValueChanged_start(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -280,17 +279,8 @@ namespace PLWPF
 
         private void idTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-         
+
 
         }
-
-
-
-
-
-
-
-        // TODO: EXeptions handler include BInDING Errors
-        // TODO: threads!
     }
-}// PLWPL
+}

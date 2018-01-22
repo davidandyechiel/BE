@@ -74,10 +74,16 @@ namespace PLWPF
         private void DSslider_GotMouseCapture(object sender, MouseEventArgs e)
         {
             Slider s = e.Source as Slider;
+           
             if (s.Value < 0.5)
                 s.Value = 1;
             else
                 s.Value = 0;
+
+        }
+
+        private void DSslider_ValueChanged_2(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
 
         }
     }

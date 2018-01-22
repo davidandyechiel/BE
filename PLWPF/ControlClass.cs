@@ -6,42 +6,42 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Globalization;
 using System.Windows.Data;
-
+using BE;
 namespace PLWPF
 {
     /// <summary>
     ///  class that contain genral things, that should be use for all the namespace
     /// </summary>
-    public class CC 
+    public class CC
     {
         public static BL.IBL bl = BL.BL_Basic.Instance;
 
         public static bool YES_NO_Window(string str)
         {
-             return (MessageBox.Show( String.Format("Are you sure you want to {0}?" , str),
-                                             "Window Saving",
-                                             MessageBoxButton.YesNo,
-                                             MessageBoxImage.Question) == MessageBoxResult.Yes)? true:false;
+            return (MessageBox.Show(String.Format("Are you sure you want to {0}?", str),
+                                            "Window Saving",
+                                            MessageBoxButton.YesNo,
+                                            MessageBoxImage.Question) == MessageBoxResult.Yes) ? true : false;
         }
 
         public static void WindowError(string str)
         {
-             MessageBox.Show(String.Format( str),
-                                             "Window Error",
-                                             MessageBoxButton.OK,
-                                             MessageBoxImage.Exclamation);
+            MessageBox.Show(String.Format(str),
+                                            "Window Error",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Exclamation);
         }
 
 
 
         static public DateTime[,] setHoursDT(params double[] times)
         {
-            
-            DateTime[,] hours = new DateTime[6,2];
+
+            DateTime[,] hours = new DateTime[6, 2];
             for (int i = 0; i < times.Length; i += 2)
             {
-                hours[i / 2,0] = DoubleToDateTime(times[i]);
-                hours[i / 2,1] = DoubleToDateTime(times[i + 1]);
+                hours[i / 2, 0] = DoubleToDateTime(times[i]);
+                hours[i / 2, 1] = DoubleToDateTime(times[i + 1]);
             }
             return hours;
         }
@@ -51,39 +51,50 @@ namespace PLWPF
             double[] hours = new double[12];
             for (int i = 0; i < hours.Length; i += 2)
             {
-                hours[i] = DateTimeToDouble(times[i,0]);
-                hours[i + 1] = DateTimeToDouble(times[i,1]);
+                hours[i] = DateTimeToDouble(times[i, 0]);
+                hours[i + 1] = DateTimeToDouble(times[i, 1]);
             }
             return hours;
         }
 
-               
+
 
         public static DateTime DoubleToDateTime(double d)
         {
             int H = (int)d;
             int m = (int)(d - H);
-            string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H/10).ToString() : (H/10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
+            string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H / 10).ToString() : (H / 10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
             return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public static double DateTimeToDouble(DateTime dt)
         {
-            double H = dt.Hour*10;
+            double H = dt.Hour * 10;
             double m = (dt.Minute == 0 ? 0 : 5);
             return H + m;
         }
-        
 
-    
-      
-       
+
+
+
+
 
 
 
     } // CC
 
-    public class DoubleToTimeViewStringConverter : IValueConverter
+    public static class ExtentionMethods
+    {
+        public static IEnumerable<Contract> FilterBy(this IEnumerable<Contract> list, Predicate<Contract> p)
+        {
+            return CC.bl.FilterBy(list, p);
+        }
+    }
+
+
+
+
+public class DoubleToTimeViewStringConverter : IValueConverter
     {
         public object Convert(
           object value,

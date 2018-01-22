@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+
 using BE;
 
 namespace PLWPF
@@ -20,12 +22,17 @@ namespace PLWPF
     /// <summary>
     /// Interaction logic for SUContract_page.xaml
     /// </summary>
-    public partial class SUContract_page : Page
+    /// 
+    //TODO: chage the  child and the nanny in the visual table
+    public partial class SUContract_page : Page , INotifyPropertyChanged
     {
         private ObservableCollection<Contract> contractCollection;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         //   private currentCont;
         #region PROPERTY
-        public ObservableCollection<Contract> MotherCollection
+        public ObservableCollection<Contract> ContractCollection
         {
             get
             {
@@ -35,6 +42,8 @@ namespace PLWPF
             set
             {
                 contractCollection = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ContractCollection"));
             }
         }
         #endregion
@@ -42,7 +51,11 @@ namespace PLWPF
         public SUContract_page()
         {
             InitializeComponent();
-
+            ContractCollection = new ObservableCollection<Contract>(CC.bl.getContractDS());
+            contractDataGrid.ItemsSource = ContractCollection;
+            DataContext = ContractCollection;
+           // comboBoxSign.SelectedItem;
+           // currentMom = new Mother();
 
         }
 
@@ -53,13 +66,46 @@ namespace PLWPF
 
         private void filterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (textBox.Text == "")
+            //radio button condition
+            IEnumerable<Contract> filteredList = null;
+
+            if (radioButtoChildnum.IsChecked.Value)
             {
-                //list = all the grup
-
+                filteredList = CC.bl.FilterBy(x => x.ChildID == int.Parse(textBox.Text));
             }
-            //else if ()
+            if (radioButtonContnum.IsChecked.Value)
+            {
+                filteredList = CC.bl.FilterBy(x => x.ContractNum == int.Parse(textBox.Text));
+            }
+            if (radioButtonNannynum.IsChecked.Value)
+            {
+                filteredList = CC.bl.FilterBy(x => x.NannysID == int.Parse(textBox.Text));
+            }
+            else
+            {
+                filteredList = CC.bl.getContractDS();
+            }
 
+            //is signed condition
+
+       /*     if (comboBoxSign.SelectedItem )
+            {
+                filteredList = filteredList.FilterBy(x => (x.IsSigned));
+            }
+            if (comboBoxSign.SelectedItem.ToString() == "NO")
+            {
+                filteredList = filteredList.FilterBy( x => !(x.IsSigned));
+            }
+            */
+            ContractCollection = new ObservableCollection<Contract>(filteredList);
+            
+        }
+
+           
+
+        private void radioButtonAll_Checked(object sender, RoutedEventArgs e)
+        {
+            ContractCollection = new  ObservableCollection<Contract>(CC.bl.getContractDS());             
         }
     }
 }
