@@ -71,11 +71,13 @@ namespace PLWPF
             genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.EnumClasses.E_gender)).Cast<BE.EnumClasses.E_gender>();
         }
 
+        //update winddow
         public ChildWindow(MomWindow _mom, BE.Child _child)
         {
             InitializeComponent();
             child = new BE.Child(_child);
             grid1.DataContext = child;
+            idTextBox.IsEnabled = false;
             update = true;
             mom = _mom;
             genderComboBox.ItemsSource = Enum.GetValues(typeof(BE.EnumClasses.E_gender)).Cast<BE.EnumClasses.E_gender>();
@@ -87,8 +89,6 @@ namespace PLWPF
         {
             try
             {
-                if (update)
-                    CC.bl.Update(child);
                 mom.hadChange(child, update);
                 Close();
             }
