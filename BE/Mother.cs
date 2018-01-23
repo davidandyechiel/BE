@@ -7,7 +7,9 @@ using System.ComponentModel;
 
 namespace BE
 {
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     public class Mother : IComparable , INotifyPropertyChanged
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
         private int id;
         private string lastName;
@@ -227,7 +229,7 @@ namespace BE
         #region Ctor
         public Mother()
         {
-            dthoursTable = new DateTime[6,2];
+            DThoursTable.setDefaulteTable();
         }
 
         public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, bool[] needNanny, string notes, int numOfKids)
@@ -251,6 +253,7 @@ namespace BE
             {
                 needNanny[i] = (dthoursTable[i,0] == dthoursTable[i,1]) ? false:true;
             }
+            DThoursTable.setDefaulteTable();
 
         }
 
@@ -267,6 +270,7 @@ namespace BE
             this.notes = notes;
             this.dthoursTable = dthoursTable;
             this.numOfKids = numOfKids;
+            DThoursTable = DThoursTable.setDefaulteTable();
         }
 
         public Mother(int id, string lastName, string firstName, int homePhoneNum, int cellPhoneNum, string address, string addressNearHere, int hoursNeeded, int daysNeeded, string notes, int numOfKids)
@@ -282,6 +286,7 @@ namespace BE
             this.daysNeeded = daysNeeded;
             this.notes = notes;
             this.numOfKids = numOfKids;
+            DThoursTable = DThoursTable.setDefaulteTable();
 
         }
 
@@ -298,11 +303,13 @@ namespace BE
             this.dthoursTable = mom.DThoursTable;
             this.numOfKids = mom.NumOfKids;
             dthoursTable = new DateTime[6, 2];
+            DThoursTable = DThoursTable.setDefaulteTable(mom.DThoursTable);
         }
 
         public Mother(int id)
         {
             this.id = id;
+            DThoursTable = DThoursTable.setDefaulteTable();
         }
 
 

@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Child.cs" />
+    <Compile Include="ExtentionMethodes.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="EnumClasses.cs" />
     <Compile Include="Mother.cs" />

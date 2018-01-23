@@ -22,7 +22,7 @@
 
         <DataGrid x:Name="contractDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,135,0,30" ItemsSource="{Binding st}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="contractDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="contractNumColumn" Width="SizeToHeader" Header="Contract #" Binding="{Binding ElementName=contractDataGrid}" MinWidth="65" />
+                <DataGridTextColumn x:Name="contractNumColumn"  Width="SizeToHeader" Header="Contract #" Binding="{Binding ElementName=contractDataGrid}"  MinWidth="65"  />
                 <DataGridTextColumn x:Name="childIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Child ID"  Binding="{Binding ChildID}" MinWidth="150"/>
                 <DataGridTextColumn x:Name="nannysIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Nannys ID" Binding="{Binding NannysID}" MinWidth="150"/>
             </DataGrid.Columns>
@@ -45,7 +45,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
         </Grid>
-        <ComboBox x:Name="comboBoxSign"  HorizontalAlignment="Left" Margin="74,87,0,0" VerticalAlignment="Top" Width="101" SelectedIndex="3">
+        <ComboBox x:Name="comboBoxSign"  HorizontalAlignment="Left" Margin="74,87,0,0" VerticalAlignment="Top" Width="101" SelectedIndex="0">
             <ComboBoxItem x:Name="BOTH" Content="BOTH" />
             <ComboBoxItem x:Name="YES" Content="YES" />
             <ComboBoxItem  x:Name="NO" Content="NO" />

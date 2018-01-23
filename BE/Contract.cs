@@ -7,7 +7,9 @@ using System.ComponentModel;
 
 namespace BE
 {
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     public class Contract : IComparable, INotifyPropertyChanged
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
         public static int ContractNumCounter = 10000000;
 
@@ -212,7 +214,7 @@ namespace BE
 
         public override string ToString()
         {
-            return base.ToString();
+            return ContractNum.ToString();
         }
         public int CompareTo(object obj)
         {

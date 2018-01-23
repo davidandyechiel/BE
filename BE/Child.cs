@@ -8,8 +8,9 @@ using System.ComponentModel;
 namespace BE
 {
 
-
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     public class Child : IComparable, INotifyPropertyChanged
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
         private int id;
         private int mothersId;

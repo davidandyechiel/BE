@@ -74,6 +74,7 @@ namespace PLWPF
                 Brothers.Add(child);
             SUmom = fromSUmom;
             children_combo_box.DataContext = Brothers;
+            AddChild.IsEnabled = false;
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace PLWPF
             foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
             {
                 
-                item.LowerValue = CC.DateTimeToDouble(hourArray[i, 0]);
-                item.UpperValue = CC.DateTimeToDouble(hourArray[i, 1]);
+                item.LowerValue = CC.bl.DateTimeToDouble(hourArray[i, 0]);
+                item.UpperValue = CC.bl.DateTimeToDouble(hourArray[i, 1]);
                 i++;
             }
         }
@@ -111,6 +112,9 @@ namespace PLWPF
 
             try
             {
+
+                if (int.Parse(idTextBox.Text) == 0)
+                    throw new Exception( "please enter ID");
                 // If the user sure that he wants so save ...
                 if (CC.YES_NO_Window("save"))
                 {
@@ -122,8 +126,8 @@ namespace PLWPF
                         hoursList.Add(item.LowerValue);
                         hoursList.Add(item.UpperValue);
                     }
-                    Mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
-
+                    //Mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
+                    Mom.DThoursTable = CC.bl.getDHTable(hoursList); 
                     //update the the mother id of the children before delete
 
                     foreach (Child child in children_combo_box.Items)
@@ -230,11 +234,11 @@ namespace PLWPF
 
         private void start_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("from HH:mm");
+            (sender as Slider).ToolTip = CC.bl.DoubleToDateTime((sender as Slider).Value).ToString("from HH:mm");
         }
         private void end_slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            (sender as Slider).ToolTip = CC.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
+            (sender as Slider).ToolTip = CC.bl.DoubleToDateTime((sender as Slider).Value).ToString("to HH:mm");
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -285,7 +289,18 @@ namespace PLWPF
 
         private void idTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            if (!(int.Parse(idTextBox.Text) == 0))
+                AddChild.IsEnabled = true;
+            Mother m = new Mother();
+            m.Id = int.Parse(idTextBox.Text);
 
+            if (CC.bl.Exists(m))
+            {
+                Mom = CC.bl.FindMother(x => x.Id == int.Parse(idTextBox.Text));
+                grid1.DataContext = Mom;
+                update = true;
+                idTextBox.IsReadOnly = true;
+            }
 
         }
 

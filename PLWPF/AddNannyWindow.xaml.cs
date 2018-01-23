@@ -20,7 +20,7 @@ namespace PLWPF
     public partial class AddNannyWindow : Window
     {
         BE.Nanny nanny;
-        BL.IBL bl;
+       // BL.IBL bl;
 
 
         public AddNannyWindow()
@@ -54,7 +54,7 @@ namespace PLWPF
                 {
                     if (hourList[i / 2] == null)
                         hourList[i / 2] = new DateTime[2];
-                    hourList[i / 2][ i % 2] = CC.DoubleToDateTime(tp.Time.Hour, tp.Time.Minute);
+                    hourList[i / 2][ i % 2] = CC.bl.DoubleToDateTime(tp.Time.Hour, tp.Time.Minute);
                     i++;
                 }
                 nanny.DThoursTable = hourList;

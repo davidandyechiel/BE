@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
+
+
 using BE;
 
 namespace PLWPF
@@ -24,11 +26,13 @@ namespace PLWPF
     /// </summary>
     /// 
     //TODO: chage the  child and the nanny in the visual table
-    public partial class SUContract_page : Page , INotifyPropertyChanged
+    public partial class SUContract_page : Page, INotifyPropertyChanged
     {
         private ObservableCollection<Contract> contractCollection;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        
+
 
         //   private currentCont;
         #region PROPERTY
@@ -53,6 +57,7 @@ namespace PLWPF
             ContractCollection = new ObservableCollection<Contract>(CC.bl.getContractDS());
             contractDataGrid.ItemsSource = ContractCollection;
             DataContext = ContractCollection;
+            
         }
 
         private void contractDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,42 +69,34 @@ namespace PLWPF
         {
             try
             {
-                //radio button condition
+
+               //radio button condition:
+
                 IEnumerable<Contract> filteredList = null;
 
-                if (radioButtoChildnum.IsChecked.Value)
-                {
-                    filteredList = CC.bl.FilterBy(x => x.ChildID == int.Parse(textBox.Text));
-                }
-                else if (radioButtonContnum.IsChecked.Value)
-                {
-                    filteredList = CC.bl.FilterBy(x => x.ContractNum == int.Parse(textBox.Text));
-                }
-                else if (radioButtonNannynum.IsChecked.Value)
-                {
-                    filteredList = CC.bl.FilterBy(x => x.NannysID == int.Parse(textBox.Text));
-                }
-                else
-                {
+                if (radioButtonAll.IsChecked.Value)
                     filteredList = CC.bl.getContractDS();
-                }
+                else if (textBox.Text == "")
+                    throw new Exception("Enter id value");
+                else if (radioButtoChildnum.IsChecked.Value)
+                    filteredList = CC.bl.FilterBy(x => x.ChildID == int.Parse(textBox.Text));
+                else if (radioButtonContnum.IsChecked.Value)
+                    filteredList = CC.bl.FilterBy(x => x.ContractNum == int.Parse(textBox.Text));
+                else if (radioButtonNannynum.IsChecked.Value)
+                    filteredList = CC.bl.FilterBy(x => x.NannysID == int.Parse(textBox.Text));
 
-                //is signed condition
+                //isSigned ComboBox condition:
 
-                /*     if (comboBoxSign.SelectedItem )
-                     {
-                         filteredList = filteredList.FilterBy(x => (x.IsSigned));
-                     }
-                     if (comboBoxSign.SelectedItem.ToString() == "NO")
-                     {
-                         filteredList = filteredList.FilterBy( x => !(x.IsSigned));
-                     }
-                     */
+                if (comboBoxSign.SelectedIndex == 1)
+                    filteredList.FilterBy(x => x.IsSigned == true);
+                else if (comboBoxSign.SelectedIndex == 2)
+                    filteredList = CC.bl.FilterBy(x => x.IsSigned == false);
+
+                contractDataGrid.ItemsSource = filteredList;
 
 
 
 
-                contractCollection.Clone(filteredList);
             }
             catch (Exception ex)
             {
@@ -108,11 +105,11 @@ namespace PLWPF
 
         }
 
-           
+
 
         private void radioButtonAll_Checked(object sender, RoutedEventArgs e)
         {
-            ContractCollection = new  ObservableCollection<Contract>(CC.bl.getContractDS());             
+            ContractCollection = new ObservableCollection<Contract>(CC.bl.getContractDS());
         }
     }
 }
