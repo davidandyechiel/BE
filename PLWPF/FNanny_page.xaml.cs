@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+
 
 namespace PLWPF
 {
@@ -20,9 +22,23 @@ namespace PLWPF
     /// </summary>
     public partial class FNanny_page : Page
     {
+        private ObservableCollection<BE.Mother> momCollection = new ObservableCollection<BE.Mother>();
+        private ObservableCollection<BE.Nanny> nannyCollection = new ObservableCollection<BE.Nanny>();
+
+
         public FNanny_page()
         {
+
+
             InitializeComponent();
+            foreach (var mom in CC.bl.getMotherDS())
+                     momCollection.Add(mom);
+            foreach (var nanny in CC.bl.getNannyDS())
+                nannyCollection.Add(nanny);
+            
+            
+            comboboxMom.ItemsSource = momCollection;
+            nannyDataGrid.ItemsSource = nannyCollection;
         }
     }
 }

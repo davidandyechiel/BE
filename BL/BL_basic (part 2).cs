@@ -120,7 +120,7 @@ namespace BL
 
         public IEnumerable<Contract> FilterBy(IEnumerable<Contract> list, Predicate<Contract> p)
         {
-            return (from item in MyDal.ContractDS where p(item) select item);
+            return (from item in list where p(item) select item);
         }
 
 

@@ -22,9 +22,8 @@
 
         <DataGrid x:Name="contractDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,135,0,30" ItemsSource="{Binding st}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="contractDataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="contractNumColumn"  Width="SizeToHeader" Header="Contract #" Binding="{Binding ElementName=contractDataGrid}"  MinWidth="65"  />
-                <DataGridTextColumn x:Name="childIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Child ID"  Binding="{Binding ChildID}" MinWidth="150"/>
-                <DataGridTextColumn x:Name="nannysIDColumn" Width="SizeToHeader" IsReadOnly="True" Header="Nannys ID" Binding="{Binding NannysID}" MinWidth="150"/>
+                <DataGridTextColumn x:Name="contractNumColumn"  Width="SizeToHeader" Header="Contract #" Binding="{Binding}"  MinWidth="300"  />
+                <DataGridCheckBoxColumn x:Name="isSinged" Width="SizeToHeader" IsReadOnly="True" Header="Is Signed" Binding="{Binding IsSigned}" MinWidth="30" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="filterButton" Content="FILTER" Margin="200,65,0,0" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top"/>

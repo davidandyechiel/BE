@@ -323,7 +323,7 @@ namespace BE
 
         public override string ToString()
         {
-            return "Mother: " + LastName + FirstName + " ID: " + Id;
+            return  LastName + " "  + FirstName + " ID: " + Id;
         }
 
         public int CompareTo(object obj)

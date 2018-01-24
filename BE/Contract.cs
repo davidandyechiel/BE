@@ -214,7 +214,7 @@ namespace BE
 
         public override string ToString()
         {
-            return ContractNum.ToString();
+            return string.Format("Contract {0} : nanny's ID - {1} , Child's Id - {2}",  ContractNum.ToString(), NannysID,ChildID);
         }
         public int CompareTo(object obj)
         {
