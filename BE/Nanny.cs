@@ -432,7 +432,7 @@ namespace BE
         {
             return id.CompareTo(((Nanny)obj).Id);
         }
-
+      
         public override bool Equals(object obj)
         {
             return (id.CompareTo(((Nanny)obj).Id) == 0);

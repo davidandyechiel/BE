@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
 
 namespace PLWPF
 {
@@ -19,9 +20,18 @@ namespace PLWPF
     /// </summary>
     public partial class ContractWindow : Window
     {
+        private Mother mother;
+        private Nanny nanny;
+
         public ContractWindow()
         {
             InitializeComponent();
+        }
+
+        public ContractWindow(Mother mother, Nanny nanny)
+        {
+            this.mother = mother;
+            this.nanny = nanny;
         }
     }
 }

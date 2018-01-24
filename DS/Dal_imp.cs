@@ -45,7 +45,6 @@ namespace DS
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
                         (obj as Contract).ContractNum = getContractNum(obj as Contract);
-                        (obj as Contract).IsSigned = true; // sign the contract
                         MyDS.getContractDS().Add(obj as Contract);
                         break;
                     case (EnumClasses.E_type.CHILD):

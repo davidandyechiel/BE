@@ -119,7 +119,11 @@ namespace PLWPF
                 if (CC.YES_NO_Window("save"))
                 {
 
+                    // set adress near here
+                    if (addressNearHereTextBox.Text == "")
+                        Mom.AddressNearHere = addressTextBox.Text;
                     //set houtsTable
+
                     List<double> hoursList = new List<double>();
                     foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
                     {

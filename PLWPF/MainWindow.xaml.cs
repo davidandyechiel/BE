@@ -148,7 +148,7 @@ namespace PLWPF
             BE.Contract con2 = new BE.Contract(11, 124);
             BE.Contract con3 = new BE.Contract(12, 125);
             BE.Contract con4 = new BE.Contract(12, 126);
-            con4.IsSigned = false;
+            con4.IsSigned = true;
 
 
             CC.bl.Add(mom1);
@@ -163,9 +163,9 @@ namespace PLWPF
             CC.bl.Add(con2);
             CC.bl.Add(con3);
             CC.bl.Add(con4);
-            con4.IsSigned = true;
+            
 
-
+            int i = 0;
 
         }
 

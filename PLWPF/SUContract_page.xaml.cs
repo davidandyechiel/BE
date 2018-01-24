@@ -72,7 +72,7 @@ namespace PLWPF
 
                //radio button condition:
 
-                IEnumerable<Contract> filteredList = null;
+                IEnumerable<Contract> filteredList = CC.bl.getContractDS();
 
                 if (radioButtonAll.IsChecked.Value)
                     filteredList = CC.bl.getContractDS();
@@ -88,9 +88,9 @@ namespace PLWPF
                 //isSigned ComboBox condition:
 
                 if (comboBoxSign.SelectedIndex == 1)
-                    filteredList.FilterBy(x => x.IsSigned == true);
+                    filteredList= filteredList.FilterBy(x => x.IsSigned == true);
                 else if (comboBoxSign.SelectedIndex == 2)
-                    filteredList = CC.bl.FilterBy(x => x.IsSigned == false);
+                    filteredList = filteredList.FilterBy(x => x.IsSigned == false);
 
                 contractDataGrid.ItemsSource = filteredList;
 
