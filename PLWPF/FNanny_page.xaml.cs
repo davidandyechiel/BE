@@ -32,7 +32,7 @@ namespace PLWPF
             foreach (var mom in CC.bl.getMotherDS())
                 momCollection.Add(mom);
             foreach (var nanny in CC.bl.getNannyDS())
-                if (CC.bl.CheckCapacity(nanny))
+                if (CC.bl.CheckCapacity(nanny))  // filtering only alailable nannies
                     nannyCollection.Add(nanny);
             comboboxMom.ItemsSource = momCollection;
             nannyDataGrid.ItemsSource = nannyCollection;
@@ -60,7 +60,7 @@ namespace PLWPF
                 lower_than_splitter.IsEnabled = false;
             else lower_than_splitter.IsEnabled = true;
 
-
+           nannyDataGrid.ItemsSource = CC.bl.nannysThatCanWorkForMe((sender as ComboBox).SelectedItem as BE.Mother);
         }
 
 
@@ -88,19 +88,21 @@ namespace PLWPF
 
                 //radio button condition:
 
+               
+
                 IEnumerable<BE.Nanny> filteredList = CC.bl.getNannyDS();
+                Predicate<BE.Nanny> filters = new Predicate<BE.Nanny>( CC.bl.CheckCapacity);
 
-
-                if (radioButtonAll.IsChecked.Value)
-                    filteredList = CC.bl.getContractDS();
-                else if (textBox.Text == "")
+                if (textBox.Text == "")
                     throw new Exception("Enter id value");
-                else if (radioButtoChildnum.IsChecked.Value)
-                    filteredList = CC.bl.FilterBy(x => x.ChildID == int.Parse(textBox.Text));
-                else if (radioButtonContnum.IsChecked.Value)
-                    filteredList = CC.bl.FilterBy(x => x.ContractNum == int.Parse(textBox.Text));
-                else if (radioButtonNannynum.IsChecked.Value)
-                    filteredList = CC.bl.FilterBy(x => x.NannysID == int.Parse(textBox.Text));
+                if (dependedDaysOffCheckBox.IsChecked.Value)  //depended days off filter
+                    filters += delegate(BE.Nanny arg) { return arg.DependedDaysOff; };
+                if (perHourCheckBox.IsChecked.Value)  // perhour filter
+                    filters += delegate (BE.Nanny arg) { return arg.PerHour; };
+                if (elevatorCheckBox.IsChecked.Value) //need elevator filter
+                    filters += delegate (BE.Nanny arg) { return arg.Elevator; };
+            /*    else if ()
+                
 
                 //isSigned ComboBox condition:
 
@@ -111,7 +113,7 @@ namespace PLWPF
 
                 contractDataGrid.ItemsSource = filteredList;
 
-
+    */
 
 
             }

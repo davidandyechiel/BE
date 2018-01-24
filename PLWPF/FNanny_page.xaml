@@ -19,7 +19,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="nannyDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,175,0,75" ItemsSource="{Binding}" EnableRowVirtualization="True" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="nannyDataGrid_SelectionChanged">
+        <DataGrid x:Name="nannyDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,175,0,75" ItemsSource="{Binding}" EnableRowVirtualization="True" IsReadOnly="True" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="firstNameColumn" Width="SizeToHeader" Header="First Name" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn x:Name="lastNameColumn" Width="SizeToHeader" Header="Last Name" Binding="{Binding LastName}"/>

@@ -22,7 +22,7 @@ namespace BE
         {
             for (int i = 0; i < 6; i++)
             { //if   nannys start is later than mother start , nannys end is earlier than mother end  then return false   
-                if (table[i][0] >= otherTable[i, 0] || (table[i][1] <= otherTable[i, 1])
+                if (table[i][0] >= otherTable[i, 0] || (table[i][1] <= otherTable[i, 1]))
                     return false;
             }
             return true;

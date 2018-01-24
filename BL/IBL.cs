@@ -34,7 +34,9 @@ namespace BL
         double[] setHoursD(DateTime[,] times);
         bool CheckCapacity(Nanny nanny);
         DateTime DoubleToDateTime(int H, int m);
-        
+        List<Nanny> nannysThatCanWorkForMe(Mother m);
+
+
     }
 }
 

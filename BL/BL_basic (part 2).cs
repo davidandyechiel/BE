@@ -127,6 +127,7 @@ namespace BL
         {
             return (from item in MyDal.NannyDS where p(item) select item);
         }
+       
 
         public IEnumerable<Nanny> FilterBy(IEnumerable<Nanny> list, Predicate<Nanny> p)
         {
@@ -243,6 +244,8 @@ namespace BL
                 return true;
             else return false;
         }
+
+
 
     }
 }
