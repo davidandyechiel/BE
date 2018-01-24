@@ -214,6 +214,11 @@ namespace PLWPF
             nan.Show();
         }
 
+        private void curretPage_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
         //public String GeocodeAddress(string address)
         //{
         //    string results = "";

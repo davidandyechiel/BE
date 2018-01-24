@@ -29,7 +29,7 @@ namespace PLWPF
             nanny = new BE.Nanny();
             this.DataContext = nanny;
             this.grid1.DataContext = nanny;
-          //  birthDateDatePicker.SelectedDate = DateTime.Today;
+            birthDateDatePicker.SelectedDate = DateTime.Today;
            
 
           //  bl = BL.blfactory.getbl();

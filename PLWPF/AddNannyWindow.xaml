@@ -57,7 +57,7 @@
             <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="6" VerticalAlignment="Center"/>
             <TextBox x:Name="floorTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="6" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Hour Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="9" VerticalAlignment="Center"/>
-            <TextBox x:Name="hourRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="9" Text="{Binding HourRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=perHourCheckBox}"/>
+            <TextBox x:Name="hourRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="9" Text="{Binding HourRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=perHourCheckBox, Path=IsChecked}"/>
             <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center" />
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Max Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="12" VerticalAlignment="Center"/>
@@ -67,7 +67,7 @@
             <Label Content="Min Age:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="11" VerticalAlignment="Center"/>
             <TextBox x:Name="minAgeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="11" Text="{Binding MinAge, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Monthly Rate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="10" VerticalAlignment="Center"/>
-            <TextBox x:Name="monthlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="10" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="monthlyRateTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.333,4,0,4" Grid.Row="10" Text="{Binding MonthlyRate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
             <Label Content="Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="8" VerticalAlignment="Center"/>
             <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Right" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,8,102.667,8" Grid.Row="8" VerticalAlignment="Center"/>
             <Label Content="Phone Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="7" VerticalAlignment="Center"/>
@@ -86,7 +86,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-        </Grid> 
+        </Grid>
 
         <Grid x:Name="tpGrid" HorizontalAlignment="Left" Height="162" Margin="325,369,0,0" VerticalAlignment="Top" Width="454">
             <Grid.RowDefinitions>
@@ -114,18 +114,42 @@
             <TimePicker:TimePicker  x:Name="tpThursdayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="4" Grid.Row="2"  />
             <TimePicker:TimePicker  x:Name="tpFridayStart" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="1"  />
             <TimePicker:TimePicker  x:Name="tpFridayEnd" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="5" Grid.Row="2"  />
-           
-           
-            
-           
-           
-            
+
+
+
+
+
+
             <!--<Label x:Name="label1" Content="Sunday" Grid.Column="0" Grid.Row="0" />
             <Label x:Name="label2" Content="Monday" Grid.Column="1" Grid.Row="0" />
             <Label x:Name="label3" Content="Tuesday" Grid.Column="2" Grid.Row="0" />
             <Label x:Name="label4" Content="Wednesday" Grid.Column="3" Grid.Row="0" />
             <Label x:Name="label5" Content="Thursday" Grid.Column="4" Grid.Row="0" />
             <Label x:Name="label6" Content="Friday" Grid.Column="5" Grid.Row="0" />-->
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="38" Margin="325,348,0,0" VerticalAlignment="Top" Width="458">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="label1" Content="Sunday" Grid.Column="0" Grid.Row="0" />
+            <Label x:Name="label2" Content="Monday" Grid.Column="1" Grid.Row="0" />
+            <Label x:Name="label3" Content="Tuesday" Grid.Column="2" Grid.Row="0" />
+            <Label x:Name="label4" Content="Wednesday" Grid.Column="3" Grid.Row="0" />
+            <Label x:Name="label5" Content="Thursday" Grid.Column="4" Grid.Row="0" />
+            <Label x:Name="label6" Content="Friday" Grid.Column="5" Grid.Row="0" />
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="134" Margin="285,397,0,0" VerticalAlignment="Top" Width="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="61*"/>
+                <RowDefinition Height="73*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="labelStart" Content="Start" Grid.Column="0" Grid.Row="0" />
+            <Label x:Name="labelEnd" Content="End" Grid.Column="0" Grid.Row="1" />
         </Grid>
 
     </Grid>

@@ -76,12 +76,12 @@ namespace PLWPF
             grid1.DataContext = nanny;
             //TODO:reverse datetime to timepicker
             DateTime[][] hourArray = _nanny.DThoursTable;
-            // int i = 0;
+            int i = 0;
             //foreach (RoyT.TimePicker.TimePicker item in tpGrid.Children)
             //{
 
             //    item.Time.Hour = hourArray[i][0].Hour;
-            //    item.Time.Minute= hourArray[i][0].Minute;
+            //    item.Time.Minute = hourArray[i][0].Minute;
             //    i++;
             //}
         }

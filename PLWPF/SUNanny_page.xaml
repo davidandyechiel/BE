@@ -14,27 +14,18 @@
     </Page.Resources>
 
     <Grid DataContext="{StaticResource nannyViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="71*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="19*"/>
-            <ColumnDefinition Width="56*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="nannyDataGrid"  IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="-5,70,0,0" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectionChanged="nannyDataGrid_SelectionChanged">
-            <DataGrid.DataContext>
-                <BE:Nanny/>
-            </DataGrid.DataContext>
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="lastNameColumn" Width="SizeToHeader" Header="Last Name" Binding="{Binding LastName}"/>
-                <DataGridTextColumn x:Name="firstNameColumn" Width="SizeToHeader" Header="First Name" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" Header="Nannys Address" Binding="{Binding Adress}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
 
-        <Button x:Name="AddNanny" Content="Add Nanny" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Width="90" Click="AddNanny_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="updatebutton" Content="Update/Delete" HorizontalAlignment="Left" Margin="34,15,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="button1_Click"/>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <Button x:Name="AddNanny" Content="Add Nanny" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Width="90" Click="AddNanny_Click"/>
+        <Button x:Name="updatebutton" Content="Update/Delete" HorizontalAlignment="Left" Margin="110,15,0,0" VerticalAlignment="Top" Width="90" Click="button1_Click"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -51,6 +42,7 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
         </Grid>
+        <Image x:Name="image" Source="images/Mary-Poppins-1964-DI.jpg" Grid.Row="1"  />
 
     </Grid>
 </Page>
