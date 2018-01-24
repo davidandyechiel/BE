@@ -59,9 +59,19 @@ namespace PLWPF
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            updateNannyWindow updNan = new updateNannyWindow(this,idComboBox.SelectedItem as Nanny);
-            updNan.Show();
+        {try
+            {
+                if (idComboBox.SelectedIndex == -1)
+                    throw new Exception("please pick nanny to update");
+                updateNannyWindow updNan = new updateNannyWindow(this, idComboBox.SelectedItem as Nanny);
+                updNan.Show();
+            }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+
+
+            }
         }
 
         private void nannyDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

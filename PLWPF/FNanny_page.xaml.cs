@@ -66,18 +66,24 @@ namespace PLWPF
 
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int id = -1;
-            if (textBox.Text != "")
-                id = int.Parse(textBox.Text);
-            foreach (var item in comboboxMom.Items)
+        {try
             {
-                if ((item as BE.Mother).Id == id)
+                int id = -1;
+                if (textBox.Text != "")
+                    id = int.Parse(textBox.Text);
+                foreach (var item in comboboxMom.Items)
                 {
-                    comboboxMom.SelectedItem = item;
-                    return;
+                    if ((item as BE.Mother).Id == id)
+                    {
+                        comboboxMom.SelectedItem = item;
+                        return;
+                    }
+                    else comboboxMom.SelectedIndex = -1;
                 }
-                else comboboxMom.SelectedIndex = -1;
+            }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
             }
         }
 
@@ -90,7 +96,7 @@ namespace PLWPF
 
                
 
-                IEnumerable<BE.Nanny> filteredList = CC.bl.getNannyDS();
+                IEnumerable<BE.Nanny> filteredList = CC.bl.nannysThatCanWorkForMe((sender as ComboBox).SelectedItem as BE.Mother);
                 Predicate<BE.Nanny> filters = new Predicate<BE.Nanny>( CC.bl.CheckCapacity);
 
                 if (textBox.Text == "")
@@ -101,20 +107,12 @@ namespace PLWPF
                     filters += delegate (BE.Nanny arg) { return arg.PerHour; };
                 if (elevatorCheckBox.IsChecked.Value) //need elevator filter
                     filters += delegate (BE.Nanny arg) { return arg.Elevator; };
-            /*    else if ()
-                
+               else if (floorTextBox.Text != "")
+                    filters += delegate (BE.Nanny arg) { return CC.bl.getDistance(((BE.Mother)comboboxMom.SelectedItem).AddressNearHere, arg.Adress) <= (int.Parse(floorTextBox.Text)); };
 
-                //isSigned ComboBox condition:
+                filteredList = filteredList.FilterBy(filters);
 
-                if (comboBoxSign.SelectedIndex == 1)
-                    filteredList = filteredList.FilterBy(x => x.IsSigned == true);
-                else if (comboBoxSign.SelectedIndex == 2)
-                    filteredList = filteredList.FilterBy(x => x.IsSigned == false);
-
-                contractDataGrid.ItemsSource = filteredList;
-
-    */
-
+                nannyDataGrid.ItemsSource = filteredList;
 
             }
             catch (Exception ex)

@@ -35,6 +35,7 @@ namespace BL
         bool CheckCapacity(Nanny nanny);
         DateTime DoubleToDateTime(int H, int m);
         List<Nanny> nannysThatCanWorkForMe(Mother m);
+        int getDistance(String source, string dest);
 
 
     }

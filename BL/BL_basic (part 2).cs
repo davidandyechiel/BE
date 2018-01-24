@@ -73,7 +73,7 @@ namespace BL
 
         }
 
-        public static int getDistance(String source, string dest)
+        public  int getDistance(String source, string dest)
         {
             var dircetionRequest = new GoogleMapsApi.Entities.Directions.Request.DirectionsRequest
             {

@@ -371,9 +371,10 @@ namespace BE
             //this.daysOfWork = daysOfWork;
             //this.dthoursTable = dthoursTable;
             //this.difference = difference;
+            DThoursTable = DThoursTable.setDefaulteTable();
         }
 
-        public Nanny(int id, string lastName, string firstName, DateTime birthDate, int phoneNum, bool elevator, string adress, int floor, int experince, int maxCapacity, double minAge, double maxAge, bool perHour, double hourRate, double monthlyRate, string recommendations, bool dependedDaysOff, bool[] daysOfWork, DateTime[][] dthoursTable)
+        public Nanny(int id, string lastName, string firstName, DateTime birthDate, int phoneNum, bool elevator, string adress, int floor, int experince, int maxCapacity, double minAge, double maxAge, bool perHour, double hourRate, double monthlyRate, string recommendations, bool dependedDaysOff, bool[] daysOfWork)
         {
             this.id = id;
             this.lastName = lastName;
@@ -393,7 +394,7 @@ namespace BE
             this.recommendations = recommendations;
             this.dependedDaysOff = dependedDaysOff;
             this.daysOfWork = daysOfWork;
-            this.dthoursTable = dthoursTable;
+            DThoursTable = DThoursTable.setDefaulteTable();
         }
 
         public Nanny(Nanny nanny)
@@ -416,7 +417,7 @@ namespace BE
             this.recommendations = nanny.recommendations;
             this.dependedDaysOff = nanny.dependedDaysOff;
             this.daysOfWork = nanny.daysOfWork;
-            this.dthoursTable = nanny.dthoursTable;
+            DThoursTable = DThoursTable.setDefaulteTable(nanny.DThoursTable);
             this.difference = nanny.difference;
         }
 
