@@ -30,6 +30,8 @@
                 <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" Header="Nannys Address" Binding="{Binding Adress}"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+
         <Button x:Name="AddNanny" Content="Add Nanny" HorizontalAlignment="Left" Margin="15,15,0,0" VerticalAlignment="Top" Width="90" Click="AddNanny_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="updatebutton" Content="Update/Delete" HorizontalAlignment="Left" Margin="34,15,0,0" VerticalAlignment="Top" Width="90" Grid.Column="1" Click="button1_Click"/>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2">

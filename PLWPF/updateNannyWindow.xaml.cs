@@ -40,7 +40,7 @@ namespace PLWPF
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static Nanny Nanny
+        public  Nanny Nanny
         {
             get
             {
@@ -50,6 +50,7 @@ namespace PLWPF
             set
             {
                 nanny = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Nanny"));
             }
         }
 
@@ -57,12 +58,12 @@ namespace PLWPF
         {
             InitializeComponent();
              
-            this.updateNannyByIdcomboBox.ItemsSource = CC.bl.getNannyDS();
-            this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
-            this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
+            //this.updateNannyByIdcomboBox.ItemsSource = CC.bl.getNannyDS();
+            //this.updateNannyByIdcomboBox.DisplayMemberPath = "Id";
+            //this.updateNannyByIdcomboBox.SelectedValuePath = "Id";
             grid1.DataContext = Nanny;
             hourRateTextBox.IsEnabled = false;
-            updateNannyByIdcomboBox.DataContext = Nannys;
+            //updateNannyByIdcomboBox.DataContext = Nannys;
         }
         /// <summary>
         /// Nanny update mode
@@ -74,16 +75,15 @@ namespace PLWPF
             nanny = new BE.Nanny(_nanny);
             grid1.DataContext = nanny;
             //TODO:reverse datetime to timepicker
-            //DateTime[][] hourArray = _nanny.DThoursTable;
-            //int i = 0;
+            DateTime[][] hourArray = _nanny.DThoursTable;
+            // int i = 0;
             //foreach (RoyT.TimePicker.TimePicker item in tpGrid.Children)
             //{
 
             //    item.Time.Hour = hourArray[i][0].Hour;
-            //    item.= hourArray[i][0].Minute;
+            //    item.Time.Minute= hourArray[i][0].Minute;
             //    i++;
             //}
-            
         }
 
 
@@ -91,17 +91,19 @@ namespace PLWPF
         {
             try
             {
-                foreach (Nanny nanny in updateNannyByIdcomboBox.Items)
-                    if(!CC.bl.Exists(nanny))
-                    {
-                        nanny.Id = int.Parse(updateNannyByIdcomboBox.Text);
-                        CC.bl.Add(nanny);
-                    }
+                //foreach (Nanny nanny in updateNannyByIdcomboBox.Items)
+                //    if(!CC.bl.Exists(nanny))
+                //    {
+                //        nanny.Id = int.Parse(updateNannyByIdcomboBox.Text);
+                //        CC.bl.Add(nanny);
+                //    }
                 CC.bl.Update(nanny);
-              //  Nanny = new BE.Nanny();
-               // grid1.DataContext = Nanny;
-              //  CC.bl.Update(Nanny);
+                //this.updateNannyByIdcomboBox.ItemsSource = CC.bl.getNannyDS();
+                //  Nanny = new BE.Nanny();
+                // grid1.DataContext = Nanny;
+                //  CC.bl.Update(Nanny);
                 MessageBox.Show("successfully updated nanny");
+                
                 this.Close();
             }
             catch (FormatException)
@@ -120,7 +122,7 @@ namespace PLWPF
             if ((sender is ComboBox && ((ComboBox)sender).SelectedIndex > -1))
                 try
                 {
-                Nanny = (BE.Nanny)updateNannyByIdcomboBox.SelectedItem;
+                //Nanny = (BE.Nanny)updateNannyByIdcomboBox.SelectedItem;
                 grid1.DataContext = Nanny;
                 }
             catch (Exception ex)

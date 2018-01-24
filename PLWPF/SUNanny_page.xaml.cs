@@ -48,6 +48,7 @@ namespace PLWPF
             currentnanny = new Nanny();
             idComboBox.ItemsSource = CC.bl.getNannyDS();
             nannyDataGrid.ItemsSource = CC.bl.getNannyDS();
+            
         }
 
         private void AddNanny_Click(object sender, RoutedEventArgs e)
