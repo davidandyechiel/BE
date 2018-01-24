@@ -43,11 +43,11 @@ namespace PLWPF
         {
             InitializeComponent();
             nannyCollection = new ObservableCollection<Nanny>(CC.bl.getNannyDS());
-            nannyDataGrid.ItemsSource = nannyCollection;
+            //nannyDataGrid.ItemsSource = nannyCollection;
             DataContext = nannyCollection;
             currentnanny = new Nanny();
             idComboBox.ItemsSource = CC.bl.getNannyDS();
-            nannyDataGrid.ItemsSource = CC.bl.getNannyDS();
+            //nannyDataGrid.ItemsSource = CC.bl.getNannyDS();
             
         }
 
