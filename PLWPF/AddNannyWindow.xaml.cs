@@ -29,6 +29,7 @@ namespace PLWPF
             nanny = new BE.Nanny();
             this.DataContext = nanny;
             this.grid1.DataContext = nanny;
+            birthDateDatePicker.DisplayDate = DateTime.Now;
            
 
           //  bl = BL.blfactory.getbl();
@@ -47,14 +48,14 @@ namespace PLWPF
            
             try
             {
-               
-                DateTime[][]hourList= new DateTime[6][];
+
+                DateTime[][] hourList = new DateTime[6][];
                 int i = 0;
                 foreach (RoyT.TimePicker.TimePicker tp in tpGrid.Children)
                 {
                     if (hourList[i / 2] == null)
                         hourList[i / 2] = new DateTime[2];
-                    hourList[i / 2][ i % 2] = CC.DoubleToDateTime(tp.Time.Hour, tp.Time.Minute);
+                    hourList[i / 2][i % 2] = CC.DoubleToDateTime(tp.Time.Hour, tp.Time.Minute);
                     i++;
                 }
                 nanny.DThoursTable = hourList;

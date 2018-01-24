@@ -37,7 +37,7 @@
         <Button x:Name="updatebutton" Content="Update" HorizontalAlignment="Left" Margin="674,315,0,0" VerticalAlignment="Top" Width="75" Click="updatebutton_Click"/>
         <Label x:Name="label" Content="please choose the nanny that you would like to update or delete" HorizontalAlignment="Left" Margin="58,21,0,0" VerticalAlignment="Top" Height="30" Width="377"/>
         <Button x:Name="deleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="674,351,0,0" VerticalAlignment="Top" Width="75" Background="#FFFB0808" Click="deleteButton_Click" RenderTransformOrigin="0.589,8.9"/>
-        <Grid HorizontalAlignment="Left" Height="162" Margin="333,158,0,0" VerticalAlignment="Top" Width="454">
+        <Grid x:Name="tpGrid" HorizontalAlignment="Left" Height="162" Margin="333,158,0,0" VerticalAlignment="Top" Width="454">
             <Grid.RowDefinitions>
                 <RowDefinition Height="23*"/>
                 <RowDefinition Height="69*"/>
@@ -51,7 +51,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="2"  />
+            <tp:TimePicker x:Name="tpend" Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="0" Grid.Row="2"  />
             <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="1" Grid.Row="2" />
             <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="2" Grid.Row="2" />
             <tp:TimePicker Time="{Binding Time, Mode=TwoWay}"  RenderTransformOrigin="-1.91,1.346" Grid.Column="3" Grid.Row="2" />

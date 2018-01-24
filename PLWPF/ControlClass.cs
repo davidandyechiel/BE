@@ -91,7 +91,12 @@ namespace PLWPF
             double m = (dt.Minute == 0 ? 0 : 5);
             return H + m;
         }
-
+        public static double DateTimeToMinute(DateTime dt)
+        {
+            double H = dt.Hour * 10;
+            double m = (dt.Minute == 0 ? 0 : 5);
+            return H + m;
+        }
 
 
 

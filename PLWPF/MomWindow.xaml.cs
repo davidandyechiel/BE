@@ -293,5 +293,10 @@ namespace PLWPF
         {
 
         }
+
+        private void children_combo_box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
