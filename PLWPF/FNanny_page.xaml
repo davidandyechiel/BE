@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PLWPF"
       xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="PLWPF.FNanny_page"
-      mc:Ignorable="d" 
+   
+    mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="400"
       Title="FNanny_page">
 
@@ -14,33 +15,35 @@
     </Page.Resources>
 
     <Grid DataContext="{StaticResource nannyViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="nannyDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,195,0,40" ItemsSource="{Binding}" EnableRowVirtualization="True" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid x:Name="nannyDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,175,0,75" ItemsSource="{Binding}" EnableRowVirtualization="True" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="nannyDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" Header="Adress" Binding="{Binding Adress}"/>
                 <DataGridTextColumn x:Name="firstNameColumn" Width="SizeToHeader" Header="First Name" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn x:Name="lastNameColumn" Width="SizeToHeader" Header="Last Name" Binding="{Binding LastName}"/>
-                <DataGridTextColumn x:Name="phoneNumColumn" Width="SizeToHeader" Header="Phone Num" Binding="{Binding PhoneNum}"/>
+                <DataGridTextColumn x:Name="phoneNumColumn" Width="SizeToHeader" MinWidth="20" Header="Phone Num" Binding="{Binding PhoneNum}"/>
+                <DataGridTextColumn x:Name="adressColumn" Width="SizeToHeader" MinWidth="90" Header="Adress" Binding="{Binding Adress}"/>
                 <DataGridCheckBoxColumn  x:Name="isPerHour" Width="SizeToHeader" Header="Is Per Hour" Binding="{Binding PerHour}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="higher_than_splitter">
+        <Grid x:Name="higher_than_splitter" Margin="0,10,0,-10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="71*"/>
             </Grid.RowDefinitions>
 
-            <ComboBox x:Name="comboboxMom" DataContext="BE.Mother" ItemsSource="{Binding}"  HorizontalAlignment="Left" Height="30" Margin="50,7,0,0" VerticalAlignment="Top" Width="125" Grid.RowSpan="2"/>
+            <ComboBox x:Name="comboboxMom" DataContext="BE.Mother" ItemsSource="{Binding}"  HorizontalAlignment="Left" Height="30" Margin="50,7,0,0" VerticalAlignment="Top" Width="150" Grid.RowSpan="2" SelectionChanged="comboboxMom_SelectionChanged"/>
             <Label x:Name="pickMom" Content="choose &#xA; mom:" HorizontalAlignment="Left" Margin="5,1,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Grid.RowSpan="2" Height="37" Width="46"/>
-            <Label x:Name="orEnterid" Content="or enter &#xA;ID #:" HorizontalAlignment="Left" Margin="185,0,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Grid.RowSpan="2" Height="37" Width="50"/>
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="28" Margin="235,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80" Grid.RowSpan="2"/>
-            <Button x:Name="buttonSearch" Content="Search" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="70" RenderTransformOrigin="0.476,0.15" Height="25" Grid.Row="1"/>
+            <Label x:Name="orEnterid" Content="or enter &#xA;ID #:" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" Grid.RowSpan="2" Height="37" Width="50"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="28" Margin="290,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80" Grid.RowSpan="2" TextChanged="textBox_TextChanged" />
 
         </Grid>
-        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Height="5" Margin="0,45,0,0" VerticalAlignment="Top" IsEnabled="False" Focusable="False" Background="#FF959393" Opacity="0.5" BorderThickness="0" ClipToBounds="True"/>
-        <Grid x:Name="lower_than_splitter" Margin="5,0,-5,0" IsEnabled="False" >
-            <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="78,115,0,0" VerticalAlignment="Top">
+        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Stretch" Height="5" Margin="0,61,0,0" VerticalAlignment="Top" IsEnabled="False" Focusable="False" Background="#FF959393" Opacity="0.5" BorderThickness="0" ClipToBounds="True"/>
+        <Grid x:Name="lower_than_splitter"  IsEnabled="False" Margin="5,0,-5,0" Height="215" VerticalAlignment="Top" >
+            <Grid x:Name="dependedGrid" HorizontalAlignment="Left" Margin="2,65,0,0" VerticalAlignment="Top" Height="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -48,10 +51,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Depended Days Off:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                <CheckBox x:Name="dependedDaysOffCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DependedDaysOff, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <Label Content="Goverment&#xD;&#xA;Depended&#xD;&#xA;Days Off:" Grid.Column="0" Margin="0,0,0,-10" Grid.Row="0" VerticalAlignment="Bottom" Height="58"/>
+                <CheckBox x:Name="dependedDaysOffCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding DependedDaysOff, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="1,25,0,9" Grid.Row="0" VerticalAlignment="Center" RenderTransformOrigin="0.4,1.2"/>
             </Grid>
-            <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="276,121,0,0" VerticalAlignment="Top">
+            <Grid x:Name="elevator" HorizontalAlignment="Left" Margin="108,71,0,0" VerticalAlignment="Top" Width="132">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -59,10 +62,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                <CheckBox x:Name="elevatorCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding Elevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+
+                <Label Content="Need &#13;Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <CheckBox x:Name="elevatorCheckBox" Content="" Grid.Column="1" IsChecked="{Binding Elevator, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,11,0,7" Grid.Row="0" VerticalAlignment="Center" Checked="elevatorCheckBox_Checked" Unchecked="elevatorCheckBox_Unchecked"/>
+                <TextBox x:Name="floorTextBox"  Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="25,16,-21,0" Grid.Row="0"  Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="40" ToolTip="Enter Max Floor allowed" ToolTipService.ShowDuration="10000" Visibility="Visible" IsVisibleChanged="floorTextBox_IsVisibleChanged"/>
             </Grid>
-            <Grid x:Name="grid3" HorizontalAlignment="Left" Margin="134,85,0,0" VerticalAlignment="Top">
+            <Grid x:Name="perHourGrid" HorizontalAlignment="Left" Margin="-1,118,0,0" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -70,23 +75,15 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="floorTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Floor, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Rate&#xD;&#xA;Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="8,15,-3,18" Grid.Row="0" VerticalAlignment="Center"/>
             </Grid>
-            <Grid x:Name="grid4" HorizontalAlignment="Left" Margin="152,157,0,0" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Content="Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                <CheckBox x:Name="perHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding PerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            </Grid>
+            <Button x:Name="filter" Content="FILTER" Margin="0,100,35,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="70" RenderTransformOrigin="0.476,0.15" Height="25" Click="filter_Click"/>
+
 
         </Grid>
-        <GridSplitter x:Name="gridSplitter_Copy" HorizontalAlignment="Stretch" Height="5" Margin="0,180,0,0" VerticalAlignment="Top" IsEnabled="False" Focusable="False" Background="#FF959393" Opacity="0.5" BorderThickness="0" ClipToBounds="True"/>
+        <GridSplitter x:Name="gridSplitter_Copy" HorizontalAlignment="Stretch" Height="5" Margin="0,167,0,0" VerticalAlignment="Top" IsEnabled="False" Focusable="False" Background="#FF959393" Opacity="0.5" BorderThickness="0" ClipToBounds="True"/>
+        <Button x:Name="findMatchButton" Content="FOUND A MATCH " HorizontalAlignment="Left" Margin="150,0,0,40" MinWidth="100" Width="100" Click="button_Click" Height="25" VerticalAlignment="Bottom"/>
 
 
 

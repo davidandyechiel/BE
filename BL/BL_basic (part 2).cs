@@ -123,6 +123,16 @@ namespace BL
             return (from item in list where p(item) select item);
         }
 
+        public IEnumerable<Nanny> FilterBy(Predicate<Nanny> p)
+        {
+            return (from item in MyDal.NannyDS where p(item) select item);
+        }
+
+        public IEnumerable<Nanny> FilterBy(IEnumerable<Nanny> list, Predicate<Nanny> p)
+        {
+            return (from item in list where p(item) select item);
+        }
+
 
 
 
@@ -223,7 +233,16 @@ namespace BL
             return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
         }
 
-       
+        public bool CheckCapacity(Nanny nanny)
+        {
+            int counter = 0;
+            foreach (Contract cont in Instance.getContractDS())
+                if (cont.NannysID == nanny.Id)
+                    counter++;
+            if (counter < nanny.MaxCapacity)
+                return true;
+            else return false;
+        }
 
     }
 }

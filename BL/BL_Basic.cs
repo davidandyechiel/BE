@@ -119,58 +119,34 @@ namespace BL
             return MyDal.NannyDS;
         }
 
-        public List<Nanny> nannysThatCanWorkForMe(Mother m)
+        public  List<Nanny> nannysThatCanWorkForMe(Mother m)
         {
-            bool flag = true;
             DateTime[,] momhours = m.DThoursTable;
             List<Nanny> list = new List<Nanny>();
             foreach (Nanny nanny in getNannyDS())
             {
                 for (int i = 0; i <= 6; i++)
                 {
-                    if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0,i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1,i]) >= 0))
-                        // !  if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
-                        flag = false;
+                    if ((nanny.DThoursTable.CompareTo(momhours)))
+                        //   if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
+                        list.Add(nanny);
                 }
-                if (flag == true)
-                    list.Add(nanny);          
+                           
             }
             return list;
         }
-        public List<Nanny> nannysThatCanWorkForMePlus(Mother m)
+      /*  public List<Nanny> nannysThatCanWorkForMePlus(Mother m)
         {
-            bool flag = true;
-            DateTime[,] momhours = m.DThoursTable;
-            List<Nanny> list = new List<Nanny>();
-            List<Nanny> listPro = new List<Nanny>();
-            foreach (Nanny nanny in getNannyDS())
-            {
-                 nanny.Difference = 0;
-                for (int i = 0; i <= 6; i++)
-                {
-                    if (!(nanny.DThoursTable[0][i].CompareTo(momhours[0,i]) <= 0 && nanny.DThoursTable[1][i].CompareTo(momhours[1,i]) >= 0))
-                    {//   if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
-                        flag = false;
-                        nanny.Difference += (nanny.DThoursTable[1][i].Hour * 60 + nanny.DThoursTable[1][i].Minute) - (m.DThoursTable[1,i].Hour * 60 + m.DThoursTable[1,i].Minute);
-                        listPro.Add(nanny);
-                    }
-                }
-                if (flag == true)
-                    list.Add(nanny);
-            }
-            if (list == null)
-            {
-                listPro.Sort(delegate (Nanny x, Nanny y)
-                {
-                    if (x == null && y == null) return 0;
-                    else if (x == null) return -1;
-                    else if (y == null) return 1;
-                    else return x.Difference.CompareTo(y.Difference);
-                });
-                return listPro;
-            }
-            return list;
-        }
+
+            List<Nanny> list = nannysThatCanWorkForMe(m);
+            if (list.Count < 5)
+                if (getNannyDS().Count < 5)
+                    return list;
+
+            list.Concat(list.Compromise(5 - list.Count);
+
+            
+        }*/
 
         public Contract FindContract(Predicate<Contract> p)
         {

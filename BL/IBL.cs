@@ -23,14 +23,16 @@ namespace BL
         bool Exists(object obj);
         IEnumerable<Child> collectBrothers(int id);
         IEnumerable<Contract> FilterBy(Predicate<Contract> p);
-
         IEnumerable<Contract> FilterBy(IEnumerable<Contract> list, Predicate<Contract> p);
+        IEnumerable<Nanny> FilterBy(Predicate<Nanny> p);
+        IEnumerable<Nanny> FilterBy(IEnumerable<Nanny> list, Predicate<Nanny> p);
         DateTime[,] getDHTable(List<double> hoursList);
         DateTime DoubleToDateTime(double v);
         double DateTimeToDouble(DateTime dt);
         DateTime[][] setHoursIntDT(params int[] times);
         DateTime[,] setHoursDT(params double[] times);
         double[] setHoursD(DateTime[,] times);
+        bool CheckCapacity(Nanny nanny);
         DateTime DoubleToDateTime(int H, int m);
         
     }

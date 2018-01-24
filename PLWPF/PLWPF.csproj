@@ -79,6 +79,7 @@
       <DependentUpon>ChildWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlClass.cs" />
+    <Compile Include="Converters.cs" />
     <Compile Include="FNanny_page.xaml.cs">
       <DependentUpon>FNanny_page.xaml</DependentUpon>
     </Compile>
