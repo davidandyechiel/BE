@@ -8,10 +8,12 @@ using System.ComponentModel;
 
 namespace BE
 {
-    
 
 
-    public class Nanny : IComparable,INotifyPropertyChanged
+
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
+    public class Nanny : IComparable, INotifyPropertyChanged
+#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
         private int id;
         private string lastName;

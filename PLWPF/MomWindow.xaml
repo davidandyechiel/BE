@@ -63,7 +63,7 @@
             <Label Content="Number of &#13;Childrens:" Grid.Column="0" Margin="3,8,30,12" Grid.Row="9"/>
             <TextBox x:Name="numOfKidsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5,9,0,65" Grid.Row="9" 
                     IsReadOnly="True" Text="{Binding ElementName=children_combo_box, Path=Items.Count,Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="18"/>
-            <Button x:Name="AddChild" Grid.Row="9" Content="ADD NEW CHILD" Visibility ="{Binding ElementName=idTextBox,Path=Text , Converter={StaticResource emptyTextToVisability}  }" Margin="5,69,0,0" Click="AddChild_Click" Grid.Column="1" HorizontalAlignment="Left" Width="95" Height="20" VerticalAlignment="Top"/>
+            <Button x:Name="AddChild" Grid.Row="9" Content="ADD NEW CHILD" Visibility ="{Binding ElementName=idTextBox,Path=Text , Converter={StaticResource emptyTextToVisability}}" Margin="5,69,0,0" Click="AddChild_Click" Grid.Column="1" HorizontalAlignment="Left" Width="95" Height="20" VerticalAlignment="Top"/>
             <Button x:Name="UpdateChild" Grid.Row="9" Content="UPDATE" Grid.Column="1" Margin="5,39,0,0" Click="UpdateChild_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
             <ComboBox x:Name="children_combo_box" DataContext="BE.Child" Grid.Column="1" HorizontalAlignment="Left" Margin="30,9,0,0" Grid.Row="9" Width="160" ItemsSource="{Binding}" Height="22" VerticalAlignment="Top" SelectionChanged="children_combo_box_SelectionChanged"/>
             <Grid x:Name="hoursInday" Margin="85,1,371,0" Grid.Row="7" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" RenderTransformOrigin="0.487,0.5"  >

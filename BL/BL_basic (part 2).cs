@@ -118,11 +118,11 @@ namespace BL
             return (from item in MyDal.ContractDS where p(item) select item);
         }
 
-        public IEnumerable<Contract> FilterBy(IEnumerable<Contract> list,Predicate<Contract> p)
+        public IEnumerable<Contract> FilterBy(IEnumerable<Contract> list, Predicate<Contract> p)
         {
             return (from item in MyDal.ContractDS where p(item) select item);
         }
-        
+
 
 
 
@@ -149,7 +149,81 @@ namespace BL
 
 
 
+        public DateTime[,] getDHTable(List<double> hoursList)
+        {
+            DateTime[,] table = new DateTime[6, 2];
+            int i = 0;
+            foreach (double time in hoursList)
+            {
+                table[i / 2, i % 2] = DoubleToDateTime(time);
+                i++;
+            }
+            return table;
+        }
 
+        public  DateTime DoubleToDateTime(double v)
+        {
+            {
+                int H = (int)v;
+                int m = (int)(v - H);
+                string str = string.Format("{0}:{1}", (H < 100 ? "0" + (H / 10).ToString() : (H / 10).ToString()), (m < 5 ? "00" : "30")); // set string in format HH:mm
+                return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+        }
+
+
+        public  double DateTimeToDouble(DateTime dt)
+        {
+            double H = dt.Hour * 10;
+            double m = (dt.Minute == 0 ? 0 : 5);
+            return H + m;
+        }
+
+
+         public DateTime[][] setHoursIntDT(params int[] times)
+        {
+
+            DateTime[][] hours = new DateTime[6][];
+            for (int i = 0; i < times.Length; i++)
+            {
+                hours[i][0] = DoubleToDateTime(times[i]);
+                hours[i][1] = DoubleToDateTime(times[i + 1]);
+            }
+            return hours;
+        }
+
+
+         public DateTime[,] setHoursDT(params double[] times)
+        {
+
+            DateTime[,] hours = new DateTime[6, 2];
+            for (int i = 0; i < times.Length; i += 2)
+            {
+                hours[i / 2, 0] = DoubleToDateTime(times[i]);
+                hours[i / 2, 1] = DoubleToDateTime(times[i + 1]);
+            }
+            return hours;
+        }
+         public double[] setHoursD(DateTime[,] times)
+        {
+
+            double[] hours = new double[12];
+            for (int i = 0; i < hours.Length; i += 2)
+            {
+                hours[i] = DateTimeToDouble(times[i, 0]);
+                hours[i + 1] = DateTimeToDouble(times[i, 1]);
+            }
+            return hours;
+        }
+
+        public  DateTime DoubleToDateTime(int H, int m)
+        {
+            string str = string.Format("{0}:{1}", (H < 10 ? "0" + (H / 10).ToString() : (H / 10).ToString()), (m < 30 ? "00" : "30")); // set string in format HH:mm
+            return DateTime.ParseExact(str, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+       
 
     }
 }
