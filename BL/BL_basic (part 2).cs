@@ -191,18 +191,9 @@ namespace BL
             return H + m;
         }
 
+       
 
-         public DateTime[][] setHoursIntDT(params int[] times)
-        {
-
-            DateTime[][] hours = new DateTime[6][];
-            for (int i = 0; i < times.Length; i++)
-            {
-                hours[i][0] = DoubleToDateTime(times[i]);
-                hours[i][1] = DoubleToDateTime(times[i + 1]);
-            }
-            return hours;
-        }
+      
 
 
          public DateTime[,] setHoursDT(params double[] times)

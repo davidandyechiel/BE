@@ -52,9 +52,8 @@
         </ComboBox>
         <Label x:Name="idFilterLable" Content="Enter ID #:" HorizontalAlignment="Left" Margin="5,47,0,0" VerticalAlignment="Top" FontWeight="Medium"/>
         <Label x:Name="isSignedLable" Content="Is Signed:" HorizontalAlignment="Left" Margin="8,79,0,0" VerticalAlignment="Top" FontWeight="Medium"/>
-        <Button x:Name="updateButton" Content="UPDATE" Margin="5,0,0,5" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
-        <Button x:Name="deleteButton" Content="DELETE" Margin="90,0,0,5" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
-        <Button x:Name="saveButton" Content="SAVE" Margin="210,0,0,5" Click="filterButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="updateButton" Content="UPDATE" Margin="5,0,0,5" Click="updateButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"  />
+        <Button x:Name="deleteButton" Content="DELETE" Margin="90,0,0,5" Click="deleteButton_Click" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Page>

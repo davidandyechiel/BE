@@ -92,15 +92,11 @@ namespace PLWPF
             try
             {
 
-                //radio button condition:
+                //radio button condition:         
 
-               
-
-                IEnumerable<BE.Nanny> filteredList = CC.bl.nannysThatCanWorkForMe((sender as ComboBox).SelectedItem as BE.Mother);
+                IEnumerable<BE.Nanny> filteredList = CC.bl.nannysThatCanWorkForMe(comboboxMom.SelectedItem as BE.Mother);
                 Predicate<BE.Nanny> filters = new Predicate<BE.Nanny>( CC.bl.CheckCapacity);
 
-                if (textBox.Text == "")
-                    throw new Exception("Enter id value");
                 if (dependedDaysOffCheckBox.IsChecked.Value)  //depended days off filter
                     filters += delegate(BE.Nanny arg) { return arg.DependedDaysOff; };
                 if (perHourCheckBox.IsChecked.Value)  // perhour filter
@@ -109,6 +105,8 @@ namespace PLWPF
                     filters += delegate (BE.Nanny arg) { return arg.Elevator; };
                else if (floorTextBox.Text != "")
                     filters += delegate (BE.Nanny arg) { return CC.bl.getDistance(((BE.Mother)comboboxMom.SelectedItem).AddressNearHere, arg.Adress) <= (int.Parse(floorTextBox.Text)); };
+                if (distanceCheckBox.IsChecked == true)
+                    filters += delegate (BE.Nanny arg) {return CC.bl.getDistance((comboboxMom.SelectedItem as BE.Mother).AddressNearHere, arg.Adress) <= int.Parse(distanceTextBox.Text); };
 
                 filteredList = filteredList.FilterBy(filters);
 
@@ -139,6 +137,20 @@ namespace PLWPF
                 floorTextBox.Text = "";
         }
 
-        
+        private void distanceTextBox_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (!distanceTextBox.IsEnabled)
+                distanceTextBox.Text = "";
+        }
+
+        private void distanceCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            distanceTextBox.Visibility = Visibility.Visible;
+        }
+
+        private void distanceCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            distanceTextBox.Visibility = Visibility.Collapsed;
+        }
     }//FNanny_page
 }//PLWPF

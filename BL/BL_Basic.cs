@@ -89,14 +89,14 @@ namespace BL
             {
                 if (getAge(((Nanny)obj).BirthDate) < 18)
                     throw new Exception("Too young to be a nanny");
-                MyDal.Update(obj);
             }
             if (obj is Child)
             {
                 if (getAge(((Child)obj).Birthday) < 0.03)
                     throw new Exception("Child is too young to leave his/her mother");
-                MyDal.Update(obj);
+                
             }
+            MyDal.Update(obj);
         }
 
         public List<Child> getChildDS()
@@ -125,12 +125,11 @@ namespace BL
             List<Nanny> list = new List<Nanny>();
             foreach (Nanny nanny in getNannyDS())
             {
-                for (int i = 0; i <= 6; i++)
-                {
+                
                     if ((nanny.DThoursTable.CompareTo(momhours)))
                         //   if the start hour of the nanny is earlier than the desired mothers strt time and the end hour of the nanny is later than the desired mothers end time
                         list.Add(nanny);
-                }
+               
                            
             }
             return list;
@@ -178,5 +177,29 @@ namespace BL
         }
 
         
+
+        public DateTime[][] setHoursIntDT(params int[] times)
+        {
+            DateTime[][] hours = new DateTime[6][];
+            for (int i = 0; i < times.Length; i++)
+            {
+                hours[i] = new DateTime[2];
+                hours[i][0] = DoubleToDateTime(times[i]);
+                hours[i][1] = DoubleToDateTime(times[i + 1]);
+            }
+            return hours;
+        }
+
+        public DateTime[][] setHoursIntDT(params double[] times)
+        {
+            DateTime[][] hours = new DateTime[6][];
+            for (int i = 0; i < 6; i++)
+            {
+                hours[i] = new DateTime[2];
+                hours[i][0] = DoubleToDateTime(times[i]);
+                hours[i][1] = DoubleToDateTime(times[i + 1]);
+            }
+            return hours;
+        }
     }
 }

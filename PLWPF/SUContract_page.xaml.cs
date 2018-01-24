@@ -31,7 +31,7 @@ namespace PLWPF
         private ObservableCollection<Contract> contractCollection;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
 
 
         //   private currentCont;
@@ -57,7 +57,7 @@ namespace PLWPF
             ContractCollection = new ObservableCollection<Contract>(CC.bl.getContractDS());
             contractDataGrid.ItemsSource = ContractCollection;
             DataContext = ContractCollection;
-            
+
         }
 
         private void contractDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,7 +70,7 @@ namespace PLWPF
             try
             {
 
-               //radio button condition:
+                //radio button condition:
 
                 IEnumerable<Contract> filteredList = CC.bl.getContractDS();
 
@@ -88,7 +88,7 @@ namespace PLWPF
                 //isSigned ComboBox condition:
 
                 if (comboBoxSign.SelectedIndex == 1)
-                    filteredList= filteredList.FilterBy(x => x.IsSigned == true);
+                    filteredList = filteredList.FilterBy(x => x.IsSigned == true);
                 else if (comboBoxSign.SelectedIndex == 2)
                     filteredList = filteredList.FilterBy(x => x.IsSigned == false);
 
@@ -110,6 +110,25 @@ namespace PLWPF
         private void radioButtonAll_Checked(object sender, RoutedEventArgs e)
         {
             ContractCollection = new ObservableCollection<Contract>(CC.bl.getContractDS());
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (CC.YES_NO_Window("delete?"))
+                    CC.bl.Remove(contractDataGrid.SelectedItem as Contract);
+            }
+            catch (Exception exp)
+            {
+                CC.WindowError(exp.Message);
+            }
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContractWindow cont = new ContractWindow(contractDataGrid.SelectedItem as Contract);
+            cont.Show();
         }
     }
 }

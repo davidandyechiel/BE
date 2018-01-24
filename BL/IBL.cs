@@ -30,6 +30,7 @@ namespace BL
         DateTime DoubleToDateTime(double v);
         double DateTimeToDouble(DateTime dt);
         DateTime[][] setHoursIntDT(params int[] times);
+        DateTime[][] setHoursIntDT(params double[] times);
         DateTime[,] setHoursDT(params double[] times);
         double[] setHoursD(DateTime[,] times);
         bool CheckCapacity(Nanny nanny);

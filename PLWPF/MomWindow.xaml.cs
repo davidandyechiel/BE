@@ -100,7 +100,7 @@ namespace PLWPF
             int i = 0;
             foreach (MahApps.Metro.Controls.RangeSlider item in daysSliders.Children)
             {
-                
+
                 item.LowerValue = CC.bl.DateTimeToDouble(hourArray[i, 0]);
                 item.UpperValue = CC.bl.DateTimeToDouble(hourArray[i, 1]);
                 i++;
@@ -114,7 +114,7 @@ namespace PLWPF
             {
 
                 if (int.Parse(idTextBox.Text) == 0)
-                    throw new Exception( "please enter ID");
+                    throw new Exception("please enter ID");
                 // If the user sure that he wants so save ...
                 if (CC.YES_NO_Window("save"))
                 {
@@ -131,7 +131,7 @@ namespace PLWPF
                         hoursList.Add(item.UpperValue);
                     }
                     //Mom.DThoursTable = CC.setHoursDT(hoursList.ToArray());
-                    Mom.DThoursTable = CC.bl.getDHTable(hoursList); 
+                    Mom.DThoursTable = CC.bl.getDHTable(hoursList);
                     //update the the mother id of the children before delete
 
                     foreach (Child child in children_combo_box.Items)
@@ -140,6 +140,9 @@ namespace PLWPF
                             child.MothersId = int.Parse(idTextBox.Text);
                             CC.bl.Add(child);
                         }
+
+                    //update num of children
+                    Mom.NumOfKids = int.Parse(numOfKidsTextBox.Text);
 
                     // add new brothers to DS
                     if (update)
@@ -151,7 +154,7 @@ namespace PLWPF
                 }
 
             }
-            
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -251,19 +254,18 @@ namespace PLWPF
             {
                 if (CC.YES_NO_Window("Clear"))
                 {
-
                     Mom = new Mother(int.Parse(idTextBox.Text));
                     grid1.DataContext = Mom;
                 }
-
             }
             catch (Exception exp)
             {
                 CC.WindowError(exp.Message);
             }
-
-
-
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
 

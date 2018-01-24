@@ -44,7 +44,8 @@ namespace DS
                             //if the nanny's Id  in the contract is not exist in the nannylist
                             throw new Exception("the nanny is not exist in the DS");
                         //else add new contract number
-                        (obj as Contract).ContractNum = getContractNum(obj as Contract);
+                        if ((obj as Contract).ContractNum == 0)
+                            (obj as Contract).ContractNum = getContractNum(obj as Contract);
                         MyDS.getContractDS().Add(obj as Contract);
                         break;
                     case (EnumClasses.E_type.CHILD):
@@ -64,15 +65,9 @@ namespace DS
 
         private int getContractNum(Contract contract)
         {
-            if (contract.ContractNum == 0) // new contract
-            {
+
                 return Contract.ContractNumCounter++; // return the current contract number and add 1 to the contract number
-            }
-            else // update contract
-            {
-                //return the old cpntract number, find the old one (whith the same nannyId and childId and get his contract.
-                return MyDS.getContractDS().Find(contract.Equals).ContractNum; // update Contract number
-            }
+
         }
 
         public bool Exists(object obj)
@@ -123,6 +118,7 @@ namespace DS
                 switch (getEnum(obj))
                 {
                     case (EnumClasses.E_type.CONTRACT):
+                        (obj as Contract).ContractNum = FindContract(x=> x.ChildID == (obj as Contract).ChildID && x.NannysID == (obj as Contract).NannysID).ContractNum;
                         Remove(obj as Contract);
                         Add(obj as Contract);
                         break;

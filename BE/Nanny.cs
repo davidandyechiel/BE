@@ -195,6 +195,22 @@ namespace BE
             }
         }
 
+        public double Wages
+        {
+            get
+            {
+                return (perHour) ? HourRate : MonthlyRate;
+            }
+
+            set
+            {
+                if (perHour) HourRate = value;
+                else MonthlyRate = value;
+                
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Wages"));
+            }
+        }
+
         public double MaxAge
         {
             get

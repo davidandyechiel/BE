@@ -131,23 +131,42 @@ namespace PLWPF
 
         private static void AddDefaultValues()
         {
-            BE.Mother mom1 = new BE.Mother(1, "Cohen", "Sarah", 026541526, 0527412564, "הועד הלאומי12, ירושלים", "הועד הלאומי12, ירושלים", " ", null, 2);
+            BE.Mother mom1 = new BE.Mother(1, "Cohen", "Sarah", 026541526, 0527412564, "הועד הלאומי 12 ירושלים", "הועד הלאומי12, ירושלים", " ", null, 2);
             BE.Child child11 = new BE.Child(123, 1, "Yossi", "Chohen", BE.EnumClasses.E_gender.BOY, false, "", new DateTime(2017, 1, 1));
             BE.Child child12 = new BE.Child(124, 1, "Moshe", "Chohen", BE.EnumClasses.E_gender.BOY, false, "", new DateTime(2015, 1, 1));
 
-            BE.Mother mom2 = new BE.Mother(2, "Levi", "Ofra", 026584921, 0549853665, "הועד הלאומי13, ירושלים", "הועד הלאומי13, ירושלים", " ", null, 2);
+            BE.Mother mom2 = new BE.Mother(2, "Levi", "Ofra", 026584921, 0549853665, "הועד הלאומי 13 ירושלים", "הועד הלאומי13, ירושלים", " ", null, 2);
             BE.Child child21 = new BE.Child(125, 2, "Avraham", "Levi", BE.EnumClasses.E_gender.BOY, false, "", new DateTime(2017, 5, 11));
             BE.Child child22 = new BE.Child(126, 2, "Issac", "Levi", BE.EnumClasses.E_gender.BOY, false, "", new DateTime(2015, 12, 23));
 
-            BE.Nanny nan1 = new BE.Nanny(11, "Salem", "Esther", new DateTime(1998 / 1 / 25), 0585802606, true, "הוועד הלאומי 21", 3, 5, 20, 1, 3, true, 30, 500, "yes", true, null);
-            BE.Nanny nan2 = new BE.Nanny(12, "Dusi", "Grace", new DateTime(1994 / 1 / 25), 0585802608, true, "הוועד הלאומי 21", 2, 5, 20, 1, 3, true, 30, 600, "no", true, null);
+            BE.Mother mom3 = new BE.Mother(3, "Nagar", "Rivka", 023331526, 0533312564, "ברוך דובדבני 3 ירושלים", "", "im disabled and i need nanny on the first floor or elevator", null, 2);
+            BE.Child child31 = new BE.Child(127, 3, "Moshe", "Nagar", BE.EnumClasses.E_gender.BOY, true, "", new DateTime(2016, 4, 1));
+            BE.Child child32 = new BE.Child(128, 3, "Ruth", "Nagar", BE.EnumClasses.E_gender.GIRL, false, "", new DateTime(2015, 1, 1));
 
+            BE.Mother mom4 = new BE.Mother(4, "Tov", "Leah", 026541526, 0533352654, "הועד הלאומי 4 ירושלים", "", " ", null, 3);
+            BE.Child child41 = new BE.Child(129, 4, "Miri", "Tov", BE.EnumClasses.E_gender.GIRL, false, "", new DateTime(2017, 1, 1));
+            BE.Child child42 = new BE.Child(130, 4, "Moshe", "Tov", BE.EnumClasses.E_gender.BOY, false, "", new DateTime(2016, 6, 1));
+            BE.Child child43 = new BE.Child(131, 4, "Rinat", "Tov", BE.EnumClasses.E_gender.GIRL, true, "", new DateTime(2015, 1, 1));
+
+            BE.Nanny nan1 = new BE.Nanny(11, "Salem", "Esther", new DateTime(1973 / 1 / 25), 0585802606, true, "הועד הלאומי 21 ירושלים", 3, 5, 20, 1, 1.8, true, 30, 500, "yes", true, null);
+            BE.Nanny nan2 = new BE.Nanny(12, "Dusi", "Grace", new DateTime(1960 / 1 / 25), 0585842608, false, "הועד הלאומי 22 ירושלים", 2, 5, 15, 0.3, 1.5, true, 30, 600, "no", true, null);
+            BE.Nanny nan3 = new BE.Nanny(13, "Mualem", "Gabbi", new DateTime(1955 / 1 / 25), 0585502606, true, "הועד הלאומי 23 ירושלים", 1, 5, 35, 2, 3, false, 30, 500, "yes", false, null);
+            BE.Nanny nan4 = new BE.Nanny(14, "Horvitz", "Rachel", new DateTime(1985 / 1 / 25), 0585602608, true, "הועד הלאומי 24 ירושלים", 2, 5, 10, 1, 3, false, 30, 600, "no", true, null);
+            BE.Nanny nan5 = new BE.Nanny(15, "Roth", "Leah", new DateTime(1970 / 1 / 25), 0585802706, false, "הועד הלאומי 25 ירושלים", 0, 5, 20, 1, 3, true, 30, 500, "yes", false, null);
+
+            double[] d = { 7, 8, 7, 8, 7, 8, 7, 8, 7, 8, 7, 8 };
+            
+            nan5.DThoursTable = CC.bl.setHoursIntDT(d);
 
 
             BE.Contract con1 = new BE.Contract(11, 123);
             BE.Contract con2 = new BE.Contract(11, 124);
             BE.Contract con3 = new BE.Contract(12, 125);
-            BE.Contract con4 = new BE.Contract(12, 126);
+            BE.Contract con4 = new BE.Contract(12, 127);
+            BE.Contract con5 = new BE.Contract(13, 128);
+            BE.Contract con6 = new BE.Contract(14, 129);
+            BE.Contract con7 = new BE.Contract(15, 130);
+            BE.Contract con8 = new BE.Contract(15, 131);
             con4.IsSigned = true;
 
 
@@ -157,13 +176,26 @@ namespace PLWPF
             CC.bl.Add(mom2);
             CC.bl.Add(child21);
             CC.bl.Add(child22);
+            CC.bl.Add(mom3);
+            CC.bl.Add(child31);
+            CC.bl.Add(child32);
+            CC.bl.Add(mom4);
+            CC.bl.Add(child41);
+            CC.bl.Add(child42);
+            CC.bl.Add(child43);
             CC.bl.Add(nan1);
             CC.bl.Add(nan2);
+            CC.bl.Add(nan3);
+            CC.bl.Add(nan4);
+            CC.bl.Add(nan5);
             CC.bl.Add(con1);
             CC.bl.Add(con2);
             CC.bl.Add(con3);
             CC.bl.Add(con4);
-            
+            CC.bl.Add(con5);
+            CC.bl.Add(con6);
+            CC.bl.Add(con7);
+            CC.bl.Add(con8);
 
             int i = 0;
 
