@@ -29,6 +29,7 @@ namespace PLWPF
             nanny = new BE.Nanny();
             this.DataContext = nanny;
             this.grid1.DataContext = nanny;
+          //  birthDateDatePicker.SelectedDate = DateTime.Today;
            
 
           //  bl = BL.blfactory.getbl();
@@ -60,9 +61,11 @@ namespace PLWPF
                 nanny.DThoursTable = hourList;
                 nanny.Id = int.Parse(this.idTextBox.Text);
                 CC.bl.Add(nanny);
+                MessageBox.Show("successfully added nanny");
                 nanny = new BE.Nanny();
                 grid1.DataContext = nanny;
                 grid2.DataContext = nanny;
+                this.Close();
             }
             catch (Exception exception)
             {
