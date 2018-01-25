@@ -8,7 +8,8 @@
    
     mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="400"
-      Title="FNanny_page">
+      Title="FNanny_page"
+    Loaded="Page_Loaded">
 
     <Page.Resources>
         <CollectionViewSource x:Key="nannyViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Nanny}, CreateList=True}"/>

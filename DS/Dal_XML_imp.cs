@@ -117,10 +117,34 @@ namespace DS
         }
 
         #endregion
-        void Add<T>(T obj);
-        void Remove<T>(T obj);
-        void Update<T>(T obj);
+        void Add<T>(T obj)
+        {
 
+
+
+        }
+        void Remove<T>(T obj)
+        {
+
+
+
+        }
+        void Update<T>(T obj)
+        {
+
+
+
+
+        }
+
+       /* bool Exists(object obj)
+        {
+
+
+
+
+        }
+        */
         #region GeneralSection
 
 
@@ -129,7 +153,7 @@ namespace DS
 
 
         #region nannySection
-        public List<Nanny> NannyDS()
+        public List<Nanny> getNannyDS()
         {
 
 
@@ -170,6 +194,8 @@ namespace DS
 
 
             }
+            catch (Exception exp)
+            { throw exp; }
             return nannys;
         }
 
@@ -310,6 +336,12 @@ namespace DS
 
             nannyRoot.Save(nannyPath);
         }
+
+
+
+
+
+
         #endregion
         #region childSection
 
@@ -335,11 +367,7 @@ namespace DS
         }
 
 
-
-
-
-        //child get DS
-        public List<Child> childDS()
+        public List<Child> getChildDS()
         {
             LoadData(EnumClasses.E_type.CHILD);
             List<Child> children = new List<Child>();
@@ -364,9 +392,52 @@ namespace DS
             }
             catch (Exception exp)
             {
-                throw exp;
+                children = null;
             }
             return children;
+        }
+
+        //interface
+        public List<Child> childDS
+        {
+            get
+            {
+                return getChildDS();
+
+            }
+
+        }
+
+        public List<Nanny> NannyDS
+        {
+            get
+            {
+                return instance.NannyDS;
+            }
+        }
+
+        public List<Mother> MotherDS
+        {
+            get
+            {
+                return instance.MotherDS;
+            }
+        }
+
+        public List<Child> ChildDS
+        {
+            get
+            {
+                return instance.ChildDS;
+            }
+        }
+
+        public List<Contract> ContractDS
+        {
+            get
+            {
+                return instance.ContractDS;
+            }
         }
 
         public static EnumClasses.E_gender converToGender(string str)
@@ -375,26 +446,6 @@ namespace DS
                 return EnumClasses.E_gender.BOY;
             else return EnumClasses.E_gender.GIRL;
         }
-
-        //public string GetNannyName(int id)
-        //{
-        //    LoadData();
-        //    string nannyName;
-        //    try
-        //    {
-        //        nannyName = (from nan in nannyRoot.Elements()
-        //                       where int.Parse(nan.Element("id").Value) == id
-        //                       select nan.Element("firstName").Value
-        //                       + " " +
-        //                           nan.Element("lastName").Value
-        //                            ).FirstOrDefault();
-        //    }
-        //    catch
-        //    {
-        //        nannyName = null;
-        //    }
-        //    return nannyName;
-        //}
 
         public Child FindChild(int id)
         {
@@ -471,59 +522,85 @@ namespace DS
 
         }
 
-
-
-
-
-
-
-        public bool RemoveNanny(int id)
+        public bool RemoveChild(Child child)
         {
-            XElement nannyElement;
+            XElement childElement;
             try
             {
-                nannyElement = (from p in nannyRoot.Elements()
-                                where Convert.ToInt32(p.Element("id").Value) == id
-                                select p).FirstOrDefault();
-                nannyElement.Remove();
-                nannyRoot.Save(nannyPath);
+                childElement = (from ch in childRoot.Elements()
+                                where int.Parse(ch.Element("id").Value) == child.Id
+                                select ch).FirstOrDefault();
+                childElement.Remove();
+                childRoot.Save(childPath);
                 return true;
             }
             catch
             {
                 return false;
             }
+
+
         }
 
-
-        public void UpdateNanny(Nanny nanny)
+        public bool UpdateChild(Child ch)
         {
-            XElement nannyElement = (from p in nannyRoot.Elements()
-                                     where Convert.ToInt32(p.Element("id").Value) == nanny.Id
-                                     select p).FirstOrDefault();
-            //   XElement studentElement2 = studentRoot.Elements().Where(p => Convert.ToInt32(p.Element("id").Value) == student.Id).FirstOrDefault();
-            nannyElement.Element("firstName").Value = nanny.FirstName;
-            nannyElement.Element("lastName").Value = nanny.LastName;
-            nannyElement.Element("adress").Value = nanny.Adress;
-            nannyElement.Element("birthDate").Element("year").Value = nanny.BirthDate.Year.ToString();
-            nannyElement.Element("birthDate").Element("month").Value = nanny.BirthDate.Month.ToString();
-            nannyElement.Element("birthDate").Element("day").Value = nanny.BirthDate.Day.ToString();
-            nannyElement.Element("phoneNum").Value = nanny.PhoneNum.ToString();
-            nannyElement.Element("elevator").Value = nanny.Elevator.ToString();
-            nannyElement.Element("floor").Value = nanny.Floor.ToString();
-            nannyElement.Element("experience").Value = nanny.Experince.ToString();
-            nannyElement.Element("hourRate").Value = nanny.HourRate.ToString();
-            nannyElement.Element("maxAge").Value = nanny.MaxAge.ToString();
-            nannyElement.Element("minAge").Value = nanny.MinAge.ToString();
-            nannyElement.Element("maxCapacity").Value = nanny.MaxCapacity.ToString();
-            nannyElement.Element("monthlyRate").Value = nanny.MonthlyRate.ToString();
-            nannyElement.Element("perHour").Value = nanny.PerHour.ToString();
-            nannyElement.Element("recomendations").Value = nanny.Recommendations;
-            nannyElement.Element("dependedDaysOff").Value = nanny.DependedDaysOff.ToString();
-            nannyElement.Element("difference").Value = nanny.Difference.ToString();
+            try
+            {
+                if (RemoveChild(ch))
+                {
+                    AddChild(ch);
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
 
-            nannyRoot.Save(nannyPath);
+
         }
+
+        void Idal.Add<T>(T obj)
+        {
+            ((Idal)instance).Add<T>(obj);
+        }
+
+        void Idal.Remove<T>(T obj)
+        {
+            ((Idal)instance).Remove<T>(obj);
+        }
+
+        void Idal.Update<T>(T obj)
+        {
+            ((Idal)instance).Update<T>(obj);
+        }
+
+        public Contract FindContract(Predicate<Contract> p)
+        {
+            return instance.FindContract(p);
+        }
+
+        public Mother FindMother(Predicate<Mother> p)
+        {
+            return instance.FindMother(p);
+        }
+
+        public Nanny FindNanny(Predicate<Nanny> p)
+        {
+            return instance.FindNanny(p);
+        }
+
+        public bool Exists(object obj)
+        {
+            return instance.Exists(obj);
+        }
+
+
+
+
+
+
         #endregion
 
 
@@ -531,47 +608,7 @@ namespace DS
 
 
 
-        public void Add<T>(T obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove<T>(T obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update<T>(T obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Contract FindContract(Predicate<Contract> p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Child FindChild(Predicate<Child> p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Mother FindMother(Predicate<Mother> p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Nanny FindNanny(Predicate<Nanny> p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Exists(object obj)
-        {
-            throw new NotImplementedException();
-        }
     }
-
 }
 /* TODO:
        public List<Nanny> NannyDS

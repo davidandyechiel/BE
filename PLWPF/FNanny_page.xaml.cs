@@ -152,5 +152,18 @@ namespace PLWPF
         {
             distanceTextBox.Visibility = Visibility.Collapsed;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            momCollection.Clear();
+            nannyCollection.Clear();
+            foreach (var mom in CC.bl.getMotherDS())
+                momCollection.Add(mom);
+            foreach (var nanny in CC.bl.getNannyDS())
+                if (CC.bl.CheckCapacity(nanny))  // filtering only alailable nannies
+                    nannyCollection.Add(nanny);
+            comboboxMom.ItemsSource = momCollection;
+            nannyDataGrid.ItemsSource = nannyCollection;
+        }
     }//FNanny_page
 }//PLWPF

@@ -242,7 +242,7 @@ namespace BL
             switch (str)
             {
                 case EnumClasses.E_InstanceType.XML:
-                    MyDal = Dal_XML_imp.Instance;
+                   // MyDal = Dal_XML_imp.Instance;
                     InstanceType = EnumClasses.E_InstanceType.XML;
                     break;
                 case EnumClasses.E_InstanceType.LIST:
