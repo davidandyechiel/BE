@@ -66,7 +66,7 @@ namespace DS
         private int getContractNum(Contract contract)
         {
 
-                return Contract.ContractNumCounter++; // return the current contract number and add 1 to the contract number
+            return Contract.ContractNumCounter++; // return the current contract number and add 1 to the contract number
 
         }
 

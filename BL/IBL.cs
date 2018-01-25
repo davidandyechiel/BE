@@ -37,7 +37,8 @@ namespace BL
         DateTime DoubleToDateTime(int H, int m);
         List<Nanny> nannysThatCanWorkForMe(Mother m);
         int getDistance(String source, string dest);
-
+        void setInstanceType(EnumClasses.E_InstanceType str);
+        EnumClasses.E_InstanceType getInstanceType();
 
     }
 }

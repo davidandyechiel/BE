@@ -50,22 +50,14 @@ namespace PLWPF
 
         }
 
-        private void DSslider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-           
-        }
+        
 
         private void DSslider_TouchDown(object sender, TouchEventArgs e)
         {
 
         }
 
-        private void DSslider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-            
-
-        }
+       
 
         private void DSslider_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -85,6 +77,21 @@ namespace PLWPF
         private void DSslider_ValueChanged_2(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
+        }
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (DSslider.Value == 0 && CC.bl.getInstanceType() == BE.EnumClasses.E_InstanceType.LIST)
+                    CC.bl.setInstanceType(BE.EnumClasses.E_InstanceType.XML);
+                if (DSslider.Value == 1 && CC.bl.getInstanceType() == BE.EnumClasses.E_InstanceType.XML)
+                    CC.bl.setInstanceType(BE.EnumClasses.E_InstanceType.LIST);
+            }
+            catch (Exception exp)
+            {
+                CC.WindowError("Data Surce Had Been Cahnged");
+            }
         }
     }
 }

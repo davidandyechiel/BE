@@ -237,6 +237,30 @@ namespace BL
         }
 
 
+        public void setInstanceType(EnumClasses.E_InstanceType str)
+        {
+            switch (str)
+            {
+                case EnumClasses.E_InstanceType.XML:
+                   // MyDal = Dal_XML_imp.Instance;
+                    InstanceType = EnumClasses.E_InstanceType.XML;
+                    break;
+                case EnumClasses.E_InstanceType.LIST:
+                    MyDal = Dal_imp.Instance;
+                    InstanceType = EnumClasses.E_InstanceType.LIST;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        public EnumClasses.E_InstanceType getInstanceType()
+        {
+            return InstanceType;
+
+        }
+
 
     }
 }

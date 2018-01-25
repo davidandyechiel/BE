@@ -13,8 +13,8 @@ namespace BL
 {
    public sealed partial class BL_Basic : IBL
     {
-        private static Idal MyDal;
-       
+        private static Idal myDal;
+        private static EnumClasses.E_InstanceType instanceType;
 
         #region Singleton
         private static readonly BL_Basic instance = new BL_Basic();
@@ -23,13 +23,42 @@ namespace BL
         {
             get { return instance; }
         }
-        #endregion 
+
+        public static Idal MyDal
+        {
+            get
+            {
+                return myDal;
+            }
+
+            set
+            {
+                myDal = value;
+                //TODO:sync sources;
+
+            }
+        }
+
+        public static EnumClasses.E_InstanceType InstanceType
+        {
+            get
+            {
+                return instanceType;
+            }
+
+            set
+            {
+                instanceType = value;
+            }
+        }
+        #endregion
 
         #region Constructor
         private BL_Basic() { }
         static BL_Basic()
         {
                MyDal = Dal_imp.Instance;
+            InstanceType = EnumClasses.E_InstanceType.LIST;
         }
         #endregion
 
