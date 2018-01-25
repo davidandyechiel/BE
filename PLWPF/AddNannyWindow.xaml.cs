@@ -81,5 +81,16 @@ namespace PLWPF
         {
 
         }
+
+        private void perHourCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            monthlyRateTextBox.Visibility = Visibility.Visible;
+            
+        }
+
+        private void perHourCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            monthlyRateTextBox.Visibility = Visibility.Collapsed;
+        }
     }
 }
