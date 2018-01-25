@@ -95,5 +95,50 @@ namespace BE
             }
             return table;
         }
+
+        public static bool[] Parse(this bool[] table, string str)
+        {
+            bool[] output = table;
+            int i = 0;
+            string[] strArr = str.Split(',', ';');
+            foreach (string s in strArr)
+                output[i] = BoolIt(s);
+            return output;
+        }
+
+        private static bool BoolIt(string str)
+        {
+            if (str == "true")
+                return true;
+            else return false;
+        }
+
+
+        public static DateTime[][] Parse(this DateTime[][] table, string str)
+        {
+            DateTime[][] output = table;
+            int i = 0;
+            string[] strArr = str.Split(';');
+            foreach (string s in strArr)
+            {
+                table[i] = new DateTime[2];
+                table[i] = DateIt(strArr[i]);
+            }
+                
+            return output;
+        }
+
+        private static DateTime[] DateIt(string str)
+        {
+            string[] strArr = str.Split(';');
+            DateTime[] t = new DateTime[2];
+            t[0] = DateTime.ParseExact(strArr[0], "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            t[1] = DateTime.ParseExact(strArr[1], "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            return t;
+        }
+
+        
+
+
     }
 }

@@ -15,10 +15,8 @@ namespace DAL
 
 
         List<Nanny> NannyDS { get; }
-
         List<Mother> MotherDS { get; }
         List<Child> ChildDS { get; }
-
         List<Contract> ContractDS { get; }
 
         Contract FindContract(Predicate<Contract> p);
